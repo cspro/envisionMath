@@ -1,0 +1,299 @@
+$higherEdColor1: darken(#df4854, 3%);
+$higherEdColor2: darken(#c92f44, 1%);
+$professionalColor1: darken(#7cb557, 8%);
+$professionalColor2: darken(#3fa85c, 5%);
+$schoolColor1: #0088b7;
+$schoolColor2: #006da3;
+$neutralBg: #bbbbbb;
+$accentColor: #205F9F;
+
+.container {
+  min-width: 360px;
+}
+
+* {
+  font-family: "Open Sans" !important;
+  font-size: 14px;
+}
+a:hover {
+ text-decoration: none;
+}
+h1 {font-size: 1.75em;}
+h2 {font-size: 1.35em;}
+h3 {font-size: 1.15em;}
+
+img.no-resize { max-width: none; }
+img, area, map {
+  outline: none;
+}
+.spaceBelow {
+  margin-bottom: 1em; 
+}
+.spaceAbove {
+  margin-top: 1em; 
+}
+.allCaps {
+  text-transform: uppercase;
+}
+.tooltip-inner {
+  max-width: 300px;
+  min-width: 150px;  
+  font-size: 10px !important;
+}
+
+@import 'upper_content';
+
+#circleWrapper {
+  position: relative;
+  display: block;
+  margin: 0 auto;
+  width: 400px;
+  height: 400px;
+  canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  #mapShim {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    width: 350px;
+    height: 350px;
+  }
+  #circleContainer {
+    position: relative;
+    width: 350px;
+    height: 350px;
+    left: 0;
+    -webkit-transition: all 0.75s ease-in-out;
+    transition: all 0.75s ease-in-out;
+    -webkit-transition-delay: 0.15s;
+    transition-delay: 0.15s;
+    overflow: hidden;
+    padding: 0;
+  }
+  .circleMask {
+    position: absolute;
+    width: 350px;
+    height: 350px;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    background: url('../images/circle_map_mask.png') 0 0;
+    // pointer-events: none;
+    &.ng-hide-add,
+    &.ng-hide-remove {
+      -webkit-transition: all 0.25s ease-out;
+      transition: all 0.25s ease-out;
+      display: block !important;
+      opacity: 1;
+    }
+    &.ng-hide {
+      opacity: 0;
+    }
+    &.transitioning {
+      background: url('../images/circle_map_mask.png') 0 0 !important;
+    }
+  }
+}
+
+
+#wrapper.professional {
+  #circleContainer {
+    -o-transform:      rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -ms-transform:     rotate(0deg);
+    ms-transform:     rotate(0deg);
+    transform:         rotate(0deg);
+    // -ms-filter: "progid:DXImageTransform.Microsoft.Matrix(M11=1, M12=0, M21=0, M22=1, SizingMethod='auto expand')";
+  }
+  .projectColumn.professional {
+    h2 {background-color: $professionalColor2;}
+  }
+  .projectColumn.higherEd {
+    h2 {background-color: desaturate(lighten($higherEdColor2, 25%), 25%);}
+  }
+  .projectColumn.school {
+    h2 {background-color: desaturate(lighten($schoolColor2, 45%), 55%);}
+  }
+}
+#wrapper.higherEd {
+  #circleContainer {
+    -o-transform:      rotate(120deg);
+    -webkit-transform: rotate(120deg);
+    -ms-transform:     rotate(120deg);
+    ms-transform:     rotate(120deg);
+    transform:         rotate(120deg);
+    // -ms-filter: "progid:DXImageTransform.Microsoft.Matrix(M11=-0.5000000000000004, M12=-0.8660254037844384, M21=0.8660254037844384, M22=-0.5000000000000004, SizingMethod='auto expand')";
+  }
+  .projectColumn.professional {
+    h2 {background-color: desaturate(lighten($professionalColor2, 30%), 20%);}
+  }
+  .projectColumn.higherEd {
+    h2 {background-color: $higherEdColor2;}
+  }
+  .projectColumn.school {
+    h2 {background-color: desaturate(lighten($schoolColor2, 45%), 55%);}
+  }
+}
+#wrapper.school {
+  #circleContainer {
+    -o-transform:      rotate(-120deg);
+    -webkit-transform: rotate(-120deg);
+    -ms-transform:     rotate(-120deg);
+    ms-transform:     rotate(-120deg);
+    transform:         rotate(-120deg);
+    // -ms-filter: "progid:DXImageTransform.Microsoft.Matrix(M11=-0.4999999999999998, M12=0.8660254037844387, M21=-0.8660254037844387, M22=-0.4999999999999998, SizingMethod='auto expand')";
+  }
+  .projectColumn.professional {
+    h2 {background-color: desaturate(lighten($professionalColor2, 30%), 20%);}
+  }
+  .projectColumn.higherEd {
+    h2 {background-color: desaturate(lighten($higherEdColor2, 25%), 25%);}
+  }
+  .projectColumn.school {
+    h2 {background-color: $schoolColor2;}
+  }
+}
+
+#wrapper.northAmerica {
+  .circleMask {
+    background: url('../images/circle_map_mask.png') -350px 0 !important;
+  }
+}
+#wrapper.growthVenture {
+  .circleMask {
+    background: url('../images/circle_map_mask.png') -700px 0 !important;
+  }
+}
+#wrapper.core {
+  .circleMask {
+    background: url('../images/circle_map_mask.png') -1050px 0 !important;
+  }
+}
+
+
+/* Extra small devices (phones, up to 480px) */
+/* No media query since this is the default in Bootstrap */
+
+@media (min-width: 600px) {
+}
+
+@media (min-width: 721px) {
+  #circleWrapper {
+    position: relative;
+    display: block;
+    float: left;
+    margin-right: 2em;
+  }
+  .copyWrapper {
+    clear: none;
+    .copyToggle {
+      display: none !important;
+    }
+    .copy {
+      display: table !important;
+      clear: none;
+    }
+  }
+}
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  .projectColumns {
+    h2 {
+      padding: 6px;
+      font-size: 1.15em;
+    }
+  }
+  .projectColumn.professional {
+    padding-right: 0;
+    h2 {
+      -webkit-border-top-left-radius: 8px;
+      border-top-left-radius: 8px;    
+      -webkit-border-top-right-radius: 0px !important;
+      border-top-right-radius: 0px !important;    
+    }
+  }
+  .projectColumn.higherEd {
+    padding-left: 0;
+    h2 {
+      -webkit-border-top-left-radius: 0px !important;
+      border-top-left-radius: 0px !important;    
+      -webkit-border-top-right-radius: 8px;
+      border-top-right-radius: 8px;    
+    }
+  }
+}
+
+/* Medium devices (desktops and up) */
+@media (min-width: 992px) {
+  .projectColumns {
+    h2 {
+      padding: 10px;
+      font-size: 1.25em;
+    }
+  }
+  .projectColumn.professional {
+    padding-right: 0;
+    h2 {
+      -webkit-border-top-left-radius: 10px !important;
+      border-top-left-radius: 10px !important;    
+      -webkit-border-top-right-radius: 0px !important;
+      border-top-right-radius: 0px !important;    
+    }
+  }
+  .projectColumn.higherEd {
+    padding-right: 0;
+    padding-left: 0;
+    h2 {
+      -webkit-border-top-right-radius: 0px !important;
+      border-top-right-radius: 0px !important;    
+      -webkit-border-top-left-radius: 0px !important;
+      border-top-left-radius: 0px !important;    
+    }
+  }
+  .projectColumn.school {
+    padding-left: 0;
+    h2 {
+      -webkit-border-top-left-radius: 0px !important;
+      border-top-left-radius: 0px !important;    
+      -webkit-border-top-right-radius: 10px !important;
+      border-top-right-radius: 10px !important;    
+    }
+  }
+  .hiddenAtLarge {
+    /* Fix for IE10 clearing issue */
+    display: none !important;
+  }
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  
+}
+
+@import 'project_list';
+
+@import 'modal';
+
+.footer {
+  background-color: lighten($neutralBg, 15%);
+  text-align: center;
+  padding: 0.75em;
+  margin: 0 -1px;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  p {
+    margin-bottom: 0;
+  }
+  a {
+    font-size: 0.85em;
+  }
+  .counter {
+    font-size: 0.85em;
+  }
+
+}
