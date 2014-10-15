@@ -1,71 +1,34 @@
 <div id="wrapper" class="{{currBU}} {{currSubSection}}">
 	
 	<div class="row spaceBelow">
-			<div id="upperContent">
-				<a id="resetButton" ng-click="reset($event)" ng-show="currBU"></a>
-				<div id="circleWrapper">
-					<canvas id="circleClusters" width="278" height="278" style="top: 61px; left: 61px"></canvas>
-					<canvas id="circleTopics"   width="356" height="356" style="top: 22px; left: 22px; pointer-events: none;"></canvas>
-					<canvas id="circleLessons"  width="400" height="400" style="pointer-events: none;"></canvas>
-				</div>
-				<div class="copyWrapper">
-					<a class="copyToggle" ng-click="onCopyToggle()">{{hideCopy ? "+ Show Key" : "&ndash; Hide Key"}}</a>
-					<div class="copy" ng-hide="hideCopy">
-						<div class="copyRow {{copyClass}}">
-							<div class="copyCell">
-								<h1>{{displayBU}}</h1>
-								<h2>{{displaySubSection}}&nbsp;</h2>
-                                <p>What it means to be in the 'First 40':
-                                    <ul>
-                                        <li>Priority product for Pearson and, in particular, the efficacy community</li>
-                                        <li>Progress along path to efficacy to be included in Pearson’s 2018 Annual Report</li>
-                                    </ul>
-                                </p>
-								<p>Click on the circle graphic to select a business unit and geography. 
-									<ul>
-										<li>Products that correspond to your selection will be highlighted below</li>
-                                        <li>Click a product to view details on details on current progress</li>
-                                        <li>Click on the ‘Statuses’ below to highlight progress across all products</li>
-									</ul>
-								</p>
-								<div class="iconKey">
-									<li ng-repeat="center in centers" ng-click="onCenterClick($event, center.id)" ng-class="{selected: currBU == center.id}">
-										<div><span class="icon {{center.id}}"></span></div>{{center.name}}
-									</li>
-								</div>
+		<div id="upperContent">
+			<a id="resetButton" ng-click="reset($event)" ng-show="currBU"></a>
+			<div id="circleWrapper">
+				<!-- <canvas id="circleClusters" width="278" height="278" style="top: 61px; left: 61px"></canvas> -->
+				<!-- <canvas id="circleTopics"   width="356" height="356" style="top: 22px; left: 22px; pointer-events: none;"></canvas> -->
+				<div id="kinetic">
+			</div>
+			<div class="copyWrapper">
+				<a class="copyToggle" ng-click="onCopyToggle()">{{hideCopy ? "+ Show Key" : "&ndash; Hide Key"}}</a>
+				<div class="copy" ng-hide="hideCopy">
+					<div class="copyRow {{copyClass}}">
+						<div class="copyCell">
+							<h1>Cluster</h1>
+							<h2>Topic</h2>
+							<div class="iconKey">
+								<li ng-repeat="center in centers" ng-click="onCenterClick($event, center.id)" ng-class="{selected: currBU == center.id}">
+									<div><span class="icon {{center.id}}"></span></div>{{center.name}}
+								</li>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+	</div>
 	
-	<div class="row projectColumns">
-		<div class="col-md-4 col-sm-6 projectColumn professional clearfix">
-			<h2>Professional</h2>
-			<div class="projectList">
-				<li ng-repeat="project in projectData | filter: {businessUnit:'professional'} " class="{{project.businessUnit}}" ng-show="{{project.show}}">
-					<a tooltip="{{project.fullTitle}}" ng-mouseover="onProjectMouseOver($event, project.id)" ng-mouseleave="onProjectLeave($event, project.id)" ng-click="onProjectClick($event, project.id)" class="projectLink {{project.selectionState}} {{project.subSection}} {{project.icon}}">&nbsp;</a>
-				</li>
-			</div>
-		</div> 
-		<div class="col-md-4 col-sm-6 projectColumn higherEd clearfix">
-			<h2>Higher Ed</h2>
-			<div class="projectList">
-				<li ng-repeat="project in projectData | filter: {businessUnit:'higherEd'}" class="{{project.businessUnit}}" ng-show="{{project.show}}">
-					<a tooltip="{{project.fullTitle}}" ng-mouseover="onProjectMouseOver($event, project.id)" ng-mouseleave="onProjectLeave($event, project.id)" ng-click="onProjectClick($event, project.id)" class="projectLink {{project.selectionState}} {{project.subSection}} {{project.icon}}">&nbsp;</a>
-				</li>
-			</div>
-		</div> 
-		<div class="hiddenAtLarge clearfix"></div>
-		<div class="col-md-4 projectColumn school clearfix">
-			<h2>School</h2>
-			<div class="projectList">
-				<li ng-repeat="project in projectData | filter: {businessUnit:'school'}" class="{{project.businessUnit}}" ng-show="{{project.show}}">
-					<a tooltip="{{project.fullTitle}}" ng-mouseover="onProjectMouseOver($event, project.id)" ng-mouseleave="onProjectLeave($event, project.id)" ng-click="onProjectClick($event, project.id)" class="projectLink {{project.selectionState}} {{project.subSection}} {{project.icon}}">&nbsp;</a>
-				</li>
-			</div>
-		</div> 
+	<div class="row">
+		<div class="col-md-4 col-sm-6 clearfix"></div>
 	</div>
 
 	<footer class="row footer">

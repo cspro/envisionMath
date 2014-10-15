@@ -89,177 +89,174 @@ clusterWheel.MainCtrl = function($scope, $http, $location, $dialog, $rootScope, 
 		var d = $dialog.dialog($scope.dialogOpts);
 		d.open();
 	};
+	
+	var stageSize = 500;
+
+	$scope.circleConfig = {
+		innerRadius : stageSize * 0.15,                                              
+		clustersRadius : stageSize * 0.35,                                             
+		topicsRadius : stageSize * 0.45,                                             
+		lessonsRadius : stageSize * 0.5,                                              
+		radialSpacing : 2, // degrees of padding between clusters
+		concentricSpacing: stageSize * 0.01 // space between circles (radial pixels)
+	};
+	
+	var initKinetic = function() {
+		$scope.stage = new Kinetic.Stage({
+			container: 'kinetic',
+			width: stageSize,
+			height: stageSize
+		});
+
+	};
 
 	var initCircles = function() {
-		
-Chart.defaults.global = {
-    // Boolean - Whether to animate the chart
-    animation: true,
 
-    // Number - Number of animation steps
-    animationSteps: 60,
-
-    // String - Animation easing effect
-    animationEasing: "easeOutQuart",
-
-    // Boolean - If we should show the scale at all
-    showScale: true,
-
-    // Boolean - If we want to override with a hard coded scale
-    scaleOverride: false,
-
-    // ** Required if scaleOverride is true **
-    // Number - The number of steps in a hard coded scale
-    scaleSteps: null,
-    // Number - The value jump in the hard coded scale
-    scaleStepWidth: null,
-    // Number - The scale starting value
-    scaleStartValue: null,
-
-    // String - Colour of the scale line
-    scaleLineColor: "rgba(0,0,0,.1)",
-
-    // Number - Pixel width of the scale line
-    scaleLineWidth: 1,
-
-    // Boolean - Whether to show labels on the scale
-    scaleShowLabels: true,
-
-    // Interpolated JS string - can access value
-    scaleLabel: "<%=value%>",
-
-    // Boolean - Whether the scale should stick to integers, not floats even if drawing space is there
-    scaleIntegersOnly: true,
-
-    // Boolean - Whether the scale should start at zero, or an order of magnitude down from the lowest value
-    scaleBeginAtZero: false,
-
-    // String - Scale label font declaration for the scale label
-    scaleFontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
-
-    // Number - Scale label font size in pixels
-    scaleFontSize: 12,
-
-    // String - Scale label font weight style
-    scaleFontStyle: "normal",
-
-    // String - Scale label font colour
-    scaleFontColor: "#666",
-
-    // Boolean - whether or not the chart should be responsive and resize when the browser does.
-    responsive: false,
-
-    // Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
-    maintainAspectRatio: true,
-
-    // Boolean - Determines whether to draw tooltips on the canvas or not
-    showTooltips: true,
-
-    // Array - Array of string names to attach tooltip events
-    tooltipEvents: ["mousemove", "touchstart", "touchmove"],
-
-    // String - Tooltip background colour
-    tooltipFillColor: "rgba(0,0,0,0.8)",
-
-    // String - Tooltip label font declaration for the scale label
-    tooltipFontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
-
-    // Number - Tooltip label font size in pixels
-    tooltipFontSize: 14,
-
-    // String - Tooltip font weight style
-    tooltipFontStyle: "normal",
-
-    // String - Tooltip label font colour
-    tooltipFontColor: "#fff",
-
-    // String - Tooltip title font declaration for the scale label
-    tooltipTitleFontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
-
-    // Number - Tooltip title font size in pixels
-    tooltipTitleFontSize: 14,
-
-    // String - Tooltip title font weight style
-    tooltipTitleFontStyle: "bold",
-
-    // String - Tooltip title font colour
-    tooltipTitleFontColor: "#fff",
-
-    // Number - pixel width of padding around tooltip text
-    tooltipYPadding: 6,
-
-    // Number - pixel width of padding around tooltip text
-    tooltipXPadding: 6,
-
-    // Number - Size of the caret on the tooltip
-    tooltipCaretSize: 8,
-
-    // Number - Pixel radius of the tooltip border
-    tooltipCornerRadius: 6,
-
-    // Number - Pixel offset from point x to tooltip edge
-    tooltipXOffset: 10,
-
-    // String - Template string for single tooltips
-    tooltipTemplate: "<%if (label){%><%=label%>: <%}%><%= value %>",
-
-    // String - Template string for single tooltips
-    multiTooltipTemplate: "<%= value %>",
-
-    // Function - Will fire on animation progression.
-    onAnimationProgress: function(){},
-
-    // Function - Will fire on animation completion.
-    onAnimationComplete: function(){}
-};
-		var dataLessons = [
-		    {
-		        value: 300,
-		        color:"#F7464A",
-		        highlight: "#FF5A5E",
-		        label: "Red"
-		    },
-		    {
-		        value: 50,
-		        color: "#46BFBD",
-		        highlight: "#5AD3D1",
-		        label: "Green"
-		    },
-		    {
-		        value: 100,
-		        color: "#FDB45C",
-		        highlight: "#FFC870",
-		        label: "Yellow"
-		    }
-		];
-		var options = {
-			segmentShowStroke : true,
-			segmentStrokeColor : "#fff",
-			segmentStrokeWidth : 2,
-			percentageInnerCutout : 91, // This is 0 for Pie charts
-			animationSteps : 100,
-			animationEasing : "easeOutQuart",
-			animateRotate : true,
-			animateScale : false,
-			tooltipTemplate : "<%if (label){%><%=label%>: <%}%><%= value %>",
-			legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>"
-		};
-		var cLessons = document.getElementById("circleLessons").getContext("2d");
-		var cLessonsChart = new Chart(cLessons).Doughnut($scope.clusters, options);
-		options.percentageInnerCutout = 80;
-		options.animationSteps = 80;
-		var cTopics = document.getElementById("circleTopics").getContext("2d");
-		var cTopicsChart = new Chart(cTopics).Doughnut(dataLessons, options);
-		options.percentageInnerCutout = 40;
-		options.animationSteps = 60;
-		var cClusters = document.getElementById("circleClusters").getContext("2d");
-		var cClustersChart = new Chart(cClusters).Doughnut(dataLessons, options);
+		var totalTopics = 0;
+		var totalClusters = $scope.clusters.length;
+		for (var i=0; i < totalClusters; i++) {
+			var cluster = $scope.clusters[i];
+			var topics = cluster.topics;
+			totalTopics += topics.length;
+			for (var j=0; j<topics.length; j++) {
+				var topic = topics[j];
+				topic.cluster = cluster; // link back to parent
+				var lessons = topic.lessons;
+				for (var k=0; k<lessons.length; k++) {
+					var lesson = lessons[k];
+					lesson.topic = topic;
+					lesson.cluster = cluster;
+				}
+			}
+		}
+		// $scope.circleConfig.radialSpacing = $scope.circleConfig.radialSpacing + $scope.circleConfig.radialSpacing/totalTopics;
+		$scope.circleConfig.topicAngleSize = (360 - ((totalClusters) * $scope.circleConfig.radialSpacing)) / totalTopics;
+		$scope.circleConfig.interTopicSpacing = ((totalTopics - totalClusters) * $scope.circleConfig.radialSpacing) / totalTopics;
+		var clustersLayer = drawClusters($scope.circleConfig);
+		$scope.stage.add(clustersLayer);
+		clustersLayer.draw();
+	};
+	
+	var drawClusters = function(config) {
+		var layer = new Kinetic.Layer({
+			x: stageSize * 0.5,
+			y: stageSize * 0.5
+		});
+		var startAngle = -90 + config.radialSpacing;
+		for (var i=0; i < $scope.clusters.length; i++) {
+			var cluster = $scope.clusters[i];
+			var angleSize = cluster.topics.length * config.topicAngleSize;
+			var arc = createArc(config.innerRadius, config.clustersRadius, startAngle, angleSize, cluster.color);
+			arc.on('mouseover', function(){
+					this.opacity(0.5);
+					this.parent.draw();
+				});
+			arc.on('mouseout', function(){
+					this.opacity(1);
+					this.parent.drawScene();
+				});
+			cluster.layer = layer;
+			cluster.shape = arc;
+			layer.add(arc);
+			drawTopics(config, cluster, startAngle);
+			startAngle += angleSize + config.radialSpacing;
+		}
+		return layer;
+	};
+	
+	var drawTopics = function(config, cluster, startAngle) {
+		var topics = cluster.topics;
+		var layer = cluster.layer;
+		for (var i=0; i < topics.length; i++) {
+			var topic = topics[i];
+			topic.realAngleSize = config.topicAngleSize;
+			if (topics.length > 1) {
+				topic.realAngleSize -= config.interTopicSpacing;
+			}
+			if (topics.length == 2) {
+				if (i == 1) {
+					startAngle += config.interTopicSpacing/2;
+				}
+			} else if (topics.length > 2) {
+				if (i > 0) {
+					startAngle += config.interTopicSpacing/2;
+				}
+			}
+			// correct for rounding error
+			if (i > 0) {
+				switch (topics.length) {
+					case 2:
+							startAngle += 0.45;
+							break; 
+					case 4:
+					case 5:
+					case 6:
+					case 7:
+							startAngle -= 0.45;
+							break; 
+				}
+			}
+			var arc = createArc(config.clustersRadius + config.concentricSpacing, config.topicsRadius, startAngle, topic.realAngleSize, topic.cluster.color);
+			arc.on('mouseover', function(){
+					this.opacity(0.5);
+					this.parent.draw();
+				});
+			arc.on('mouseout', function(){
+					this.opacity(1);
+					this.parent.drawScene();
+				});
+			topic.startAngle = startAngle;
+			topic.layer = layer;
+			topic.shape = arc;
+			layer.add(arc);
+			drawLessons(config, topic, startAngle);
+			startAngle += config.topicAngleSize;
+		}
+	};
+	
+	var drawLessons = function(config, topic, startAngle) {
+		var lessons = topic.lessons;
+		var layer = topic.layer;
+		var lessonSpacing = config.radialSpacing / 4;
+		var angleInterval = (topic.realAngleSize/lessons.length);
+		var realAngleSize = angleInterval - ((lessons.length-1) * lessonSpacing)/lessons.length;
+		for (var i=0; i < lessons.length; i++) {
+			var lesson = lessons[i];
+			var arc = createArc(config.topicsRadius + config.concentricSpacing, config.lessonsRadius, startAngle, realAngleSize, topic.cluster.color);
+			arc.on('mouseover', function(){
+					this.opacity(0.5);
+					this.parent.draw();
+				});
+			arc.on('mouseout', function(){
+					this.opacity(1);
+					this.parent.drawScene();
+				});
+			lesson.startAngle = startAngle;
+			lesson.layer = layer;
+			lesson.shape = arc;
+			layer.add(arc);
+			startAngle += angleInterval;
+		}
+	};
+	
+	
+	var createArc = function(inner, outer, startAngle, angleSize, color) {
+		return new Kinetic.Arc({
+		  innerRadius: inner,
+		  outerRadius: outer,
+		  rotation: startAngle,
+		  angle: angleSize,
+		  fill: color,
+		  stroke: '',
+		  strokeWidth: 0,
+		});
 	};
 	
 	/*
 	 * Called after timeout so browser has a chance to render before impress is run
 	 */
 	$scope.delayedInit = function() {
+		initKinetic();
 		initCircles();
 	};
 	
