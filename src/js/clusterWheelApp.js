@@ -133,17 +133,17 @@ clusterWheel.MainCtrl = function($scope, $http, $location, $dialog, $rootScope, 
 	};
 	
 	var initCircles = function() {
-		var totalTopics = 0;
-		var totalClusters = $scope.clusters.length;
+		var clusterCount = $scope.clusters.length;
 		var topicCount = 0;
-		for (var i=0; i < totalClusters; i++) {
+		var lessonCount = 0;
+		for (var i=0; i < clusterCount; i++) {
 			var cluster = $scope.clusters[i];
 			cluster.type = "cluster";
 			cluster.label = cluster.id;
 			cluster.title = cluster.title == "" ? "[Cluster title]" : cluster.title;
 			cluster.desc = cluster.desc == "" ? "[Cluster description]" : cluster.desc;
+			cluster.lessons = [];
 			var topics = cluster.topics;
-			totalTopics += topics.length;
 			for (var j=0; j<topics.length; j++) {
 				var topic = topics[j];
 				topic.type = "topic";
@@ -160,11 +160,12 @@ clusterWheel.MainCtrl = function($scope, $http, $location, $dialog, $rootScope, 
 					lesson.title = lesson.title == "" ? "[Lesson title]" : lesson.title; 
 					lesson.topic = topic;
 					lesson.cluster = cluster;
+					lessonCount++;
+					cluster.lessons.push(lesson);
 				}
 			}
 		}
-		$scope.circleConfig.topicAngleSize = (360 - ((totalClusters) * $scope.circleConfig.radialSpacing)) / totalTopics;
-		$scope.circleConfig.interTopicSpacing = ((totalTopics - totalClusters) * $scope.circleConfig.radialSpacing) / totalTopics;
+		$scope.circleConfig.lessonAngleSize = (360 - ((clusterCount) * $scope.circleConfig.radialSpacing)) / lessonCount;
 		$scope.allArcs = [];
 		drawClusters($scope.circleConfig);
 		drawBorderCircles($scope.circleConfig);
@@ -191,21 +192,26 @@ clusterWheel.MainCtrl = function($scope, $http, $location, $dialog, $rootScope, 
 	var drawArcLabel = function(config, arc, layer) {
 		var r = (arc.innerRadius + arc.outerRadius)/2;
 		if (arc.type == "cluster") {
-			r += r*0.1;
+			r += r*0.175;
 		}
 		var a = (arc.startAngle + (arc.angleSize/2)) * (Math.PI/180);
 		var x = (r * Math.cos(a)) - config.labelWidth/2;
 		var y = (r * Math.sin(a)) - config.labelHeight/2;
+		var s = arc.fontScale ? config.labelSize*arc.fontScale : config.labelSize;
 		var t = new Kinetic.Text({
 			x: x,
 			y: y,
 			width: config.labelWidth,
 			height: config.labelHeight,
 			text: arc.label,
-			fontSize: config.labelSize,
+			fontSize: s,
 			fontFamily: 'Arial',
 			fill: config.labelColor,
-			align: 'center'
+			align: 'center',
+			shadowEnabled: true,
+			shadowOffset: {x:1, y:2},
+			shadowOpacity: 0.35,
+			shadowColor: 'black'
 		});
 		t.setListening(false);
 		layer.add(t);
@@ -266,7 +272,7 @@ clusterWheel.MainCtrl = function($scope, $http, $location, $dialog, $rootScope, 
 			var cluster = $scope.clusters[i];
 			cluster.innerRadius = config.innerRadius + config.concentricSpacing;
 			cluster.outerRadius = config.clustersRadius;
-			var angleSize = cluster.topics.length * config.topicAngleSize;
+			var angleSize = cluster.lessons.length * config.lessonAngleSize;
 			cluster.startAngle = startAngle;
 			cluster.angleSize = angleSize;
 			var arc = drawArc(cluster);
@@ -299,33 +305,7 @@ clusterWheel.MainCtrl = function($scope, $http, $location, $dialog, $rootScope, 
 			var topic = topics[i];
 			topic.innerRadius = cluster.outerRadius + config.concentricSpacing;
 			topic.outerRadius = config.topicsRadius;
-			topic.angleSize = config.topicAngleSize;
-			if (topics.length > 1) {
-				topic.angleSize -= config.interTopicSpacing;
-			}
-			if (topics.length == 2) {
-				if (i == 1) {
-					startAngle += config.interTopicSpacing/2;
-				}
-			} else if (topics.length > 2) {
-				if (i > 0) {
-					startAngle += config.interTopicSpacing/2;
-				}
-			}
-			// correct for rounding error
-			if (i > 0) {
-				switch (topics.length) {
-					case 2:
-							startAngle += 0.45;
-							break; 
-					case 4:
-					case 5:
-					case 6:
-					case 7:
-							startAngle -= 0.45;
-							break; 
-				}
-			}
+			topic.angleSize = topic.lessons.length * config.lessonAngleSize;
 			topic.startAngle = startAngle;
 			topic.gradient = topic.cluster.gradient;
 			var arc = drawArc(topic);
@@ -344,7 +324,20 @@ clusterWheel.MainCtrl = function($scope, $http, $location, $dialog, $rootScope, 
 			layer.add(arc);
 			drawArcLabel(config, topic, layer);
 			drawLessons(config, topic, startAngle);
-			startAngle += config.topicAngleSize;
+			if (i > 0) {
+				var a = startAngle * (Math.PI/180);
+				var line = new Kinetic.Line({
+					points: [
+							(config.clustersRadius * Math.cos(a)), (config.clustersRadius * Math.sin(a)),
+							(config.lessonsRadius * Math.cos(a)), (config.lessonsRadius * Math.sin(a))
+						],
+					stroke: 'white',
+					strokeWidth: 3,
+					listening: false
+				});
+				layer.add(line);
+			}
+			startAngle += topic.angleSize;
 		}
 	};
 	

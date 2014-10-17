@@ -13,6 +13,7 @@
 					"title": "Number and Operations in Base Ten",
 					"desc": "Generalize place value understanding for multi-digit numbers.",
 					"color": "green",
+					"fontScale": "0.7",
 					"topics": [
 						{	"title": "Topic 1: Generalize Place Value Understanding",
 							"lessons": [  
