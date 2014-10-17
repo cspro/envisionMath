@@ -9,320 +9,268 @@
 		"g4": {
 			"label": "Grade Four",
 			"clusters": [
-				{	"id": "cluster1",
-					"label": "4.NBT.A",
+				{	"id": "4.NBT.A",
+					"title": "Number and Operations in Base Ten",
+					"desc": "Generalize place value understanding for multi-digit numbers.",
+					"color": "green",
+					"topics": [
+						{	"title": "Topic 1: Generalize Place Value Understanding",
+							"lessons": [  
+								{	"title": "Numbers Through One Million"},
+								{	"title": "Place Value Relationships"},
+								{	"title": "Compare Whole Numbers"},
+								{	"title": "Round Whole Numbers"},
+								{	"title": "MATH PRACTICES AND PROBLEM SOLVING Construct Arguments"}
+							]
+						}
+					]
+				},
+				{	"id": "4.NBT.B",
+					"title" : "Number and Operations in Base Ten",
+					"desc" : "Use place value understanding and properties of operations to perform multi-digit arithmetic.",
+					"color": "green",
+					"topics": [
+						{	"title": "Topic 2: Fluently Add and Subtract Multi-Digit Whole Numbers",
+							"lessons": [  
+								{	"title": "Mental Math: Find Sums and Differences"},
+								{	"title": "Mental Math: Estimate Sums and Differences"},
+								{	"title": "Add Whole Numbers"},
+								{	"title": "Subtract Whole Numbers"},
+								{	"title": "Subtract Across Zeros"},
+								{	"title": "MATH PRACTICES AND PROBLEM SOLVING Reasoning"}
+							]
+						},
+						{	"title": "Topic 4: Use Strategies and Properties to Multiply by 2-Digit Numbers",
+							"lessons": [  
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""}
+							]
+						},
+						{	"title": "Topic 5: Use Strategies and Properties to Divide by 1-Digit Numbers",
+							"lessons": [  
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""}
+							]
+						}
+					]
+				},
+				{	"id": "4.OA.A",
+					"title": "",
+					"desc": "",
+					"color": "green",
+					"topics": [
+						{	"title": "Topic 6: Use Operations with Whole Numbers to Solve Problems",
+							"lessons": [  
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""}
+							]
+						}
+					]
+				},
+				{	"id": "4.OA.B",
+					"title": "",
+					"desc": "",
+					"color": "blue",
+					"topics": [
+						{	"title": "Topic 7: Factors and Multiples",
+							"lessons": [  
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""}
+							]
+						}
+					]
+				},
+				{	"id": "4.NF.A",
+					"title": "",
+					"desc": "",
+					"color": "green",
+					"topics": [
+						{	"title": "Topic 8: Extend Understanding of Fraction Equivalence and Ordering",
+							"lessons": [  
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""}
+							]
+						}
+					]
+				},
+				{	"id": "4.NF.B",
+					"title": "",
+					"desc": "",
+					"color": "green",
+					"topics": [
+						{	"title": "",
+							"lessons": [  
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""}
+							]
+						},
+						{	"title": "",
+							"lessons": [  
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""}
+							]
+						}
+					]
+				},
+				{	"id": "4.MD.B",
+					"title": "",
+					"desc": "",
+					"color": "blue",
+					"topics": [
+						{	"title": "",
+							"lessons": [  
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""}
+							]
+						}
+					]
+				},
+				{	"id": "4.NF.C",
+					"title": "",
+					"desc": "",
+					"color": "green",
+					"topics": [
+						{	"title": "",
+							"lessons": [  
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""}
+							]
+						}
+					]
+				},
+				{	"id": "4.MD.A",
+					"title": "",
+					"desc": "",
+					"color": "blue",
+					"topics": [
+						{	"title": "",
+							"lessons": [  
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""}
+							]
+						}
+					]
+				},
+				{	"id": "4.OA.C",
+					"title": "",
+					"desc": "",
 					"color": "yellow",
 					"topics": [
-						{	"id": "topic1",
-							"label": "Topic One",
-							"lessons": [
-								{	"id": "lesson1",
-									"label": "Lesson"
-								},
-								{	"id": "lesson2",
-									"label": "Lesson"
-								},
-								{	"id": "lesson3",
-									"label": "Lesson"
-								},
-								{	"id": "lesson4",
-									"label": "Lesson"
-								},
-								{	"id": "lesson5",
-									"label": "Lesson"
-								}
-							]
-						},
-						{	"id": "topic2",
-							"label": "Topic Two",
-							"lessons": [
-								{	"id": "lesson1",
-									"label": "Lesson"
-								},
-								{	"id": "lesson2",
-									"label": "Lesson"
-								},
-								{	"id": "lesson3",
-									"label": "Lesson"
-								},
-								{	"id": "lesson4",
-									"label": "Lesson"
-								},
-								{	"id": "lesson5",
-									"label": "Lesson"
-								}
-							]
-						},
-						{	"id": "topic3",
-							"label": "Topic Three",
-							"lessons": [
-								{	"id": "lesson1",
-									"label": "Lesson"
-								},
-								{	"id": "lesson2",
-									"label": "Lesson"
-								},
-								{	"id": "lesson3",
-									"label": "Lesson"
-								},
-								{	"id": "lesson4",
-									"label": "Lesson"
-								},
-								{	"id": "lesson5",
-									"label": "Lesson"
-								}
+						{	"title": "",
+							"lessons": [  
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""}
 							]
 						}
 					]
 				},
-				{	"id": "cluster2",
-					"label": "Cluster Two",
-					"color": "blue",
+				{	"id": "4.MD.C",
+					"title": "",
+					"desc": "",
+					"color": "yellow",
 					"topics": [
-						{	"id": "topic1",
-							"label": "Topic One",
-							"lessons": [
-								{	"id": "lesson1",
-									"label": "Lesson"
-								},
-								{	"id": "lesson2",
-									"label": "Lesson"
-								},
-								{	"id": "lesson3",
-									"label": "Lesson"
-								},
-								{	"id": "lesson4",
-									"label": "Lesson"
-								},
-								{	"id": "lesson5",
-									"label": "Lesson"
-								}
+						{	"title": "",
+							"lessons": [  
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""}
 							]
 						}
 					]
 				},
-				{	"id": "cluster3",
-					"label": "Cluster Three",
-					"color": "green",
+				{	"id": "4.G.A",
+					"title": "",
+					"desc": "",
+					"color": "yellow",
 					"topics": [
-						{	"id": "topic1",
-							"label": "Topic One",
-							"lessons": [
-								{	"id": "lesson1",
-									"label": "Lesson"
-								},
-								{	"id": "lesson2",
-									"label": "Lesson"
-								},
-								{	"id": "lesson3",
-									"label": "Lesson"
-								}
-							]
-						},
-						{	"id": "topic2",
-							"label": "Topic Two",
-							"lessons": [
-								{	"id": "lesson1",
-									"label": "Lesson"
-								},
-								{	"id": "lesson2",
-									"label": "Lesson"
-								},
-								{	"id": "lesson3",
-									"label": "Lesson"
-								}
-							]
-						}
-					]
-				},
-				{	"id": "cluster4",
-					"label": "Cluster Four",
-					"color": "blue",
-					"topics": [
-						{	"id": "topic1",
-							"label": "Topic One",
-							"lessons": [
-								{	"id": "lesson1",
-									"label": "Lesson"
-								},
-								{	"id": "lesson2",
-									"label": "Lesson"
-								},
-								{	"id": "lesson3",
-									"label": "Lesson"
-								},
-								{	"id": "lesson4",
-									"label": "Lesson"
-								},
-								{	"id": "lesson5",
-									"label": "Lesson"
-								}
-							]
-						},
-						{	"id": "topic2",
-							"label": "Topic Two",
-							"lessons": [
-								{	"id": "lesson1",
-									"label": "Lesson"
-								},
-								{	"id": "lesson2",
-									"label": "Lesson"
-								},
-								{	"id": "lesson3",
-									"label": "Lesson"
-								},
-								{	"id": "lesson4",
-									"label": "Lesson"
-								},
-								{	"id": "lesson5",
-									"label": "Lesson"
-								}
-							]
-						},
-						{	"id": "topic3",
-							"label": "Topic Three",
-							"lessons": [
-								{	"id": "lesson1",
-									"label": "Lesson"
-								},
-								{	"id": "lesson2",
-									"label": "Lesson"
-								},
-								{	"id": "lesson3",
-									"label": "Lesson"
-								},
-								{	"id": "lesson4",
-									"label": "Lesson"
-								},
-								{	"id": "lesson5",
-									"label": "Lesson"
-								}
-							]
-						},
-						{	"id": "topic4",
-							"label": "Topic Four",
-							"lessons": [
-								{	"id": "lesson1",
-									"label": "Lesson"
-								},
-								{	"id": "lesson2",
-									"label": "Lesson"
-								},
-								{	"id": "lesson3",
-									"label": "Lesson"
-								},
-								{	"id": "lesson4",
-									"label": "Lesson"
-								},
-								{	"id": "lesson5",
-									"label": "Lesson"
-								}
-							]
-						},
-						{	"id": "topic5",
-							"label": "Topic Five",
-							"lessons": [
-								{	"id": "lesson1",
-									"label": "Lesson"
-								},
-								{	"id": "lesson2",
-									"label": "Lesson"
-								},
-								{	"id": "lesson3",
-									"label": "Lesson"
-								},
-								{	"id": "lesson4",
-									"label": "Lesson"
-								},
-								{	"id": "lesson5",
-									"label": "Lesson"
-								}
-							]
-						},
-						{	"id": "topic6",
-							"label": "Topic Six",
-							"lessons": [
-								{	"id": "lesson1",
-									"label": "Lesson"
-								},
-								{	"id": "lesson2",
-									"label": "Lesson"
-								},
-								{	"id": "lesson3",
-									"label": "Lesson"
-								},
-								{	"id": "lesson4",
-									"label": "Lesson"
-								},
-								{	"id": "lesson5",
-									"label": "Lesson"
-								}
-							]
-						},
-						{	"id": "topic7",
-							"label": "Topic Seven",
-							"lessons": [
-								{	"id": "lesson1",
-									"label": "Lesson"
-								},
-								{	"id": "lesson2",
-									"label": "Lesson"
-								},
-								{	"id": "lesson3",
-									"label": "Lesson"
-								},
-								{	"id": "lesson4",
-									"label": "Lesson"
-								},
-								{	"id": "lesson5",
-									"label": "Lesson"
-								}
-							]
-						}
-					]
-				},
-				{	"id": "cluster5",
-					"label": "Cluster Five",
-					"color": "green",
-					"topics": [
-						{	"id": "topic1",
-							"label": "Topic One",
-							"lessons": [
-								{	"id": "lesson1",
-									"label": "Lesson"
-								},
-								{	"id": "lesson2",
-									"label": "Lesson"
-								},
-								{	"id": "lesson3",
-									"label": "Lesson"
-								},
-								{	"id": "lesson4",
-									"label": "Lesson"
-								},
-								{	"id": "lesson5",
-									"label": "Lesson"
-								}
-							]
-						},
-						{	"id": "topic2",
-							"label": "Topic Two",
-							"lessons": [
-								{	"id": "lesson1",
-									"label": "Lesson"
-								},
-								{	"id": "lesson2",
-									"label": "Lesson"
-								},
-								{	"id": "lesson3",
-									"label": "Lesson"
-								},
-								{	"id": "lesson4",
-									"label": "Lesson"
-								},
-								{	"id": "lesson5",
-									"label": "Lesson"
-								}
+						{	"title": "",
+							"lessons": [  
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""},
+								{	"title": ""}
 							]
 						}
 					]

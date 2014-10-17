@@ -2,7 +2,7 @@
   position: relative;
   padding: 2em 1em 0;
   text-align: center;
-  h1, h2, h3 {
+  h1 {
    text-transform: uppercase;
   }
   h1 {
@@ -11,6 +11,9 @@
   }
   h2 {
     margin-top: 0;
+  }
+  ul {
+    margin-top: 1em;
   }
   #resetButton {
     display: block;
@@ -43,7 +46,7 @@
       div.copyCell {
         text-align: left;
         display: table-cell;
-        vertical-align: middle;
+        vertical-align: top;
       }
     }
   }

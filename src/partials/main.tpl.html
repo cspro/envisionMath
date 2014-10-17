@@ -1,25 +1,22 @@
-<div id="wrapper" class="{{currBU}} {{currSubSection}}">
+<div id="wrapper" class="">
 	
 	<div class="row spaceBelow">
 		<div id="upperContent">
-			<a id="resetButton" ng-click="reset($event)" ng-show="currBU"></a>
+			<a id="resetButton" ng-click="reset($event)" ng-show="currCluster"></a>
 			<div id="circleWrapper">
-				<!-- <canvas id="circleClusters" width="278" height="278" style="top: 61px; left: 61px"></canvas> -->
-				<!-- <canvas id="circleTopics"   width="356" height="356" style="top: 22px; left: 22px; pointer-events: none;"></canvas> -->
-				<div id="kinetic">
+				<div id="kinetic"></div>
 			</div>
 			<div class="copyWrapper">
-				<a class="copyToggle" ng-click="onCopyToggle()">{{hideCopy ? "+ Show Key" : "&ndash; Hide Key"}}</a>
 				<div class="copy" ng-hide="hideCopy">
 					<div class="copyRow {{copyClass}}">
 						<div class="copyCell">
-							<h1>Cluster</h1>
-							<h2>Topic</h2>
-							<div class="iconKey">
-								<li ng-repeat="center in centers" ng-click="onCenterClick($event, center.id)" ng-class="{selected: currBU == center.id}">
-									<div><span class="icon {{center.id}}"></span></div>{{center.name}}
-								</li>
-							</div>
+							<h1>{{cluster.label}}</h1>
+							<h4>{{cluster.title}}</h4>
+							<p>{{cluster.desc}}</p>
+							<h2>{{topic.title}}</h2>
+							<ul>
+								<li ng-repeat="lesson in topic.lessons">{{lesson.id}}: {{lesson.title}}</li>
+							</ul>
 						</div>
 					</div>
 				</div>

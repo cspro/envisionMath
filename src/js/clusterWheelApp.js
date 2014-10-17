@@ -108,9 +108,12 @@ clusterWheel.MainCtrl = function($scope, $http, $location, $dialog, $rootScope, 
 		x: stageSize * 0.5,
 		y: stageSize * 0.5,
 		labelColor: '#ffffff',
-		labelSize: 15,
+		labelSize: 13,
 		labelWidth: 100,
-		labelHeight: 15
+		labelHeight: 15,
+		upOpacity: 1,
+		overOpacity: 0.75,
+		downOpacity: 0.5
 	};
 	
 	var initKinetic = function() {
@@ -122,22 +125,39 @@ clusterWheel.MainCtrl = function($scope, $http, $location, $dialog, $rootScope, 
 
 	};
 
+	var setCluster = function(cluster) {
+		$scope.cluster = cluster;
+		$scope.$apply();
+	};
+
+	var setTopic = function(topic) {
+		$scope.topic = topic;
+		$scope.$apply();
+	};
+
 	var initCircles = function() {
 		var totalTopics = 0;
 		var totalClusters = $scope.clusters.length;
 		var topicCount = 0;
 		for (var i=0; i < totalClusters; i++) {
 			var cluster = $scope.clusters[i];
+			cluster.label = cluster.id;
+			cluster.title = cluster.title == "" ? "[Cluster title]" : cluster.title;
+			cluster.desc = cluster.desc == "" ? "[Cluster description]" : cluster.desc;
 			var topics = cluster.topics;
 			totalTopics += topics.length;
 			for (var j=0; j<topics.length; j++) {
 				var topic = topics[j];
+				topic.id = cluster.id + "." + (j+1);
 				topic.cluster = cluster;
 				topicCount++;
 				topic.label = topicCount;
+				topic.title = topic.title == "" ? "[Topic title]" : topic.title;
 				var lessons = topic.lessons;
 				for (var k=0; k<lessons.length; k++) {
 					var lesson = lessons[k];
+					lesson.id = topic.id + "-" + (k+1);
+					lesson.title = lesson.title == "" ? "[Lesson title]" : lesson.title; 
 					lesson.topic = topic;
 					lesson.cluster = cluster;
 				}
@@ -146,6 +166,8 @@ clusterWheel.MainCtrl = function($scope, $http, $location, $dialog, $rootScope, 
 		$scope.circleConfig.topicAngleSize = (360 - ((totalClusters) * $scope.circleConfig.radialSpacing)) / totalTopics;
 		$scope.circleConfig.interTopicSpacing = ((totalTopics - totalClusters) * $scope.circleConfig.radialSpacing) / totalTopics;
 		drawClusters($scope.circleConfig);
+		setCluster($scope.clusters[0]);
+		setTopic($scope.clusters[0].topics[0]);
 	};
 	
 	var drawArc = function(arc) {
@@ -201,13 +223,18 @@ clusterWheel.MainCtrl = function($scope, $http, $location, $dialog, $rootScope, 
 			cluster.startAngle = startAngle;
 			cluster.angleSize = angleSize;
 			var arc = drawArc(cluster);
+			arc.data = cluster;
 			arc.on('mouseover', function(){
-					this.opacity(0.5);
+					this.opacity(config.overOpacity);
 					this.parent.draw();
 				});
 			arc.on('mouseout', function(){
-					this.opacity(1);
+					this.opacity(config.upOpacity);
 					this.parent.drawScene();
+				});
+			arc.on('click', function(){
+					setCluster(this.data);
+					setTopic(this.data.topics[0]);
 				});
 			cluster.layer = layer;
 			cluster.shape = arc;
@@ -257,13 +284,18 @@ clusterWheel.MainCtrl = function($scope, $http, $location, $dialog, $rootScope, 
 			topic.startAngle = startAngle;
 			topic.gradient = topic.cluster.gradient;
 			var arc = drawArc(topic);
+			arc.data = topic;
 			arc.on('mouseover', function(){
-					this.opacity(0.5);
+					this.opacity(config.overOpacity);
 					this.parent.draw();
 				});
 			arc.on('mouseout', function(){
-					this.opacity(1);
+					this.opacity(config.upOpacity);
 					this.parent.drawScene();
+				});
+			arc.on('click', function(){
+					setTopic(this.data);
+					setCluster(this.data.cluster);
 				});
 			topic.layer = layer;
 			topic.shape = arc;
@@ -289,12 +321,13 @@ clusterWheel.MainCtrl = function($scope, $http, $location, $dialog, $rootScope, 
 			lesson.gradient = topic.cluster.gradient;
 			lesson.angleSize = angleSize;
 			var arc = drawArc(lesson);
+			arc.data = lesson;
 			arc.on('mouseover', function(){
-					this.opacity(0.5);
+					this.opacity(config.overOpacity);
 					this.parent.draw();
 				});
 			arc.on('mouseout', function(){
-					this.opacity(1);
+					this.opacity(config.upOpacity);
 					this.parent.drawScene();
 				});
 			lesson.layer = layer;
