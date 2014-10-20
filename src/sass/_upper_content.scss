@@ -55,26 +55,6 @@
 .copyWrapper {
   clear: both;
   position: relative;
-  .copyToggle {
-    position: relative;
-    font-size: 10px;
-    padding: 2px 10px;
-    -webkit-border-radius: 10px;
-    border-radius: 10px;
-    cursor: pointer;
-    float: right;
-    border: 1px solid #fff;
-    background: $neutralBg;
-    -moz-box-shadow:    0px 1px 3px 2px rgba(68,68,68,0.3);
-    -webkit-box-shadow: 0px 1px 3px 2px rgba(68,68,68,0.3);
-    box-shadow:         0px 1px 3px 2px rgba(68,68,68,0.3);
-    color: #fff;
-    -webkit-transition: all 0.15s ease-in-out;
-    transition: all 0.15s ease-in-out;
-    &:hover {
-      background: darken($neutralBg, 25%);
-    }
-  }
   .copy {
     display: none;
     position: relative;
@@ -88,53 +68,47 @@
     p {
       margin-top: 1em;
     }
-    ul {
-      margin: 0;
-      padding: 0 1.5em;
-      max-width: 600px;
+    .accordion * {
+      width: 100%;
     }
-    .iconKey {
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      max-width: 600px;
       li {
+        margin-left: 0;
+      }
+      > li.topic {
         display: block;
-        margin: 0 0 3px 0;
-        padding: 0 1em 0 0;
-        list-style-type: none;
-        line-height: 20px;
-        vertical-align: top;
-        font-size: 0.75em;
-        background-color: lighten($neutralBg, 15%);
-        border-radius: 3px;
-        width: 270px;
-        cursor: pointer; 
-        &:hover {
-          background-color: lighten($neutralBg, 5%);
-        }
-        &:active {
-          background-color: darken($neutralBg, 5%);
+        background-color: lighten($neutralBg, 35%);
+        border-radius: 10px;
+        margin: 0 0 1em 0;
+        background-color: #ccc;
+        padding: 1em;
+        overflow: hidden;
+          -webkit-transition: 1s linear all;
+        ul {
+          height: 1px;
+          -webkit-transition: 1s linear all;
         }
         &.selected {
-          background-color: darken($neutralBg, 10%);
-          color: lighten($neutralBg, 25%);
-        }
-        div {
-          display: inline-block;
-          padding: 1px;
-          border-radius: 3px;
-          overflow: hidden;
-          margin: 0 3px -6px 0;
-          width: 24px;
-          height: 21px;
-          background-color: darken($neutralBg, 15%);
-          span {
-            display: block;
-            width: 18px;
-            height: 15px;
-            float: left;
-            margin: 2px;
-            background-size: 100%;
-            background-color: transparent;
+          overflow: visible;
+          ul {
+            -webkit-transition: 1s linear all;
+            height: auto;
           }
         }
+      }
+      .lesson {
+        -webkit-transition:0.5s linear all;
+        display: block;
+        padding: 2px;
+        border-radius: 3px;
+      }
+      .lesson.selected {
+        -webkit-transition:0.5s linear all;
+        background-color: lighten($neutralBg, 15%);
       }
     }
   }

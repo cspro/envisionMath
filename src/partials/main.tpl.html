@@ -2,7 +2,7 @@
 	
 	<div class="row spaceBelow">
 		<div id="upperContent">
-			<a id="resetButton" ng-click="reset($event)" ng-show="currCluster"></a>
+			<!-- <a id="resetButton" ng-click="reset($event)" ng-show="currCluster"></a> -->
 			<div id="circleWrapper">
 				<div id="kinetic"></div>
 			</div>
@@ -10,29 +10,25 @@
 				<div class="copy" ng-hide="hideCopy">
 					<div class="copyRow {{copyClass}}">
 						<div class="copyCell">
-							<h1>{{cluster.label}}</h1>
-							<h4>{{cluster.title}}</h4>
-							<p>{{cluster.desc}}</p>
-							<h2>{{topic.title}}</h2>
-							<ul>
-								<li ng-repeat="lesson in topic.lessons">{{lesson.id}}: {{lesson.title}}</li>
-							</ul>
+							<h1>{{currCluster.label}}</h1>
+							<h4>{{currCluster.title}}</h4>
+							<p>{{currCluster.desc}}</p>
+							<div accordion close-others="true" class="accordion">
+								<div accordion-group 
+									heading="{{topic.title}}" 
+									ng-repeat="topic in currCluster.topics" 
+									class="topic" 
+									is-open="topic == currTopic" >
+									<ul>
+										<li ng-repeat="lesson in topic.lessons" class="lesson" ng-class="{selected : lesson == currLesson}">{{lesson.id}}: {{lesson.title}}</li>
+									</ul>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	
-	<div class="row">
-		<div class="col-md-4 col-sm-6 clearfix"></div>
-	</div>
 
-	<footer class="row footer">
-		<p class="counter">Total Projects: {{projectCount}}</p>
-		<a href="http://researchnetwork.pearson.com" target="_blank">R&amp;I Network Website</a> |  
-		<a href="https://neo.pearson.com/groups/research-and-innovation-network" target="_blank">Neo Group</a> | 
-		<a href="mailto:rinetworkinquire@pearson.com">Email</a>
-	</footer>
-	
 </div>

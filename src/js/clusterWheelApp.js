@@ -29,7 +29,7 @@ clusterWheel.App = angular.module('clusterWheel.App', ['ngRoute', 'ngAnimate', '
 	
 	
 	
-clusterWheel.MainCtrl = function($scope, $http, $location, $dialog, $rootScope, $sce, $timeout) {
+clusterWheel.MainCtrl = function($scope, $http, $location, $rootScope, $sce, $timeout) {
 
 	$http.get('data/cluster_data.json')
 		.success(function(result) {
@@ -38,7 +38,6 @@ clusterWheel.MainCtrl = function($scope, $http, $location, $dialog, $rootScope, 
 			angular.forEach(grades, function(grade) {
 				var clusters = grade.clusters;
 				angular.forEach(clusters, function(cluster) {
-					cluster.value = cluster.topics.length;
 					cluster.gradient = gradients[cluster.color];
 				});
 			});
@@ -68,6 +67,7 @@ clusterWheel.MainCtrl = function($scope, $http, $location, $dialog, $rootScope, 
 		init();
 	};
 	
+	/*
 	$scope.dialogOpts = {
 		backdrop: true,
 		backdropFade: true,
@@ -82,6 +82,7 @@ clusterWheel.MainCtrl = function($scope, $http, $location, $dialog, $rootScope, 
 		var d = $dialog.dialog($scope.dialogOpts);
 		d.open();
 	};
+	*/
 	
 	var stageSize = 500;
 
@@ -100,8 +101,11 @@ clusterWheel.MainCtrl = function($scope, $http, $location, $dialog, $rootScope, 
 		labelHeight: 15,
 		upOpacity: 1,
 		overOpacity: 0.8,
-		downOpacity: 0.5,
-		selectionOpacity: 0.6
+		downOpacity: 0.25,
+		selectionUpOpacity: 0.65,
+		selectionOverOpacity: 0.35,
+		selectionStrokeColor: 'white',
+		selectionStrokeWidth: 6,
 	};
 	
 	var initKinetic = function() {
@@ -113,29 +117,42 @@ clusterWheel.MainCtrl = function($scope, $http, $location, $dialog, $rootScope, 
 
 	};
 
+	var deselectAll = function(collection) {
+		angular.forEach(collection, function(item) {
+			item.selected = false;
+		});
+	};
+	
 	var setCluster = function(cluster) {
-		$scope.cluster = cluster;
-		$scope.topic = cluster.topics[0];
+		deselectAll($scope.clusters);
+		deselectAll($scope.topics);
+		deselectAll($scope.lessons);
+		cluster.selected = true;
+		$scope.currCluster = cluster;
+		$scope.currTopic = cluster.topics[0];
 		$scope.$apply();
 	};
 
 	var setTopic = function(topic) {
-		$scope.topic = topic;
-		$scope.cluster = topic.cluster;
+		deselectAll($scope.topics);
+		deselectAll($scope.lessons);
+		topic.selected = true;
+		$scope.currTopic = topic;
+		$scope.currCluster = topic.cluster;
 		$scope.$apply();
 	};
 	
 	var setLesson = function(lesson) {
-		$scope.lesson = lesson;
-		$scope.topic = lesson.topic;
-		$scope.cluster = lesson.topic.cluster;
+		deselectAll($scope.lessons);
+		lesson.selected = true;
+		$scope.currLesson = lesson;
+		$scope.currTopic = lesson.topic;
+		$scope.currCluster = lesson.topic.cluster;
 		$scope.$apply();
 	};
 	
 	var initCircles = function() {
 		var clusterCount = $scope.clusters.length;
-		var topicCount = 0;
-		var lessonCount = 0;
 		for (var i=0; i < clusterCount; i++) {
 			var cluster = $scope.clusters[i];
 			cluster.type = "cluster";
@@ -149,9 +166,9 @@ clusterWheel.MainCtrl = function($scope, $http, $location, $dialog, $rootScope, 
 				topic.type = "topic";
 				topic.id = cluster.id + "." + (j+1);
 				topic.cluster = cluster;
-				topicCount++;
-				topic.label = topicCount;
+				topic.label = $scope.topics.length+1;
 				topic.title = topic.title == "" ? "[Topic title]" : topic.title;
+				$scope.topics.push(topic);
 				var lessons = topic.lessons;
 				for (var k=0; k<lessons.length; k++) {
 					var lesson = lessons[k];
@@ -160,17 +177,16 @@ clusterWheel.MainCtrl = function($scope, $http, $location, $dialog, $rootScope, 
 					lesson.title = lesson.title == "" ? "[Lesson title]" : lesson.title; 
 					lesson.topic = topic;
 					lesson.cluster = cluster;
-					lessonCount++;
 					cluster.lessons.push(lesson);
+					$scope.lessons.push(lesson);
 				}
 			}
 		}
-		$scope.circleConfig.lessonAngleSize = (360 - ((clusterCount) * $scope.circleConfig.radialSpacing)) / lessonCount;
+		$scope.circleConfig.lessonAngleSize = (360 - ((clusterCount) * $scope.circleConfig.radialSpacing)) / $scope.lessons.length;
 		$scope.allArcs = [];
 		drawClusters($scope.circleConfig);
 		drawBorderCircles($scope.circleConfig);
 		setCluster($scope.clusters[0]);
-		setTopic($scope.clusters[0].topics[0]);
 		$scope.stage.draw();
 	};
 	
@@ -205,7 +221,7 @@ clusterWheel.MainCtrl = function($scope, $http, $location, $dialog, $rootScope, 
 			height: config.labelHeight,
 			text: arc.label,
 			fontSize: s,
-			fontFamily: 'Arial',
+			fontFamily: 'Open Sans',
 			fill: config.labelColor,
 			align: 'center',
 			shadowEnabled: true,
@@ -217,46 +233,86 @@ clusterWheel.MainCtrl = function($scope, $http, $location, $dialog, $rootScope, 
 		layer.add(t);
 	};
 	
-	var setHighlighting = function(arc) {
+	var getSelection = function(arc) {
+		var selection = [];
 		if (arc) {
-			$scope.selection = [arc];
+			selection = [arc];
 			switch (arc.data.type) {
 				case "cluster":
 					for (var i=0; i<arc.data.topics.length; i++) {
 						var topic = arc.data.topics[i];
-						$scope.selection.push(topic.shape);
+						selection.push(topic.shape);
 						for (var j=0; j<topic.lessons.length; j++) {
 							var lesson = topic.lessons[j];
-							$scope.selection.push(lesson.shape);
+							selection.push(lesson.shape);
 						}
 					}
 					break;
 				case "topic":
-					$scope.selection.push(arc.data.cluster.shape);
+					selection.push(arc.data.cluster.shape);
 					for (var i=0; i<arc.data.lessons.length; i++) {
 						var lesson = arc.data.lessons[i];
-						$scope.selection.push(lesson.shape);
+						selection.push(lesson.shape);
 					}
 					break;
 				case "lesson":
-					$scope.selection.push(arc.data.topic.cluster.shape);
-					$scope.selection.push(arc.data.topic.shape);
+					selection.push(arc.data.topic.cluster.shape);
+					selection.push(arc.data.topic.shape);
 					break;
 			};
+		} else {
+			selection = [];
+		};
+		return selection;
+	};
+	
+	var setRolloverState = function(arc) {
+		var currSelection = getSelection(arc);
+		if (arc) {
       document.body.style.cursor = 'pointer';
 		} else {
-			$scope.selection = [];
       document.body.style.cursor = 'auto';
 		};
-		angular.forEach($scope.allArcs, function(arc) {
-			arc.opacity($scope.circleConfig.upOpacity);
+		angular.forEach($scope.allArcs, function(a) {
+			if ($scope.selection && $scope.selection.indexOf(a) > -1) {
+				a.opacity($scope.circleConfig.selectionUpOpacity);
+			} else {
+				a.opacity($scope.circleConfig.upOpacity);
+			}
 		});
-		angular.forEach($scope.selection, function(arc) {
-			arc.opacity($scope.circleConfig.selectionOpacity);
+		angular.forEach(currSelection, function(a) {
+			if ($scope.selection && $scope.selection.indexOf(a) > -1) {
+				a.opacity($scope.circleConfig.selectionOverOpacity);
+			} else {
+				a.opacity($scope.circleConfig.selectionUpOpacity);
+			}
 		});
-		if (arc) arc.opacity($scope.circleConfig.overOpacity);
+		// if ($scope.selection && $scope.selection.indexOf(arc) > -1) {
+			// if (arc) arc.opacity($scope.circleConfig.overOpacity);
+		// }
 		$scope.arcLayer.draw();
 	};
+	
+	var setSelectionState = function(arc) {
+		var currSelection = getSelection(arc);
+		angular.forEach($scope.allArcs, function(a) {
+			a.opacity($scope.circleConfig.upOpacity);
+		});
+		angular.forEach($scope.selection, function(a) {
+			a.opacity($scope.circleConfig.selectionUpOpacity);
+		});
+		$scope.selection = currSelection;
+		$scope.arcLayer.draw();
+	};
+	
+	var setMousedownState = function(arc) {
+		var currSelection = getSelection(arc);
+		angular.forEach(currSelection, function(a) {
+			a.opacity($scope.circleConfig.downOpacity);
+		});
+		$scope.arcLayer.draw();
+	};
+	
 	
 	var drawClusters = function(config) {
 		var layer = new Kinetic.Layer({
@@ -277,14 +333,19 @@ clusterWheel.MainCtrl = function($scope, $http, $location, $dialog, $rootScope, 
 			cluster.angleSize = angleSize;
 			var arc = drawArc(cluster);
 			arc.data = cluster;
-			arc.on('mouseover', function(){
-					setHighlighting(this);
+			arc.on('mouseenter', function(){
+					setRolloverState(this);
 				});
-			arc.on('mouseout', function(){
-					setHighlighting(null);
+			arc.on('mouseleave', function(){
+					setRolloverState(null);
+				});
+			arc.on('mousedown', function(){
+					setMousedownState(this);
 				});
 			arc.on('click', function(){
 					setCluster(this.data);
+					setSelectionState(this);
+					setRolloverState(this);
 				});
 			cluster.layer = layer;
 			cluster.shape = arc;
@@ -310,14 +371,19 @@ clusterWheel.MainCtrl = function($scope, $http, $location, $dialog, $rootScope, 
 			topic.gradient = topic.cluster.gradient;
 			var arc = drawArc(topic);
 			arc.data = topic;
-			arc.on('mouseover', function(){
-					setHighlighting(this);
+			arc.on('mouseenter', function(){
+					setRolloverState(this);
 				});
-			arc.on('mouseout', function(){
-					setHighlighting(null);
+			arc.on('mouseleave', function(){
+					setRolloverState(null);
+				});
+			arc.on('mousedown', function(){
+					setMousedownState(this);
 				});
 			arc.on('click', function(){
 					setTopic(this.data);
+					setSelectionState(this);
+					setRolloverState(this);
 				});
 			topic.layer = layer;
 			topic.shape = arc;
@@ -357,14 +423,19 @@ clusterWheel.MainCtrl = function($scope, $http, $location, $dialog, $rootScope, 
 			lesson.angleSize = angleSize;
 			var arc = drawArc(lesson);
 			arc.data = lesson;
-			arc.on('mouseover', function(){
-					setHighlighting(this);
+			arc.on('mouseenter', function(){
+					setRolloverState(this);
 				});
-			arc.on('mouseout', function(){
-					setHighlighting(null);
+			arc.on('mouseleave', function(){
+					setRolloverState(null);
+				});
+			arc.on('mousedown', function(){
+					setMousedownState(this);
 				});
 			arc.on('click', function(){
 					setLesson(this.data);
+					setSelectionState(this);
+					setRolloverState(this);
 				});
 			lesson.layer = layer;
 			lesson.shape = arc;
@@ -420,7 +491,7 @@ clusterWheel.MainCtrl = function($scope, $http, $location, $dialog, $rootScope, 
 	
 };
 
-
+/*
 // the dialog is injected into the specified controller
 clusterWheel.ProjectDialogController = function($scope, $rootScope, dialog){
 	$scope.project = $rootScope.project;
@@ -428,3 +499,4 @@ clusterWheel.ProjectDialogController = function($scope, $rootScope, dialog){
 		dialog.close(result);
 	};
 };
+*/
