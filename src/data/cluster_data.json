@@ -1,13 +1,30 @@
 {
 	"gradients": {
-		"red":    [0.2, "#AA0000", 1, "#FF0000"],
-		"green":  [0.2, "#47A154", 1, "#61BB46"],
+		"green":  [0.2, "#47A154", 1,   "#61BB46"],
+		"blue":   [0.2, "#0088CA", 1,   "#009DDB"],
 		"yellow": [0.2, "#EFAB1E", 0.7, "#F8BF14", 1, "#FFDD17"],
-		"blue":   [0.2, "#0088CA", 1, "#009DDB"]
+		"grey":   [0,   "#DCE3F1", 1,   "#D1D8E5"]
 	},
+	"key": {
+		"green":  {"name": "Major Cluster", "desc": "Most important and greater emphasis"},
+		"blue":   {"name": "Supporting Cluster", "desc": "Strongly connects to major work"},
+		"yellow": {"name": "Additional Cluster", "desc": "Completes grade-level content"}
+	}, 
 	"grades": {
 		"g4": {
 			"label": "Grade Four",
+			"centerText": "FOCUS ON\nCOMMON CORE\nCLUSTERS",
+			"centerTextColor" : "#01317D",
+			"supplementalText" : {
+				"heading": "Common Core Domains",
+				"key": {
+					"4.0A":  "Operations and Algebraic Thinking",
+					"4.NBT": "Number and Operations in Base Ten",
+					"4.NF":  "Number and Operations-Fractions",
+					"4.MD":  "Measurement and Data",
+					"4.G":   "Geometry"
+				} 
+			},
 			"clusters": [
 				{	"id": "4.NBT.A",
 					"title": "Number and Operations in Base Ten",

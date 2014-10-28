@@ -1,9 +1,20 @@
 <!DOCTYPE html>
 <html ng-app="clusterWheel.App">
 	<head>
-    <base href="/cs/webapps/envisionMath/src/">
+		<?php
+			$host = $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+			$path = '';
+			if (strpos($host, 'localhost') !== FALSE) {
+				$path = '/cs/webapps/envisionMath/src/';
+			} elseif (strpos($host, 'dev') !== FALSE) {
+				$path = '/cs/dev/envisionMath/';
+			} else {
+				$path = '/cs/webapps/envisionMath/';
+			}
+			echo "<base href=\"" . $path . "\"/>";
+		?>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
 		<title>EnvisionMath Cluster Wheel</title>

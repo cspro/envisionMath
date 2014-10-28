@@ -40,17 +40,32 @@ img, area, map {
   min-width: 150px;  
   font-size: 10px !important;
 }
+.table {
+  display: table;
+}
+.tr {
+  display: table-row;
+}
+.td {
+  display: table-cell;
+  vertical-align: top;
+}
+
+.accordion {
+  width: 500px;
+}
 
 @import 'upper_content';
 
 #circleWrapper {
-  position: relative;
+  width: 500px;
+  height: 500px;
   display: block;
   margin: 0 auto;
   z-index: 100;
-  canvas {
+  #kinetic {
     position: absolute;
-    top: 0;
+    top: 400;
     left: 0;
     -webkit-transition: all 0.75s ease-in-out;
     transition: all 0.75s ease-in-out;
@@ -58,9 +73,72 @@ img, area, map {
 }
 
 
-
 /* Extra small devices (phones, up to 480px) */
 /* No media query since this is the default in Bootstrap */
+
+.copyWrapper {
+  clear: both;
+  position: relative;
+  display: inline-block;
+  width: 500px;
+  .copy {
+    display: table;
+    position: relative;
+    clear: left;
+    -webkit-transition:0.5s linear all;
+    transition:0.5s linear all;
+    min-width: 300px;
+    h1, h2 {
+      margin-bottom: 0;
+    }
+    p {
+      margin-top: 1em;
+    }
+    .accordion * {
+      width: 100%;
+    }
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      max-width: 600px;
+      li {
+        margin-left: 0;
+      }
+      > li.topic {
+        display: block;
+        background-color: lighten($neutralBg, 35%);
+        border-radius: 10px;
+        margin: 0 0 1em 0;
+        background-color: #ccc;
+        padding: 1em;
+        overflow: hidden;
+          -webkit-transition: 1s linear all;
+        ul {
+          height: 1px;
+          -webkit-transition: 1s linear all;
+        }
+        &.selected {
+          overflow: visible;
+          ul {
+            -webkit-transition: 1s linear all;
+            height: auto;
+          }
+        }
+      }
+      .lesson {
+        -webkit-transition:0.5s linear all;
+        display: block;
+        padding: 2px;
+        border-radius: 3px;
+      }
+      .lesson.selected {
+        -webkit-transition:0.5s linear all;
+        background-color: lighten($neutralBg, 15%);
+      }
+    }
+  }
+}
 
 @media (min-width: 600px) {
 }
@@ -68,19 +146,6 @@ img, area, map {
 @media (min-width: 721px) {
   #circleWrapper {
     position: relative;
-    display: block;
-    float: left;
-    margin-right: 2em;
-  }
-  .copyWrapper {
-    clear: none;
-    .copyToggle {
-      display: none !important;
-    }
-    .copy {
-      display: table !important;
-      clear: none;
-    }
   }
 }
 
@@ -100,6 +165,9 @@ img, area, map {
 @media (min-width: 1200px) {
   
 }
+
+
+
 
 @import 'modal';
 

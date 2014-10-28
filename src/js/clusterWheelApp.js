@@ -42,9 +42,11 @@ clusterWheel.MainCtrl = function($scope, $http, $location, $rootScope, $sce, $ti
 				});
 			});
 			$scope.grades = grades;
-			$scope.clusters = grades['g4']['clusters']; // for now
+			$scope.grade = grades['g4'];
+			$scope.clusters = $scope.grade['clusters']; // for now
 			$scope.topics = [];
 			$scope.lessons = [];
+			$scope.gradients = gradients;
 		}).error(function(result) {
 			alert("Error getting project data. " + result);
 		});
@@ -68,6 +70,7 @@ clusterWheel.MainCtrl = function($scope, $http, $location, $rootScope, $sce, $ti
 	};
 	
 	/*
+
 	$scope.dialogOpts = {
 		backdrop: true,
 		backdropFade: true,
@@ -83,6 +86,11 @@ clusterWheel.MainCtrl = function($scope, $http, $location, $rootScope, $sce, $ti
 		d.open();
 	};
 	*/
+	
+	
+
+	/* Initialization
+	 ********************/
 	
 	var stageSize = 500;
 
@@ -117,40 +125,6 @@ clusterWheel.MainCtrl = function($scope, $http, $location, $rootScope, $sce, $ti
 
 	};
 
-	var deselectAll = function(collection) {
-		angular.forEach(collection, function(item) {
-			item.selected = false;
-		});
-	};
-	
-	var setCluster = function(cluster) {
-		deselectAll($scope.clusters);
-		deselectAll($scope.topics);
-		deselectAll($scope.lessons);
-		cluster.selected = true;
-		$scope.currCluster = cluster;
-		$scope.currTopic = cluster.topics[0];
-		$scope.$apply();
-	};
-
-	var setTopic = function(topic) {
-		deselectAll($scope.topics);
-		deselectAll($scope.lessons);
-		topic.selected = true;
-		$scope.currTopic = topic;
-		$scope.currCluster = topic.cluster;
-		$scope.$apply();
-	};
-	
-	var setLesson = function(lesson) {
-		deselectAll($scope.lessons);
-		lesson.selected = true;
-		$scope.currLesson = lesson;
-		$scope.currTopic = lesson.topic;
-		$scope.currCluster = lesson.topic.cluster;
-		$scope.$apply();
-	};
-	
 	var initCircles = function() {
 		var clusterCount = $scope.clusters.length;
 		for (var i=0; i < clusterCount; i++) {
@@ -183,54 +157,64 @@ clusterWheel.MainCtrl = function($scope, $http, $location, $rootScope, $sce, $ti
 			}
 		}
 		$scope.circleConfig.lessonAngleSize = (360 - ((clusterCount) * $scope.circleConfig.radialSpacing)) / $scope.lessons.length;
-		$scope.allArcs = [];
+		$scope.allShapes = [];
+		$scope.allClusters = [];
+		$scope.allLabels = [];
 		drawClusters($scope.circleConfig);
+		drawCenterCircle($scope.circleConfig);
 		drawBorderCircles($scope.circleConfig);
 		setCluster($scope.clusters[0]);
 		$scope.stage.draw();
+		animateShapes();
+	};
+
+ // Called after timeout so browser has a chance to render before impress is run
+	$scope.delayedInit = function() {
+		initKinetic();
+		initCircles();
 	};
 	
-	var drawArc = function(arc) {
-		var drawnArc = new Kinetic.Arc({
-		  innerRadius: arc.innerRadius,
-		  outerRadius: arc.outerRadius,
-		  rotation: arc.startAngle,
-		  fillRadialGradientColorStops: arc.gradient,
-		  fillRadialGradientEndRadius: arc.outerRadius,
-		  angle: arc.angleSize,
-		  stroke: '',
-		  strokeWidth: 0,
+	$timeout(function() {
+		$scope.delayedInit();
+	}, 50);
+
+
+
+	/* Selection / Highlighting
+	 ********************/
+	
+	var deselectAll = function(collection) {
+		angular.forEach(collection, function(item) {
+			item.selected = false;
 		});
-		$scope.allArcs.push(drawnArc);
-		return drawnArc;
 	};
 	
-	var drawArcLabel = function(config, arc, layer) {
-		var r = (arc.innerRadius + arc.outerRadius)/2;
-		if (arc.type == "cluster") {
-			r += r*0.175;
-		}
-		var a = (arc.startAngle + (arc.angleSize/2)) * (Math.PI/180);
-		var x = (r * Math.cos(a)) - config.labelWidth/2;
-		var y = (r * Math.sin(a)) - config.labelHeight/2;
-		var s = arc.fontScale ? config.labelSize*arc.fontScale : config.labelSize;
-		var t = new Kinetic.Text({
-			x: x,
-			y: y,
-			width: config.labelWidth,
-			height: config.labelHeight,
-			text: arc.label,
-			fontSize: s,
-			fontFamily: 'Open Sans',
-			fill: config.labelColor,
-			align: 'center',
-			shadowEnabled: true,
-			shadowOffset: {x:1, y:2},
-			shadowOpacity: 0.35,
-			shadowColor: 'black'
-		});
-		t.setListening(false);
-		layer.add(t);
+	var setCluster = function(cluster) {
+		deselectAll($scope.clusters);
+		deselectAll($scope.topics);
+		deselectAll($scope.lessons);
+		cluster.selected = true;
+		$scope.currCluster = cluster;
+		$scope.currTopic = cluster.topics[0];
+		$scope.$apply();
+	};
+
+	var setTopic = function(topic) {
+		deselectAll($scope.topics);
+		deselectAll($scope.lessons);
+		topic.selected = true;
+		$scope.currTopic = topic;
+		$scope.currCluster = topic.cluster;
+		$scope.$apply();
+	};
+	
+	var setLesson = function(lesson) {
+		deselectAll($scope.lessons);
+		lesson.selected = true;
+		$scope.currLesson = lesson;
+		$scope.currTopic = lesson.topic;
+		$scope.currCluster = lesson.topic.cluster;
+		$scope.$apply();
 	};
 	
 	var getSelection = function(arc) {
@@ -273,7 +257,7 @@ clusterWheel.MainCtrl = function($scope, $http, $location, $rootScope, $sce, $ti
 		} else {
       document.body.style.cursor = 'auto';
 		};
-		angular.forEach($scope.allArcs, function(a) {
+		angular.forEach($scope.allShapes, function(a) {
 			if ($scope.selection && $scope.selection.indexOf(a) > -1) {
 				a.opacity($scope.circleConfig.selectionUpOpacity);
 			} else {
@@ -287,22 +271,19 @@ clusterWheel.MainCtrl = function($scope, $http, $location, $rootScope, $sce, $ti
 				a.opacity($scope.circleConfig.selectionUpOpacity);
 			}
 		});
-		// if ($scope.selection && $scope.selection.indexOf(arc) > -1) {
-			// if (arc) arc.opacity($scope.circleConfig.overOpacity);
-		// }
-		$scope.arcLayer.draw();
+		$scope.shapeLayer.draw();
 	};
 	
 	var setSelectionState = function(arc) {
 		var currSelection = getSelection(arc);
-		angular.forEach($scope.allArcs, function(a) {
+		angular.forEach($scope.allShapes, function(a) {
 			a.opacity($scope.circleConfig.upOpacity);
 		});
 		angular.forEach($scope.selection, function(a) {
 			a.opacity($scope.circleConfig.selectionUpOpacity);
 		});
 		$scope.selection = currSelection;
-		$scope.arcLayer.draw();
+		$scope.shapeLayer.draw();
 	};
 	
 	var setMousedownState = function(arc) {
@@ -310,10 +291,61 @@ clusterWheel.MainCtrl = function($scope, $http, $location, $rootScope, $sce, $ti
 		angular.forEach(currSelection, function(a) {
 			a.opacity($scope.circleConfig.downOpacity);
 		});
-		$scope.arcLayer.draw();
+		$scope.shapeLayer.draw();
 	};
 	
 	
+	
+	/* Drawing
+	 ********************/
+	
+	var drawArc = function(arc) {
+		var drawnArc = new Kinetic.Arc({
+		  innerRadius: arc.innerRadius,
+		  outerRadius: arc.outerRadius,
+		  rotation: arc.startAngle,
+		  fillRadialGradientColorStops: arc.gradient,
+		  fillRadialGradientEndRadius: arc.outerRadius,
+		  angle: arc.angleSize,
+		  stroke: '',
+		  strokeWidth: 0,
+		  opacity: 0
+		});
+		$scope.allShapes.push(drawnArc);
+		return drawnArc;
+	};
+	
+	var drawArcLabel = function(config, arc, layer) {
+		var r = (arc.innerRadius + arc.outerRadius)/2;
+		if (arc.type == "cluster") {
+			r += r*0.175;
+		}
+		var a = (arc.startAngle + (arc.angleSize/2)) * (Math.PI/180);
+		var x = (r * Math.cos(a)) - config.labelWidth/2;
+		var y = (r * Math.sin(a)) - config.labelHeight/2;
+		var s = arc.fontScale ? config.labelSize*arc.fontScale : config.labelSize;
+		var t = new Kinetic.Text({
+			x: x,
+			y: y,
+			width: config.labelWidth,
+			height: config.labelHeight,
+			text: arc.label,
+			fontSize: s,
+			fontFamily: 'Open Sans',
+			fill: config.labelColor,
+			align: 'center',
+			shadowEnabled: true,
+			shadowOffset: {x:1, y:2},
+			shadowOpacity: 0,
+			shadowColor: 'black',
+			opacity: 1
+		});
+		arc.labelObj = t;
+		t.setListening(false);
+		layer.add(t);
+		$scope.allLabels.push(t);
+	};
+
 	var drawClusters = function(config) {
 		var layer = new Kinetic.Layer({
 			x: config.x,
@@ -351,10 +383,13 @@ clusterWheel.MainCtrl = function($scope, $http, $location, $rootScope, $sce, $ti
 			cluster.shape = arc;
 			drawArcLabel(config, cluster, textLayer);
 			layer.add(arc);
+			// animateShape(arc, 0.5);
+			$scope.allClusters.push(cluster);
 			drawTopics(config, cluster, startAngle);
 			startAngle += angleSize + config.radialSpacing;
+			
 		}
-		$scope.arcLayer = layer;
+		$scope.shapeLayer = layer;
 		$scope.stage.add(layer);
 		$scope.stage.add(textLayer);
 	};
@@ -465,29 +500,126 @@ clusterWheel.MainCtrl = function($scope, $http, $location, $rootScope, $sce, $ti
 		};
 		vars.radius = config.innerRadius;
 		var inner = new Kinetic.Circle(vars);
-		$scope.arcLayer.add(inner);
+		$scope.shapeLayer.add(inner);
 		
 		vars.radius = config.clustersRadius;
 		var clusters = new Kinetic.Circle(vars);
-		$scope.arcLayer.add(clusters);
+		$scope.shapeLayer.add(clusters);
 		
 		vars.radius = config.topicsRadius;
 		var topics = new Kinetic.Circle(vars);
-		$scope.arcLayer.add(topics);
+		$scope.shapeLayer.add(topics);
+	};
+
+	var drawCenterCircle = function(config) {
+		var circle = new Kinetic.Circle({
+			x: 0,
+			y: 0,
+			radius: config.innerRadius,
+			stroke: '',
+		  fillRadialGradientColorStops: $scope.gradients["grey"],
+		  fillRadialGradientEndRadius: config.innerRadius
+		});
+		var t = new Kinetic.Text({
+			x: -config.innerRadius/2 - 20,
+			y: -config.innerRadius/2 + 20,
+			width: config.innerRadius + 40,
+			height: config.innerRadius,
+			text: $scope.grade['centerText'],
+			fontSize: 13,
+			fontFamily: 'Open Sans',
+			fontStyle: 'bold',
+			fill: $scope.grade['centerTextColor'],
+			align: 'center',
+			textBaseline: 'middle',
+			shadowEnabled: true,
+			shadowOffset: {x:1, y:2},
+			shadowOpacity: 0,
+			shadowColor: 'black',
+			opacity: 1
+		});
+		t.setListening(false);
+		var group = new Kinetic.Group({
+			x:0,
+			y:0,
+			scaleX: 0.1,
+			scaleY: 0.1,
+			opacity: 0,
+		});
+		group.data = {'labelObj': t};
+		group.add(circle);
+		group.add(t);
+		$scope.shapeLayer.add(group);
+		$scope.centerCircle = group;
+		$scope.allLabels.push(t);
 	};
 	
-	
-	/*
-	 * Called after timeout so browser has a chance to render before impress is run
-	 */
-	$scope.delayedInit = function() {
-		initKinetic();
-		initCircles();
+	var drawKey = function(config) {
+		
 	};
 	
-	$timeout(function() {
-		$scope.delayedInit();
-	}, 500);
+	/* Animation
+	 *********************/
+
+	var animateShapes = function() {
+		for (var i=0; i<$scope.allShapes.length; i++) {
+			var arc = $scope.allShapes[i];
+			arc.opacity(0);
+			arc.scaleX(0.75);
+			arc.scaleY(0.75);
+		}
+		var currArcIndex = 0;
+		var animInterval = setInterval(function() {
+			if (currArcIndex == $scope.allClusters.length) {
+			}
+			if (currArcIndex > $scope.allClusters.length) {
+				window.clearInterval(animInterval);
+			}
+			var cluster = $scope.allClusters[currArcIndex];
+			if (!cluster) return;
+			++currArcIndex;
+			animateShape(cluster.shape, 0.5);
+			for (var j=0; j<cluster.topics.length; j++) {
+				var topic = cluster.topics[j];
+				animateShape(topic.shape, 0.75);
+				for (var k=0; k<topic.lessons.length; k++) {
+					var lesson = topic.lessons[k];
+					animateShape(lesson.shape, 0.8 + (k*0.015));
+				}
+			}
+		}, 50);
+		animateShape($scope.centerCircle, 0.45);
+	};
+	
+	var animateShape = function(shape, dur) {
+		var rot = shape.getAttr('rotation');
+		shape.rotation(rot-120);
+    var tween = new Kinetic.Tween({
+      node: shape, 
+      duration: dur,
+      opacity: 1,
+      scaleX: 1,
+      scaleY: 1,
+      rotation: rot,
+      easing: Kinetic.Easings.EaseOut
+    });
+    tween.play();
+    if (shape.data && shape.data.labelObj) {
+			animateShapeLabel(shape.data.labelObj, 1);
+    }
+	};
+	
+	var animateShapeLabel = function(label, dur) {
+    var tween = new Kinetic.Tween({
+      node: label, 
+      duration: dur,
+      opacity: 1,
+      shadowOpacity: 0.35,
+      easing: Kinetic.Easings.EaseInOut
+    });
+    tween.play();
+	};
+	
 	
 };
 

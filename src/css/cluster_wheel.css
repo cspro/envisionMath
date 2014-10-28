@@ -61,6 +61,27 @@ img, area, map {
   font-size: 10px !important;
 }
 
+/* line 43, ../sass/cluster_wheel.scss */
+.table {
+  display: table;
+}
+
+/* line 46, ../sass/cluster_wheel.scss */
+.tr {
+  display: table-row;
+}
+
+/* line 49, ../sass/cluster_wheel.scss */
+.td {
+  display: table-cell;
+  vertical-align: top;
+}
+
+/* line 54, ../sass/cluster_wheel.scss */
+.accordion {
+  width: 500px;
+}
+
 /* line 1, ../sass/_upper_content.scss */
 #upperContent {
   position: relative;
@@ -74,7 +95,7 @@ img, area, map {
 /* line 8, ../sass/_upper_content.scss */
 #upperContent h1 {
   margin: 0;
-  color: #205f9f;
+  color: #205F9F;
 }
 /* line 12, ../sass/_upper_content.scss */
 #upperContent h2 {
@@ -127,44 +148,65 @@ img, area, map {
   vertical-align: top;
 }
 
-/* line 55, ../sass/_upper_content.scss */
+/* line 60, ../sass/cluster_wheel.scss */
+#circleWrapper {
+  width: 500px;
+  height: 500px;
+  display: block;
+  margin: 0 auto;
+  z-index: 100;
+}
+/* line 66, ../sass/cluster_wheel.scss */
+#circleWrapper #kinetic {
+  position: absolute;
+  top: 400;
+  left: 0;
+  -webkit-transition: all 0.75s ease-in-out;
+  transition: all 0.75s ease-in-out;
+}
+
+/* Extra small devices (phones, up to 480px) */
+/* No media query since this is the default in Bootstrap */
+/* line 79, ../sass/cluster_wheel.scss */
 .copyWrapper {
   clear: both;
   position: relative;
+  display: inline-block;
+  width: 500px;
 }
-/* line 58, ../sass/_upper_content.scss */
+/* line 84, ../sass/cluster_wheel.scss */
 .copyWrapper .copy {
-  display: none;
+  display: table;
   position: relative;
   clear: left;
   -webkit-transition: 0.5s linear all;
   transition: 0.5s linear all;
   min-width: 300px;
 }
-/* line 65, ../sass/_upper_content.scss */
+/* line 91, ../sass/cluster_wheel.scss */
 .copyWrapper .copy h1, .copyWrapper .copy h2 {
   margin-bottom: 0;
 }
-/* line 68, ../sass/_upper_content.scss */
+/* line 94, ../sass/cluster_wheel.scss */
 .copyWrapper .copy p {
   margin-top: 1em;
 }
-/* line 71, ../sass/_upper_content.scss */
+/* line 97, ../sass/cluster_wheel.scss */
 .copyWrapper .copy .accordion * {
   width: 100%;
 }
-/* line 74, ../sass/_upper_content.scss */
+/* line 100, ../sass/cluster_wheel.scss */
 .copyWrapper .copy ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
   max-width: 600px;
 }
-/* line 79, ../sass/_upper_content.scss */
+/* line 105, ../sass/cluster_wheel.scss */
 .copyWrapper .copy ul li {
   margin-left: 0;
 }
-/* line 82, ../sass/_upper_content.scss */
+/* line 108, ../sass/cluster_wheel.scss */
 .copyWrapper .copy ul > li.topic {
   display: block;
   background-color: white;
@@ -175,78 +217,43 @@ img, area, map {
   overflow: hidden;
   -webkit-transition: 1s linear all;
 }
-/* line 91, ../sass/_upper_content.scss */
+/* line 117, ../sass/cluster_wheel.scss */
 .copyWrapper .copy ul > li.topic ul {
   height: 1px;
   -webkit-transition: 1s linear all;
 }
-/* line 95, ../sass/_upper_content.scss */
+/* line 121, ../sass/cluster_wheel.scss */
 .copyWrapper .copy ul > li.topic.selected {
   overflow: visible;
 }
-/* line 97, ../sass/_upper_content.scss */
+/* line 123, ../sass/cluster_wheel.scss */
 .copyWrapper .copy ul > li.topic.selected ul {
   -webkit-transition: 1s linear all;
   height: auto;
 }
-/* line 103, ../sass/_upper_content.scss */
+/* line 129, ../sass/cluster_wheel.scss */
 .copyWrapper .copy ul .lesson {
   -webkit-transition: 0.5s linear all;
   display: block;
   padding: 2px;
   border-radius: 3px;
 }
-/* line 109, ../sass/_upper_content.scss */
+/* line 135, ../sass/cluster_wheel.scss */
 .copyWrapper .copy ul .lesson.selected {
   -webkit-transition: 0.5s linear all;
   background-color: #e1e1e1;
 }
 
-/* line 46, ../sass/cluster_wheel.scss */
-#circleWrapper {
-  position: relative;
-  display: block;
-  margin: 0 auto;
-  z-index: 100;
-}
-/* line 51, ../sass/cluster_wheel.scss */
-#circleWrapper canvas {
-  position: absolute;
-  top: 0;
-  left: 0;
-  -webkit-transition: all 0.75s ease-in-out;
-  transition: all 0.75s ease-in-out;
-}
-
-/* Extra small devices (phones, up to 480px) */
-/* No media query since this is the default in Bootstrap */
 @media (min-width: 721px) {
-  /* line 69, ../sass/cluster_wheel.scss */
+  /* line 147, ../sass/cluster_wheel.scss */
   #circleWrapper {
     position: relative;
-    display: block;
-    float: left;
-    margin-right: 2em;
-  }
-
-  /* line 75, ../sass/cluster_wheel.scss */
-  .copyWrapper {
-    clear: none;
-  }
-  /* line 77, ../sass/cluster_wheel.scss */
-  .copyWrapper .copyToggle {
-    display: none !important;
-  }
-  /* line 80, ../sass/cluster_wheel.scss */
-  .copyWrapper .copy {
-    display: table !important;
-    clear: none;
   }
 }
 /* Small devices (tablets, 768px and up) */
 /* Medium devices (desktops and up) */
 @media (min-width: 992px) {
-  /* line 93, ../sass/cluster_wheel.scss */
+  /* line 158, ../sass/cluster_wheel.scss */
   .hiddenAtLarge {
     /* Fix for IE10 clearing issue */
     display: none !important;
@@ -291,7 +298,7 @@ img, area, map {
 
 /* line 37, ../sass/_modal.scss */
 .modal-body {
-  background-color: #f1f1f1;
+  background-color: #F1F1F1;
   padding: 0 1.5em;
 }
 
@@ -333,7 +340,7 @@ img, area, map {
 /* line 72, ../sass/_modal.scss */
 .modal-header h2 {
   font-size: 1.65em;
-  color: #205f9f;
+  color: #205F9F;
   line-height: 48px;
   vertical-align: middle;
   margin: 0;
@@ -396,7 +403,7 @@ img, area, map {
   margin: 0 0 0.5em 0;
   padding-top: 0.5em;
   text-transform: uppercase;
-  color: #205f9f;
+  color: #205F9F;
 }
 /* line 126, ../sass/_modal.scss */
 .modalRowContent h4:first-child {
@@ -462,8 +469,8 @@ img, area, map {
 }
 /* line 174, ../sass/_modal.scss */
 .modalRowContent .tableWrapper .td.tableVerticalDivider {
-  border-top: 1px solid #f1f1f1;
-  border-bottom: 1px solid #f1f1f1;
+  border-top: 1px solid #F1F1F1;
+  border-bottom: 1px solid #F1F1F1;
   background-color: #b1b1b1;
   width: 1px;
   padding: 0;
@@ -483,7 +490,7 @@ img, area, map {
     margin-left: 110px !important;
   }
 }
-/* line 106, ../sass/cluster_wheel.scss */
+/* line 174, ../sass/cluster_wheel.scss */
 .footer {
   background-color: #e1e1e1;
   text-align: center;
@@ -492,15 +499,15 @@ img, area, map {
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
 }
-/* line 113, ../sass/cluster_wheel.scss */
+/* line 181, ../sass/cluster_wheel.scss */
 .footer p {
   margin-bottom: 0;
 }
-/* line 116, ../sass/cluster_wheel.scss */
+/* line 184, ../sass/cluster_wheel.scss */
 .footer a {
   font-size: 0.85em;
 }
-/* line 119, ../sass/cluster_wheel.scss */
+/* line 187, ../sass/cluster_wheel.scss */
 .footer .counter {
   font-size: 0.85em;
 }
