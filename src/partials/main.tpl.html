@@ -25,7 +25,7 @@
 											heading="{{topic.title}}" 
 											ng-repeat="topic in currCluster.topics" 
 											class="topic" 
-											is-open="topic == currTopic" >
+											is-open="topic.selected" >
 											<ul>
 												<li ng-repeat="lesson in topic.lessons" class="lesson" ng-class="{selected : lesson == currLesson}">{{lesson.id}}: {{lesson.title}}</li>
 											</ul>
