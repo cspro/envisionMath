@@ -1,26 +1,33 @@
-$higherEdColor1: darken(#df4854, 3%);
-$higherEdColor2: darken(#c92f44, 1%);
-$professionalColor1: darken(#7cb557, 8%);
-$professionalColor2: darken(#3fa85c, 5%);
-$schoolColor1: #0088b7;
-$schoolColor2: #006da3;
-$neutralBg: #bbbbbb;
-$accentColor: #205F9F;
+$neutralBg   : #bbbbbb;
+$textColor   : #333333;
+$headerColor : #36679C;
+$bg1         : #f0f0f0;
+$bg2         : #dddddd;
+$pageBg      : #ffffff;
 
 .container {
   min-width: 360px;
+  position: relative;
+  color: $textColor;
 }
 
 * {
   font-family: "Open Sans" !important;
   font-size: 14px;
+  margin: 0;
 }
 a:hover {
  text-decoration: none;
 }
-h1 {font-size: 1.75em;}
+h1 {
+  font-size: 1.75em;
+  margin-top: 0;
+}
 h2 {font-size: 1.35em;}
 h3 {font-size: 1.15em;}
+h1, h2, h3, h4 {
+  color: $headerColor;
+}
 
 img.no-resize { max-width: none; }
 img, area, map {
@@ -43,6 +50,10 @@ img, area, map {
 .table {
   display: table;
 }
+/* override Bootstrap default, which makes this white for some reason */
+.table .table {
+  background-color: transparent;
+}
 .tr {
   display: table-row;
 }
@@ -52,10 +63,55 @@ img, area, map {
 }
 
 .accordion {
-  width: 500px;
+  width: 100%;
+  .accordion-toggle {
+    cursor: pointer;
+    span {
+      pointer-events: none;
+      
+    }
+  }
 }
 
-@import 'upper_content';
+#leftCol, #rightCol {
+  height: 900px;
+}
+
+#leftCol {
+  background: $bg1;
+}
+
+#rightCol {
+  background: $bg2;
+  border-left: 10px solid $pageBg;
+}
+
+#key {
+  position: relative;
+  display: block;
+  margin-left: 70px;
+  width: 430px;
+  .td {
+    width: 33%;
+    vertical-align: top;
+    padding-right: 1em;
+    span, b {
+      font-size: 11px;
+    }
+    .dot {
+      font-size: 40px;
+      text-shadow: 0px 1px 4px rgba(150, 150, 150, 0.5);
+      display: block;
+      height: 60px;
+      float: left;
+      clear: both;
+      line-height: 14px;
+    }
+    &.green  { .dot { color: #61BB46; }}
+    &.blue   { .dot { color: #009DDB; }}
+    &.yellow { .dot { color: #EFAB1E; }}
+  }
+}
 
 #circleWrapper {
   width: 500px;
@@ -63,6 +119,8 @@ img, area, map {
   display: block;
   margin: 0 auto;
   z-index: 100;
+  position: relative;
+  display: block;
   #kinetic {
     position: absolute;
     top: 400;
@@ -72,6 +130,41 @@ img, area, map {
   }
 }
 
+#legend {
+  display: block;
+  position: relative;
+  margin-left: 70px;
+  width: 430px;
+  h3 {
+    text-transform: uppercase;
+    font-weight: bold;
+    border-top: 1px solid $headerColor;
+    padding-top: 0.5em;
+  }
+  .legendItem {
+    display: inline-block;
+    span {
+      display: inline-block;
+      vertical-align: top;
+      height: 40px;
+      text-transform: uppercase;
+      &.legendKey {
+        font-weight: bold;
+        width: 40px;
+      } 
+      &.legendValue {
+        width: 170px;
+        padding-right: 1em;
+      }
+      font-size: 12px;
+    }
+  }
+}
+
+
+.panel-group .panel {
+  border-radius: 0;
+}
 
 /* Extra small devices (phones, up to 480px) */
 /* No media query since this is the default in Bootstrap */
@@ -80,7 +173,7 @@ img, area, map {
   clear: both;
   position: relative;
   display: inline-block;
-  width: 500px;
+  width: 100%;
   .copy {
     display: table;
     position: relative;
@@ -88,6 +181,7 @@ img, area, map {
     -webkit-transition:0.5s linear all;
     transition:0.5s linear all;
     min-width: 300px;
+    width: 100%;
     h1, h2 {
       margin-bottom: 0;
     }
@@ -166,10 +260,7 @@ img, area, map {
   
 }
 
-
-
-
-@import 'modal';
+// @import 'modal';
 
 .footer {
   background-color: lighten($neutralBg, 15%);
@@ -188,4 +279,27 @@ img, area, map {
     font-size: 0.85em;
   }
 
+}
+
+#resetButton {
+  display: block;
+  position: absolute;
+  top: 1.5em;
+  left: 1.5em;
+  z-index: 1001;
+  width: 50px;
+  height: 50px;
+  background: url('../images/reset.png') no-repeat;
+  opacity: 0.15;
+  cursor: pointer;
+  &:hover {
+    opacity: 0.25;
+  }
+  &.ng-hide {
+    opacity: 0;
+  }
+  &.ng-hide-add, &.ng-hide-remove {
+    transition:0.25s ease-in-out all;
+    display:block!important;
+  }
 }

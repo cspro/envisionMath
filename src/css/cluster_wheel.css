@@ -1,112 +1,347 @@
-/* line 10, ../sass/cluster_wheel.scss */
+/* line 8, ../sass/cluster_wheel.scss */
 .container {
   min-width: 360px;
+  position: relative;
+  color: #333333;
 }
 
 /* line 14, ../sass/cluster_wheel.scss */
 * {
   font-family: "Open Sans" !important;
   font-size: 14px;
+  margin: 0;
 }
 
-/* line 18, ../sass/cluster_wheel.scss */
+/* line 19, ../sass/cluster_wheel.scss */
 a:hover {
   text-decoration: none;
 }
 
-/* line 21, ../sass/cluster_wheel.scss */
+/* line 22, ../sass/cluster_wheel.scss */
 h1 {
   font-size: 1.75em;
+  margin-top: 0;
 }
 
-/* line 22, ../sass/cluster_wheel.scss */
+/* line 26, ../sass/cluster_wheel.scss */
 h2 {
   font-size: 1.35em;
 }
 
-/* line 23, ../sass/cluster_wheel.scss */
+/* line 27, ../sass/cluster_wheel.scss */
 h3 {
   font-size: 1.15em;
 }
 
-/* line 25, ../sass/cluster_wheel.scss */
+/* line 28, ../sass/cluster_wheel.scss */
+h1, h2, h3, h4 {
+  color: #36679C;
+}
+
+/* line 32, ../sass/cluster_wheel.scss */
 img.no-resize {
   max-width: none;
 }
 
-/* line 26, ../sass/cluster_wheel.scss */
+/* line 33, ../sass/cluster_wheel.scss */
 img, area, map {
   outline: none;
 }
 
-/* line 29, ../sass/cluster_wheel.scss */
+/* line 36, ../sass/cluster_wheel.scss */
 .spaceBelow {
   margin-bottom: 1em;
 }
 
-/* line 32, ../sass/cluster_wheel.scss */
+/* line 39, ../sass/cluster_wheel.scss */
 .spaceAbove {
   margin-top: 1em;
 }
 
-/* line 35, ../sass/cluster_wheel.scss */
+/* line 42, ../sass/cluster_wheel.scss */
 .allCaps {
   text-transform: uppercase;
 }
 
-/* line 38, ../sass/cluster_wheel.scss */
+/* line 45, ../sass/cluster_wheel.scss */
 .tooltip-inner {
   max-width: 300px;
   min-width: 150px;
   font-size: 10px !important;
 }
 
-/* line 43, ../sass/cluster_wheel.scss */
+/* line 50, ../sass/cluster_wheel.scss */
 .table {
   display: table;
 }
 
-/* line 46, ../sass/cluster_wheel.scss */
+/* override Bootstrap default, which makes this white for some reason */
+/* line 54, ../sass/cluster_wheel.scss */
+.table .table {
+  background-color: transparent;
+}
+
+/* line 57, ../sass/cluster_wheel.scss */
 .tr {
   display: table-row;
 }
 
-/* line 49, ../sass/cluster_wheel.scss */
+/* line 60, ../sass/cluster_wheel.scss */
 .td {
   display: table-cell;
   vertical-align: top;
 }
 
-/* line 54, ../sass/cluster_wheel.scss */
+/* line 65, ../sass/cluster_wheel.scss */
 .accordion {
-  width: 500px;
+  width: 100%;
+}
+/* line 67, ../sass/cluster_wheel.scss */
+.accordion .accordion-toggle {
+  cursor: pointer;
+}
+/* line 69, ../sass/cluster_wheel.scss */
+.accordion .accordion-toggle span {
+  pointer-events: none;
 }
 
-/* line 1, ../sass/_upper_content.scss */
-#upperContent {
+/* line 76, ../sass/cluster_wheel.scss */
+#leftCol, #rightCol {
+  height: 900px;
+}
+
+/* line 80, ../sass/cluster_wheel.scss */
+#leftCol {
+  background: #f0f0f0;
+}
+
+/* line 84, ../sass/cluster_wheel.scss */
+#rightCol {
+  background: #dddddd;
+  border-left: 10px solid #ffffff;
+}
+
+/* line 89, ../sass/cluster_wheel.scss */
+#key {
   position: relative;
-  padding: 2em 1em 0;
-  text-align: center;
+  display: block;
+  margin-left: 70px;
+  width: 430px;
 }
-/* line 5, ../sass/_upper_content.scss */
-#upperContent h1 {
+/* line 94, ../sass/cluster_wheel.scss */
+#key .td {
+  width: 33%;
+  vertical-align: top;
+  padding-right: 1em;
+}
+/* line 98, ../sass/cluster_wheel.scss */
+#key .td span, #key .td b {
+  font-size: 11px;
+}
+/* line 101, ../sass/cluster_wheel.scss */
+#key .td .dot {
+  font-size: 40px;
+  text-shadow: 0px 1px 4px rgba(150, 150, 150, 0.5);
+  display: block;
+  height: 60px;
+  float: left;
+  clear: both;
+  line-height: 14px;
+}
+/* line 110, ../sass/cluster_wheel.scss */
+#key .td.green .dot {
+  color: #61BB46;
+}
+/* line 111, ../sass/cluster_wheel.scss */
+#key .td.blue .dot {
+  color: #009DDB;
+}
+/* line 112, ../sass/cluster_wheel.scss */
+#key .td.yellow .dot {
+  color: #EFAB1E;
+}
+
+/* line 116, ../sass/cluster_wheel.scss */
+#circleWrapper {
+  width: 500px;
+  height: 500px;
+  display: block;
+  margin: 0 auto;
+  z-index: 100;
+  position: relative;
+  display: block;
+}
+/* line 124, ../sass/cluster_wheel.scss */
+#circleWrapper #kinetic {
+  position: absolute;
+  top: 400;
+  left: 0;
+  -webkit-transition: all 0.75s ease-in-out;
+  transition: all 0.75s ease-in-out;
+}
+
+/* line 133, ../sass/cluster_wheel.scss */
+#legend {
+  display: block;
+  position: relative;
+  margin-left: 70px;
+  width: 430px;
+}
+/* line 138, ../sass/cluster_wheel.scss */
+#legend h3 {
   text-transform: uppercase;
+  font-weight: bold;
+  border-top: 1px solid #36679C;
+  padding-top: 0.5em;
 }
-/* line 8, ../sass/_upper_content.scss */
-#upperContent h1 {
-  margin: 0;
-  color: #205F9F;
+/* line 144, ../sass/cluster_wheel.scss */
+#legend .legendItem {
+  display: inline-block;
 }
-/* line 12, ../sass/_upper_content.scss */
-#upperContent h2 {
-  margin-top: 0;
+/* line 146, ../sass/cluster_wheel.scss */
+#legend .legendItem span {
+  display: inline-block;
+  vertical-align: top;
+  height: 40px;
+  text-transform: uppercase;
+  font-size: 12px;
 }
-/* line 15, ../sass/_upper_content.scss */
-#upperContent ul {
+/* line 151, ../sass/cluster_wheel.scss */
+#legend .legendItem span.legendKey {
+  font-weight: bold;
+  width: 40px;
+}
+/* line 155, ../sass/cluster_wheel.scss */
+#legend .legendItem span.legendValue {
+  width: 170px;
+  padding-right: 1em;
+}
+
+/* line 165, ../sass/cluster_wheel.scss */
+.panel-group .panel {
+  border-radius: 0;
+}
+
+/* Extra small devices (phones, up to 480px) */
+/* No media query since this is the default in Bootstrap */
+/* line 172, ../sass/cluster_wheel.scss */
+.copyWrapper {
+  clear: both;
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+/* line 177, ../sass/cluster_wheel.scss */
+.copyWrapper .copy {
+  display: table;
+  position: relative;
+  clear: left;
+  -webkit-transition: 0.5s linear all;
+  transition: 0.5s linear all;
+  min-width: 300px;
+  width: 100%;
+}
+/* line 185, ../sass/cluster_wheel.scss */
+.copyWrapper .copy h1, .copyWrapper .copy h2 {
+  margin-bottom: 0;
+}
+/* line 188, ../sass/cluster_wheel.scss */
+.copyWrapper .copy p {
   margin-top: 1em;
 }
-/* line 18, ../sass/_upper_content.scss */
-#upperContent #resetButton {
+/* line 191, ../sass/cluster_wheel.scss */
+.copyWrapper .copy .accordion * {
+  width: 100%;
+}
+/* line 194, ../sass/cluster_wheel.scss */
+.copyWrapper .copy ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  max-width: 600px;
+}
+/* line 199, ../sass/cluster_wheel.scss */
+.copyWrapper .copy ul li {
+  margin-left: 0;
+}
+/* line 202, ../sass/cluster_wheel.scss */
+.copyWrapper .copy ul > li.topic {
+  display: block;
+  background-color: white;
+  border-radius: 10px;
+  margin: 0 0 1em 0;
+  background-color: #ccc;
+  padding: 1em;
+  overflow: hidden;
+  -webkit-transition: 1s linear all;
+}
+/* line 211, ../sass/cluster_wheel.scss */
+.copyWrapper .copy ul > li.topic ul {
+  height: 1px;
+  -webkit-transition: 1s linear all;
+}
+/* line 215, ../sass/cluster_wheel.scss */
+.copyWrapper .copy ul > li.topic.selected {
+  overflow: visible;
+}
+/* line 217, ../sass/cluster_wheel.scss */
+.copyWrapper .copy ul > li.topic.selected ul {
+  -webkit-transition: 1s linear all;
+  height: auto;
+}
+/* line 223, ../sass/cluster_wheel.scss */
+.copyWrapper .copy ul .lesson {
+  -webkit-transition: 0.5s linear all;
+  display: block;
+  padding: 2px;
+  border-radius: 3px;
+}
+/* line 229, ../sass/cluster_wheel.scss */
+.copyWrapper .copy ul .lesson.selected {
+  -webkit-transition: 0.5s linear all;
+  background-color: #e1e1e1;
+}
+
+@media (min-width: 721px) {
+  /* line 241, ../sass/cluster_wheel.scss */
+  #circleWrapper {
+    position: relative;
+  }
+}
+/* Small devices (tablets, 768px and up) */
+/* Medium devices (desktops and up) */
+@media (min-width: 992px) {
+  /* line 252, ../sass/cluster_wheel.scss */
+  .hiddenAtLarge {
+    /* Fix for IE10 clearing issue */
+    display: none !important;
+  }
+}
+/* Large devices (large desktops, 1200px and up) */
+/* line 265, ../sass/cluster_wheel.scss */
+.footer {
+  background-color: #e1e1e1;
+  text-align: center;
+  padding: 0.75em;
+  margin: 0 -1px;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+/* line 272, ../sass/cluster_wheel.scss */
+.footer p {
+  margin-bottom: 0;
+}
+/* line 275, ../sass/cluster_wheel.scss */
+.footer a {
+  font-size: 0.85em;
+}
+/* line 278, ../sass/cluster_wheel.scss */
+.footer .counter {
+  font-size: 0.85em;
+}
+
+/* line 284, ../sass/cluster_wheel.scss */
+#resetButton {
   display: block;
   position: absolute;
   top: 1.5em;
@@ -118,396 +353,16 @@ img, area, map {
   opacity: 0.15;
   cursor: pointer;
 }
-/* line 29, ../sass/_upper_content.scss */
-#upperContent #resetButton:hover {
+/* line 295, ../sass/cluster_wheel.scss */
+#resetButton:hover {
   opacity: 0.25;
 }
-/* line 32, ../sass/_upper_content.scss */
-#upperContent #resetButton.ng-hide {
+/* line 298, ../sass/cluster_wheel.scss */
+#resetButton.ng-hide {
   opacity: 0;
 }
-/* line 35, ../sass/_upper_content.scss */
-#upperContent #resetButton.ng-hide-add, #upperContent #resetButton.ng-hide-remove {
+/* line 301, ../sass/cluster_wheel.scss */
+#resetButton.ng-hide-add, #resetButton.ng-hide-remove {
   transition: 0.25s ease-in-out all;
   display: block !important;
-}
-/* line 40, ../sass/_upper_content.scss */
-#upperContent div.copy {
-  display: table;
-  height: 280px;
-  padding: 1em;
-}
-/* line 44, ../sass/_upper_content.scss */
-#upperContent div.copy div.copyRow {
-  display: table-row;
-}
-/* line 46, ../sass/_upper_content.scss */
-#upperContent div.copy div.copyRow div.copyCell {
-  text-align: left;
-  display: table-cell;
-  vertical-align: top;
-}
-
-/* line 60, ../sass/cluster_wheel.scss */
-#circleWrapper {
-  width: 500px;
-  height: 500px;
-  display: block;
-  margin: 0 auto;
-  z-index: 100;
-}
-/* line 66, ../sass/cluster_wheel.scss */
-#circleWrapper #kinetic {
-  position: absolute;
-  top: 400;
-  left: 0;
-  -webkit-transition: all 0.75s ease-in-out;
-  transition: all 0.75s ease-in-out;
-}
-
-/* Extra small devices (phones, up to 480px) */
-/* No media query since this is the default in Bootstrap */
-/* line 79, ../sass/cluster_wheel.scss */
-.copyWrapper {
-  clear: both;
-  position: relative;
-  display: inline-block;
-  width: 500px;
-}
-/* line 84, ../sass/cluster_wheel.scss */
-.copyWrapper .copy {
-  display: table;
-  position: relative;
-  clear: left;
-  -webkit-transition: 0.5s linear all;
-  transition: 0.5s linear all;
-  min-width: 300px;
-}
-/* line 91, ../sass/cluster_wheel.scss */
-.copyWrapper .copy h1, .copyWrapper .copy h2 {
-  margin-bottom: 0;
-}
-/* line 94, ../sass/cluster_wheel.scss */
-.copyWrapper .copy p {
-  margin-top: 1em;
-}
-/* line 97, ../sass/cluster_wheel.scss */
-.copyWrapper .copy .accordion * {
-  width: 100%;
-}
-/* line 100, ../sass/cluster_wheel.scss */
-.copyWrapper .copy ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  max-width: 600px;
-}
-/* line 105, ../sass/cluster_wheel.scss */
-.copyWrapper .copy ul li {
-  margin-left: 0;
-}
-/* line 108, ../sass/cluster_wheel.scss */
-.copyWrapper .copy ul > li.topic {
-  display: block;
-  background-color: white;
-  border-radius: 10px;
-  margin: 0 0 1em 0;
-  background-color: #ccc;
-  padding: 1em;
-  overflow: hidden;
-  -webkit-transition: 1s linear all;
-}
-/* line 117, ../sass/cluster_wheel.scss */
-.copyWrapper .copy ul > li.topic ul {
-  height: 1px;
-  -webkit-transition: 1s linear all;
-}
-/* line 121, ../sass/cluster_wheel.scss */
-.copyWrapper .copy ul > li.topic.selected {
-  overflow: visible;
-}
-/* line 123, ../sass/cluster_wheel.scss */
-.copyWrapper .copy ul > li.topic.selected ul {
-  -webkit-transition: 1s linear all;
-  height: auto;
-}
-/* line 129, ../sass/cluster_wheel.scss */
-.copyWrapper .copy ul .lesson {
-  -webkit-transition: 0.5s linear all;
-  display: block;
-  padding: 2px;
-  border-radius: 3px;
-}
-/* line 135, ../sass/cluster_wheel.scss */
-.copyWrapper .copy ul .lesson.selected {
-  -webkit-transition: 0.5s linear all;
-  background-color: #e1e1e1;
-}
-
-@media (min-width: 721px) {
-  /* line 147, ../sass/cluster_wheel.scss */
-  #circleWrapper {
-    position: relative;
-  }
-}
-/* Small devices (tablets, 768px and up) */
-/* Medium devices (desktops and up) */
-@media (min-width: 992px) {
-  /* line 158, ../sass/cluster_wheel.scss */
-  .hiddenAtLarge {
-    /* Fix for IE10 clearing issue */
-    display: none !important;
-  }
-}
-/* Large devices (large desktops, 1200px and up) */
-/* line 4, ../sass/_modal.scss */
-.modal {
-  display: block;
-  height: 0;
-  position: absolute;
-  overflow: visible;
-}
-
-/* ==================================
- * Override Bootstrap styles 
- * ================================ */
-@media screen and (min-width: 768px) {
-  /* line 16, ../sass/_modal.scss */
-  .modal-dialog {
-    width: auto;
-    padding: 1em 3em;
-    margin-bottom: 1em;
-  }
-}
-/* line 23, ../sass/_modal.scss */
-.modal-backdrop.in {
-  opacity: 0.75;
-  filter: alpha(opacity=75);
-}
-
-/* line 28, ../sass/_modal.scss */
-.modal-header {
-  min-height: 16.428571429px;
-  padding: 1em 1.5em;
-}
-
-/* line 34, ../sass/_modal.scss */
-.modal-header .close {
-  margin-top: -2px;
-}
-
-/* line 37, ../sass/_modal.scss */
-.modal-body {
-  background-color: #F1F1F1;
-  padding: 0 1.5em;
-}
-
-/* line 41, ../sass/_modal.scss */
-.modal-footer {
-  margin-top: 0;
-  padding: 0.5em;
-}
-
-/* ================================== */
-/* line 49, ../sass/_modal.scss */
-.modal-header .icon {
-  display: none;
-  width: 55px;
-  height: 48px;
-  float: left;
-  margin-left: 20px;
-}
-/* line 55, ../sass/_modal.scss */
-.modal-header .icon.CC {
-  background: url("../images/project_icons_lg.png") 0 0;
-}
-/* line 58, ../sass/_modal.scss */
-.modal-header .icon.DD {
-  background: url("../images/project_icons_lg.png") -55px 0;
-}
-/* line 61, ../sass/_modal.scss */
-.modal-header .icon.EE {
-  background: url("../images/project_icons_lg.png") -110px 0;
-}
-/* line 64, ../sass/_modal.scss */
-.modal-header .icon.OL {
-  background: url("../images/project_icons_lg.png") -165px 0;
-}
-/* line 67, ../sass/_modal.scss */
-.modal-header .icon.NG {
-  background: url("../images/project_icons_lg.png") -220px 0;
-}
-/* line 72, ../sass/_modal.scss */
-.modal-header h2 {
-  font-size: 1.65em;
-  color: #205F9F;
-  line-height: 48px;
-  vertical-align: middle;
-  margin: 0;
-}
-
-/* line 81, ../sass/_modal.scss */
-.modalRow {
-  clear: both;
-  background: url("../images/modal_divider.png") top left no-repeat;
-  background-size: 100% 6px;
-  margin-right: -20px;
-  margin-left: -20px;
-}
-/* line 87, ../sass/_modal.scss */
-.modalRow.footerRow {
-  background-color: #d7d7d7;
-}
-/* line 90, ../sass/_modal.scss */
-.modalRow .icon {
-  display: none;
-  float: left;
-  width: 105px;
-  height: 87px;
-  margin-left: 1em;
-  background: url("../images/modal_divider_icon_bg.png") top left no-repeat;
-}
-/* line 97, ../sass/_modal.scss */
-.modalRow .icon div {
-  width: 105px;
-  height: 87px;
-}
-/* line 100, ../sass/_modal.scss */
-.modalRow .icon div.lead {
-  background: url("../images/modal_divider_icons.png") 0 0 no-repeat;
-}
-/* line 103, ../sass/_modal.scss */
-.modalRow .icon div.results {
-  background: url("../images/modal_divider_icons.png") -105px 0 no-repeat;
-}
-/* line 106, ../sass/_modal.scss */
-.modalRow .icon div.partners {
-  background: url("../images/modal_divider_icons.png") -210px 0 no-repeat;
-}
-/* line 109, ../sass/_modal.scss */
-.modalRow .icon div.goals {
-  background: url("../images/modal_divider_icons.png") -315px 0 no-repeat;
-}
-/* line 112, ../sass/_modal.scss */
-.modalRow .icon div.resources {
-  background: url("../images/modal_divider_icons.png") -420px 0 no-repeat;
-}
-
-/* line 118, ../sass/_modal.scss */
-.modalRowContent {
-  display: block;
-  padding: 1.5em 4em 1.5em 1.5em;
-}
-/* line 121, ../sass/_modal.scss */
-.modalRowContent h4 {
-  margin: 0 0 0.5em 0;
-  padding-top: 0.5em;
-  text-transform: uppercase;
-  color: #205F9F;
-}
-/* line 126, ../sass/_modal.scss */
-.modalRowContent h4:first-child {
-  padding-top: 0;
-}
-/* line 129, ../sass/_modal.scss */
-.modalRowContent h4 span {
-  font-size: inherit;
-}
-/* line 133, ../sass/_modal.scss */
-.modalRowContent section {
-  padding-left: 1.5em;
-}
-/* line 136, ../sass/_modal.scss */
-.modalRowContent .sectionContent, .modalRowContent p {
-  margin-bottom: 0.5em;
-}
-/* line 138, ../sass/_modal.scss */
-.modalRowContent .sectionContent ol, .modalRowContent .sectionContent ul, .modalRowContent p ol, .modalRowContent p ul {
-  padding-left: 1.5em;
-}
-/* line 140, ../sass/_modal.scss */
-.modalRowContent .sectionContent ol li, .modalRowContent .sectionContent ul li, .modalRowContent p ol li, .modalRowContent p ul li {
-  margin-bottom: 0.5em;
-}
-/* line 144, ../sass/_modal.scss */
-.modalRowContent .sectionContent:last-child, .modalRowContent p:last-child {
-  margin-bottom: 0;
-}
-/* line 148, ../sass/_modal.scss */
-.modalRowContent .indent {
-  margin-left: 1.5em;
-}
-/* line 151, ../sass/_modal.scss */
-.modalRowContent .tableWrapper {
-  margin-top: 0;
-  margin-bottom: 1em;
-}
-/* line 154, ../sass/_modal.scss */
-.modalRowContent .tableWrapper .table {
-  display: table;
-  width: auto !important;
-}
-/* line 158, ../sass/_modal.scss */
-.modalRowContent .tableWrapper .table.indent .td:first-child {
-  padding-left: 1.5em;
-}
-/* line 163, ../sass/_modal.scss */
-.modalRowContent .tableWrapper .tr {
-  display: table-row;
-}
-/* line 166, ../sass/_modal.scss */
-.modalRowContent .tableWrapper .td {
-  display: table-cell;
-}
-/* line 168, ../sass/_modal.scss */
-.modalRowContent .tableWrapper .td:first-child {
-  padding: 0 0.5em 0 0;
-}
-/* line 171, ../sass/_modal.scss */
-.modalRowContent .tableWrapper .td:last-child {
-  padding: 0 0 0 0.5em;
-}
-/* line 174, ../sass/_modal.scss */
-.modalRowContent .tableWrapper .td.tableVerticalDivider {
-  border-top: 1px solid #F1F1F1;
-  border-bottom: 1px solid #F1F1F1;
-  background-color: #b1b1b1;
-  width: 1px;
-  padding: 0;
-}
-
-@media (min-width: 768px) {
-  /* line 187, ../sass/_modal.scss */
-  .modal-dialog .icon {
-    display: block !important;
-  }
-  /* line 191, ../sass/_modal.scss */
-  .modal-dialog .modal-header h2, .modal-dialog .modal-header h3 {
-    margin-left: 110px !important;
-  }
-  /* line 195, ../sass/_modal.scss */
-  .modal-dialog .modalRowContent {
-    margin-left: 110px !important;
-  }
-}
-/* line 174, ../sass/cluster_wheel.scss */
-.footer {
-  background-color: #e1e1e1;
-  text-align: center;
-  padding: 0.75em;
-  margin: 0 -1px;
-  border-bottom-right-radius: 10px;
-  border-bottom-left-radius: 10px;
-}
-/* line 181, ../sass/cluster_wheel.scss */
-.footer p {
-  margin-bottom: 0;
-}
-/* line 184, ../sass/cluster_wheel.scss */
-.footer a {
-  font-size: 0.85em;
-}
-/* line 187, ../sass/cluster_wheel.scss */
-.footer .counter {
-  font-size: 0.85em;
 }

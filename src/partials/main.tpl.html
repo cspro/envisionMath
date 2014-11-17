@@ -1,36 +1,52 @@
 <div id="wrapper" class="">
 	
 	<div id="contentWrapper" class="row spaceBelow">
-		<div class="table">
-			<div class="tr">
 				
 			<!-- <a id="resetButton" ng-click="reset($event)" ng-show="currCluster"></a> -->
-				<div class="td">
-					<div id="key">Hello!</div>
-					<div  id="circleWrapper">
-						<div id="kinetic"></div>
+		<div id="leftCol" class="col-md-6 col-sm-12">
+			
+			<div  id="circleWrapper">
+				<div id="kinetic"></div>
+			</div>
+			
+			<div id="key">
+				<div class="table">
+					<div class="tr">
+						<div ng-repeat="(k,v) in key" class="td {{v.id}}"> 
+							<span class="dot">&#9679;</span>
+							<span><b>{{v.name}}</b>: {{v.desc}}</span>
+						</div>
 					</div>
-					<div id="legend"></div>
 				</div>
-				<div class="td">
-				 	<div class="copyWrapper">
-						<div class="copy" ng-hide="hideCopy">
-							<div class="copyRow {{copyClass}}">
-								<div class="copyCell">
-									<h1>{{currCluster.label}}</h1>
-									<h4>{{currCluster.title}}</h4>
-									<p>{{currCluster.desc}}</p>
-									<div accordion close-others="true" class="accordion">
-										<div accordion-group 
-											heading="{{topic.title}}" 
-											ng-repeat="topic in currCluster.topics" 
-											class="topic" 
-											is-open="topic.selected" >
-											<ul>
-												<li ng-repeat="lesson in topic.lessons" class="lesson" ng-class="{selected : lesson == currLesson}">{{lesson.id}}: {{lesson.title}}</li>
-											</ul>
-										</div>
-									</div>
+			</div>
+			
+			<div id="legend">
+				<h3>{{legend.heading}}</h3>
+				<div ng-repeat="(k,v) in legend.key" class="legendItem">
+					<span class="legendKey">{{k}}</span>
+					<span class="legendValue">{{v}}</span>
+				</div>
+			</div>
+			
+		</div>
+		
+		<div id="rightCol" class="col-md-6 col-sm-12">
+		 	<div class="copyWrapper">
+				<div class="copy" ng-hide="hideCopy">
+					<div class="copyRow {{copyClass}}">
+						<div class="copyCell">
+							<h1>{{currCluster.label}}</h1>
+							<h4>{{currCluster.title}}</h4>
+							<p>{{currCluster.desc}}</p>
+							<div accordion close-others="true" class="accordion">
+								<div accordion-group 
+									heading="{{topic.title}}" 
+									ng-repeat="topic in currCluster.topics" 
+									class="topic" 
+									is-open="topic.selected" >
+									<ul>
+										<li ng-repeat="lesson in topic.lessons" class="lesson" ng-class="{selected : lesson == currLesson}">{{lesson.id}}: {{lesson.title}}</li>
+									</ul>
 								</div>
 							</div>
 						</div>

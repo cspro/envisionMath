@@ -1,16 +1,17 @@
-{
+var clusterData = {	
 	"colors": {
 		"text"  : "#1e3956",
 		"header": "#36679C",
 		"green" : "#61BB46",
 		"blue"  : "#009DDB",
-		"yellow": "#EFAB1E"
+		"yellow": "#EFAB1E",
+		"bg"    : "#F0F0F0"
 	},
 	"gradients": {
 		"green":  [0.2, "#47A154", 1,   "#61BB46"],
 		"blue":   [0.2, "#3c9ac9", 1,   "#4bb2db"],
 		"yellow": [0.2, "#EFAB1E", 0.7, "#F8BF14", 1, "#FFDD17"],
-		"grey":   [0, "#eeeeee",   0.6,   "#DCE3F1", 1,   "#b5c6e5"]
+		"grey":   [0, "#dddddd",   1, "#ced3db"]
 	},
 	"key": [
 		{"id": "green",  "name": "Major Cluster", "desc": "Most important and greater emphasis"},
@@ -317,4 +318,4 @@
 			]
 		}
 	}
-}
+};
