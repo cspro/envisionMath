@@ -5,7 +5,7 @@ var clusterData = {
 		"green" : "#61BB46",
 		"blue"  : "#009DDB",
 		"yellow": "#EFAB1E",
-		"bg"    : "#F0F0F0"
+		"bg"    : "#e9e9e9"
 	},
 	"gradients": {
 		"green":  [0.2, "#47A154", 1,   "#61BB46"],

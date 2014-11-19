@@ -1,8 +1,8 @@
 $neutralBg   : #bbbbbb;
 $textColor   : #333333;
 $headerColor : #36679C;
-$bg1         : #f0f0f0;
-$bg2         : #dddddd;
+$bg1         : #e9e9e9;
+$bg2         : #d3d3d3;
 $pageBg      : #ffffff;
 
 .container {
@@ -21,6 +21,7 @@ a:hover {
 }
 h1 {
   font-size: 1.75em;
+  font-weight: 600;
   margin-top: 0;
 }
 h2 {font-size: 1.35em;}
@@ -74,19 +75,33 @@ img, area, map {
 }
 
 #leftCol, #rightCol {
-  height: 900px;
+  min-height: 900px;
+  padding: 0;
 }
 
 #leftCol {
   background: $bg1;
+  border-right: 10px solid $pageBg;
 }
 
 #rightCol {
   background: $bg2;
-  border-left: 10px solid $pageBg;
 }
 
-#key {
+#dividerArrow {
+  width: 43px;
+  height: 60px;
+  position: absolute;
+  right: -10px;
+  top: 40px;
+  background: url('../images/divider_arrow.png') no-repeat;
+}
+
+#circlePrompt {
+  padding: 2em 2.5em 0.5em;
+}
+
+#circleKey {
   position: relative;
   display: block;
   margin-left: 70px;
@@ -130,7 +145,7 @@ img, area, map {
   }
 }
 
-#legend {
+#circleLegend {
   display: block;
   position: relative;
   margin-left: 70px;
@@ -161,78 +176,12 @@ img, area, map {
   }
 }
 
-
-.panel-group .panel {
-  border-radius: 0;
-}
+@import 'topics_panel';
 
 /* Extra small devices (phones, up to 480px) */
 /* No media query since this is the default in Bootstrap */
 
-.copyWrapper {
-  clear: both;
-  position: relative;
-  display: inline-block;
-  width: 100%;
-  .copy {
-    display: table;
-    position: relative;
-    clear: left;
-    -webkit-transition:0.5s linear all;
-    transition:0.5s linear all;
-    min-width: 300px;
-    width: 100%;
-    h1, h2 {
-      margin-bottom: 0;
-    }
-    p {
-      margin-top: 1em;
-    }
-    .accordion * {
-      width: 100%;
-    }
-    ul {
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
-      max-width: 600px;
-      li {
-        margin-left: 0;
-      }
-      > li.topic {
-        display: block;
-        background-color: lighten($neutralBg, 35%);
-        border-radius: 10px;
-        margin: 0 0 1em 0;
-        background-color: #ccc;
-        padding: 1em;
-        overflow: hidden;
-          -webkit-transition: 1s linear all;
-        ul {
-          height: 1px;
-          -webkit-transition: 1s linear all;
-        }
-        &.selected {
-          overflow: visible;
-          ul {
-            -webkit-transition: 1s linear all;
-            height: auto;
-          }
-        }
-      }
-      .lesson {
-        -webkit-transition:0.5s linear all;
-        display: block;
-        padding: 2px;
-        border-radius: 3px;
-      }
-      .lesson.selected {
-        -webkit-transition:0.5s linear all;
-        background-color: lighten($neutralBg, 15%);
-      }
-    }
-  }
-}
+
 
 @media (min-width: 600px) {
 }

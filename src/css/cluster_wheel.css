@@ -20,126 +20,143 @@ a:hover {
 /* line 22, ../sass/cluster_wheel.scss */
 h1 {
   font-size: 1.75em;
+  font-weight: 600;
   margin-top: 0;
 }
 
-/* line 26, ../sass/cluster_wheel.scss */
+/* line 27, ../sass/cluster_wheel.scss */
 h2 {
   font-size: 1.35em;
 }
 
-/* line 27, ../sass/cluster_wheel.scss */
+/* line 28, ../sass/cluster_wheel.scss */
 h3 {
   font-size: 1.15em;
 }
 
-/* line 28, ../sass/cluster_wheel.scss */
+/* line 29, ../sass/cluster_wheel.scss */
 h1, h2, h3, h4 {
   color: #36679C;
 }
 
-/* line 32, ../sass/cluster_wheel.scss */
+/* line 33, ../sass/cluster_wheel.scss */
 img.no-resize {
   max-width: none;
 }
 
-/* line 33, ../sass/cluster_wheel.scss */
+/* line 34, ../sass/cluster_wheel.scss */
 img, area, map {
   outline: none;
 }
 
-/* line 36, ../sass/cluster_wheel.scss */
+/* line 37, ../sass/cluster_wheel.scss */
 .spaceBelow {
   margin-bottom: 1em;
 }
 
-/* line 39, ../sass/cluster_wheel.scss */
+/* line 40, ../sass/cluster_wheel.scss */
 .spaceAbove {
   margin-top: 1em;
 }
 
-/* line 42, ../sass/cluster_wheel.scss */
+/* line 43, ../sass/cluster_wheel.scss */
 .allCaps {
   text-transform: uppercase;
 }
 
-/* line 45, ../sass/cluster_wheel.scss */
+/* line 46, ../sass/cluster_wheel.scss */
 .tooltip-inner {
   max-width: 300px;
   min-width: 150px;
   font-size: 10px !important;
 }
 
-/* line 50, ../sass/cluster_wheel.scss */
+/* line 51, ../sass/cluster_wheel.scss */
 .table {
   display: table;
 }
 
 /* override Bootstrap default, which makes this white for some reason */
-/* line 54, ../sass/cluster_wheel.scss */
+/* line 55, ../sass/cluster_wheel.scss */
 .table .table {
   background-color: transparent;
 }
 
-/* line 57, ../sass/cluster_wheel.scss */
+/* line 58, ../sass/cluster_wheel.scss */
 .tr {
   display: table-row;
 }
 
-/* line 60, ../sass/cluster_wheel.scss */
+/* line 61, ../sass/cluster_wheel.scss */
 .td {
   display: table-cell;
   vertical-align: top;
 }
 
-/* line 65, ../sass/cluster_wheel.scss */
+/* line 66, ../sass/cluster_wheel.scss */
 .accordion {
   width: 100%;
 }
-/* line 67, ../sass/cluster_wheel.scss */
+/* line 68, ../sass/cluster_wheel.scss */
 .accordion .accordion-toggle {
   cursor: pointer;
 }
-/* line 69, ../sass/cluster_wheel.scss */
+/* line 70, ../sass/cluster_wheel.scss */
 .accordion .accordion-toggle span {
   pointer-events: none;
 }
 
-/* line 76, ../sass/cluster_wheel.scss */
+/* line 77, ../sass/cluster_wheel.scss */
 #leftCol, #rightCol {
-  height: 900px;
+  min-height: 900px;
+  padding: 0;
 }
 
-/* line 80, ../sass/cluster_wheel.scss */
+/* line 82, ../sass/cluster_wheel.scss */
 #leftCol {
-  background: #f0f0f0;
+  background: #e9e9e9;
+  border-right: 10px solid #ffffff;
 }
 
-/* line 84, ../sass/cluster_wheel.scss */
+/* line 87, ../sass/cluster_wheel.scss */
 #rightCol {
-  background: #dddddd;
-  border-left: 10px solid #ffffff;
+  background: #d3d3d3;
 }
 
-/* line 89, ../sass/cluster_wheel.scss */
-#key {
+/* line 91, ../sass/cluster_wheel.scss */
+#dividerArrow {
+  width: 43px;
+  height: 60px;
+  position: absolute;
+  right: -10px;
+  top: 40px;
+  background: url("../images/divider_arrow.png") no-repeat;
+}
+
+/* line 100, ../sass/cluster_wheel.scss */
+#circlePrompt {
+  padding: 2em 2.5em 0.5em;
+}
+
+/* line 104, ../sass/cluster_wheel.scss */
+#circleKey {
   position: relative;
   display: block;
   margin-left: 70px;
   width: 430px;
 }
-/* line 94, ../sass/cluster_wheel.scss */
-#key .td {
+/* line 109, ../sass/cluster_wheel.scss */
+#circleKey .td {
   width: 33%;
   vertical-align: top;
   padding-right: 1em;
 }
-/* line 98, ../sass/cluster_wheel.scss */
-#key .td span, #key .td b {
+/* line 113, ../sass/cluster_wheel.scss */
+#circleKey .td span, #circleKey .td b {
   font-size: 11px;
 }
-/* line 101, ../sass/cluster_wheel.scss */
-#key .td .dot {
+/* line 116, ../sass/cluster_wheel.scss */
+#circleKey .td .dot {
   font-size: 40px;
   text-shadow: 0px 1px 4px rgba(150, 150, 150, 0.5);
   display: block;
@@ -148,20 +165,20 @@ img, area, map {
   clear: both;
   line-height: 14px;
 }
-/* line 110, ../sass/cluster_wheel.scss */
-#key .td.green .dot {
+/* line 125, ../sass/cluster_wheel.scss */
+#circleKey .td.green .dot {
   color: #61BB46;
 }
-/* line 111, ../sass/cluster_wheel.scss */
-#key .td.blue .dot {
+/* line 126, ../sass/cluster_wheel.scss */
+#circleKey .td.blue .dot {
   color: #009DDB;
 }
-/* line 112, ../sass/cluster_wheel.scss */
-#key .td.yellow .dot {
+/* line 127, ../sass/cluster_wheel.scss */
+#circleKey .td.yellow .dot {
   color: #EFAB1E;
 }
 
-/* line 116, ../sass/cluster_wheel.scss */
+/* line 131, ../sass/cluster_wheel.scss */
 #circleWrapper {
   width: 500px;
   height: 500px;
@@ -171,7 +188,7 @@ img, area, map {
   position: relative;
   display: block;
 }
-/* line 124, ../sass/cluster_wheel.scss */
+/* line 139, ../sass/cluster_wheel.scss */
 #circleWrapper #kinetic {
   position: absolute;
   top: 400;
@@ -180,58 +197,68 @@ img, area, map {
   transition: all 0.75s ease-in-out;
 }
 
-/* line 133, ../sass/cluster_wheel.scss */
-#legend {
+/* line 148, ../sass/cluster_wheel.scss */
+#circleLegend {
   display: block;
   position: relative;
   margin-left: 70px;
   width: 430px;
 }
-/* line 138, ../sass/cluster_wheel.scss */
-#legend h3 {
+/* line 153, ../sass/cluster_wheel.scss */
+#circleLegend h3 {
   text-transform: uppercase;
   font-weight: bold;
   border-top: 1px solid #36679C;
   padding-top: 0.5em;
 }
-/* line 144, ../sass/cluster_wheel.scss */
-#legend .legendItem {
+/* line 159, ../sass/cluster_wheel.scss */
+#circleLegend .legendItem {
   display: inline-block;
 }
-/* line 146, ../sass/cluster_wheel.scss */
-#legend .legendItem span {
+/* line 161, ../sass/cluster_wheel.scss */
+#circleLegend .legendItem span {
   display: inline-block;
   vertical-align: top;
   height: 40px;
   text-transform: uppercase;
   font-size: 12px;
 }
-/* line 151, ../sass/cluster_wheel.scss */
-#legend .legendItem span.legendKey {
+/* line 166, ../sass/cluster_wheel.scss */
+#circleLegend .legendItem span.legendKey {
   font-weight: bold;
   width: 40px;
 }
-/* line 155, ../sass/cluster_wheel.scss */
-#legend .legendItem span.legendValue {
+/* line 170, ../sass/cluster_wheel.scss */
+#circleLegend .legendItem span.legendValue {
   width: 170px;
   padding-right: 1em;
 }
 
-/* line 165, ../sass/cluster_wheel.scss */
+/* line 1, ../sass/_topics_panel.scss */
+.panel {
+  border: none;
+  box-shadow: none;
+}
+
+/* line 6, ../sass/_topics_panel.scss */
 .panel-group .panel {
   border-radius: 0;
 }
 
-/* Extra small devices (phones, up to 480px) */
-/* No media query since this is the default in Bootstrap */
-/* line 172, ../sass/cluster_wheel.scss */
+/* line 10, ../sass/_topics_panel.scss */
+.panel-default > .panel-heading {
+  border-color: #d3d3d3;
+}
+
+/* line 14, ../sass/_topics_panel.scss */
 .copyWrapper {
   clear: both;
   position: relative;
   display: inline-block;
   width: 100%;
+  padding: 2em 2.5em 0.5em;
 }
-/* line 177, ../sass/cluster_wheel.scss */
+/* line 20, ../sass/_topics_panel.scss */
 .copyWrapper .copy {
   display: table;
   position: relative;
@@ -241,30 +268,30 @@ img, area, map {
   min-width: 300px;
   width: 100%;
 }
-/* line 185, ../sass/cluster_wheel.scss */
+/* line 28, ../sass/_topics_panel.scss */
 .copyWrapper .copy h1, .copyWrapper .copy h2 {
   margin-bottom: 0;
 }
-/* line 188, ../sass/cluster_wheel.scss */
+/* line 31, ../sass/_topics_panel.scss */
 .copyWrapper .copy p {
   margin-top: 1em;
 }
-/* line 191, ../sass/cluster_wheel.scss */
+/* line 34, ../sass/_topics_panel.scss */
 .copyWrapper .copy .accordion * {
   width: 100%;
 }
-/* line 194, ../sass/cluster_wheel.scss */
+/* line 37, ../sass/_topics_panel.scss */
 .copyWrapper .copy ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
   max-width: 600px;
 }
-/* line 199, ../sass/cluster_wheel.scss */
+/* line 42, ../sass/_topics_panel.scss */
 .copyWrapper .copy ul li {
   margin-left: 0;
 }
-/* line 202, ../sass/cluster_wheel.scss */
+/* line 45, ../sass/_topics_panel.scss */
 .copyWrapper .copy ul > li.topic {
   display: block;
   background-color: white;
@@ -275,35 +302,37 @@ img, area, map {
   overflow: hidden;
   -webkit-transition: 1s linear all;
 }
-/* line 211, ../sass/cluster_wheel.scss */
+/* line 54, ../sass/_topics_panel.scss */
 .copyWrapper .copy ul > li.topic ul {
   height: 1px;
   -webkit-transition: 1s linear all;
 }
-/* line 215, ../sass/cluster_wheel.scss */
+/* line 58, ../sass/_topics_panel.scss */
 .copyWrapper .copy ul > li.topic.selected {
   overflow: visible;
 }
-/* line 217, ../sass/cluster_wheel.scss */
+/* line 60, ../sass/_topics_panel.scss */
 .copyWrapper .copy ul > li.topic.selected ul {
   -webkit-transition: 1s linear all;
   height: auto;
 }
-/* line 223, ../sass/cluster_wheel.scss */
+/* line 66, ../sass/_topics_panel.scss */
 .copyWrapper .copy ul .lesson {
   -webkit-transition: 0.5s linear all;
   display: block;
   padding: 2px;
   border-radius: 3px;
 }
-/* line 229, ../sass/cluster_wheel.scss */
+/* line 72, ../sass/_topics_panel.scss */
 .copyWrapper .copy ul .lesson.selected {
   -webkit-transition: 0.5s linear all;
   background-color: #e1e1e1;
 }
 
+/* Extra small devices (phones, up to 480px) */
+/* No media query since this is the default in Bootstrap */
 @media (min-width: 721px) {
-  /* line 241, ../sass/cluster_wheel.scss */
+  /* line 190, ../sass/cluster_wheel.scss */
   #circleWrapper {
     position: relative;
   }
@@ -311,14 +340,14 @@ img, area, map {
 /* Small devices (tablets, 768px and up) */
 /* Medium devices (desktops and up) */
 @media (min-width: 992px) {
-  /* line 252, ../sass/cluster_wheel.scss */
+  /* line 201, ../sass/cluster_wheel.scss */
   .hiddenAtLarge {
     /* Fix for IE10 clearing issue */
     display: none !important;
   }
 }
 /* Large devices (large desktops, 1200px and up) */
-/* line 265, ../sass/cluster_wheel.scss */
+/* line 214, ../sass/cluster_wheel.scss */
 .footer {
   background-color: #e1e1e1;
   text-align: center;
@@ -327,20 +356,20 @@ img, area, map {
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
 }
-/* line 272, ../sass/cluster_wheel.scss */
+/* line 221, ../sass/cluster_wheel.scss */
 .footer p {
   margin-bottom: 0;
 }
-/* line 275, ../sass/cluster_wheel.scss */
+/* line 224, ../sass/cluster_wheel.scss */
 .footer a {
   font-size: 0.85em;
 }
-/* line 278, ../sass/cluster_wheel.scss */
+/* line 227, ../sass/cluster_wheel.scss */
 .footer .counter {
   font-size: 0.85em;
 }
 
-/* line 284, ../sass/cluster_wheel.scss */
+/* line 233, ../sass/cluster_wheel.scss */
 #resetButton {
   display: block;
   position: absolute;
@@ -353,15 +382,15 @@ img, area, map {
   opacity: 0.15;
   cursor: pointer;
 }
-/* line 295, ../sass/cluster_wheel.scss */
+/* line 244, ../sass/cluster_wheel.scss */
 #resetButton:hover {
   opacity: 0.25;
 }
-/* line 298, ../sass/cluster_wheel.scss */
+/* line 247, ../sass/cluster_wheel.scss */
 #resetButton.ng-hide {
   opacity: 0;
 }
-/* line 301, ../sass/cluster_wheel.scss */
+/* line 250, ../sass/cluster_wheel.scss */
 #resetButton.ng-hide-add, #resetButton.ng-hide-remove {
   transition: 0.25s ease-in-out all;
   display: block !important;

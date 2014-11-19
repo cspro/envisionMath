@@ -18,19 +18,34 @@ clusterWheel.App = angular.module('clusterWheel.App', ['ngRoute', 'ngAnimate', '
 	}]);
 	
 	
-	angular.module('clusterWheel.App').directive('testDirective', function() {
-		return {
-			restrict: 'A',
-			link: function(scope, elem, attrs) {
-				console.log("Here is a directive!");
-			}
-		};
-	});
-	
-	
-	
-clusterWheel.MainCtrl = function($scope, $http, $location, $rootScope, $sce, $timeout) {
+angular.module('clusterWheel.App').directive('testDirective', function() {
+	return {
+		restrict: 'A',
+		link: function(scope, elem, attrs) {
+			console.log("Here is a directive!");
+		}
+	};
+});
+		
+angular.module('clusterWheel.App').controller('ModalDemoCtrl', function ($scope, $modal, $log) {
 
+  $scope.items = ['item1', 'item2', 'item3'];
+
+});
+		
+angular.module('clusterWheel.App').controller('ModalInstanceCtrl', function ($scope, $modalInstance) {
+
+  $scope.ok = function () {
+    $modalInstance.close();
+  };
+
+  $scope.cancel = function () {
+    $modalInstance.dismiss('cancel');
+  };
+});
+
+	
+clusterWheel.MainCtrl = function($scope, $http, $location, $rootScope, $sce, $timeout, $modal, $log) {
 	
 	$scope.getLocation = function() {
 		// $scope.currBU = ($location.search()).businessUnit;
@@ -40,7 +55,25 @@ clusterWheel.MainCtrl = function($scope, $http, $location, $rootScope, $sce, $ti
 		return $scope.colors[name];
 	};
 	
+	$scope.openModal = function (size) {
+		var modalInstance = $modal.open({
+			templateUrl: 'partials/modal.tpl.html',
+			controller: 'ModalInstanceCtrl',
+			size: size,
+			resolve: {
+				data: function () {
+					return 'Hello.';
+				}
+			}
+		});
+		modalInstance.result.then(function () {
+				// $scope.selected = selectedItem;
+			}, function () {
+				$log.info('Modal dismissed at: ' + new Date());
+			});
+	};
 	
+
 	/* Initialization
 	 ********************/
 	
@@ -66,10 +99,10 @@ clusterWheel.MainCtrl = function($scope, $http, $location, $rootScope, $sce, $ti
 		$scope.stageSize = 500;
 	
 		$scope.circleConfig = {
-			innerRadius : $scope.stageSize * 0.15 - 12,                                              
-			clustersRadius : $scope.stageSize * 0.35 - 12,                                             
-			topicsRadius : $scope.stageSize * 0.45 - 12,                                             
-			lessonsRadius : $scope.stageSize * 0.5 - 12,                                              
+			innerRadius : $scope.stageSize * 0.15 - 12,
+			clustersRadius : $scope.stageSize * 0.35 - 12,
+			topicsRadius : $scope.stageSize * 0.45 - 12,
+			lessonsRadius : $scope.stageSize * 0.5 - 12,
 			radialSpacing : 2, // degrees of padding between clusters
 			concentricSpacing: 12,// stageSize * 0.01, // space between circles (radial pixels)
 			x: $scope.stageSize * 0.5,
@@ -155,36 +188,14 @@ clusterWheel.MainCtrl = function($scope, $http, $location, $rootScope, $sce, $ti
  // Called after timeout so browser has a chance to render before impress is run
 	$scope.delayedInit = function() {
 		init();
+		$scope.openModal();
 	};
 	
 	$timeout(function() {
 		$scope.delayedInit();
 	}, 50);
 
-
-
-	/*
-
-	$scope.dialogOpts = {
-		backdrop: true,
-		backdropFade: true,
-		backdropClick: true,
-		dialogFade: false,
-		keyboard: true,
-		templateUrl: "partials/project.tpl.html",
-		controller: 'clusterWheel.ProjectDialogController'
-	};
-
-	$scope.openDialog = function(){
-		var d = $dialog.dialog($scope.dialogOpts);
-		d.open();
-	};
-	*/
-	
-	
-
-
-	/* Selection / Highlighting
+		/* Selection / Highlighting
 	 ********************/
 	
 	var deselectAll = function(collection) {
@@ -682,16 +693,5 @@ clusterWheel.MainCtrl = function($scope, $http, $location, $rootScope, $sce, $ti
     });
     tween.play();
 	};
-	
-	
-};
 
-/*
-// the dialog is injected into the specified controller
-clusterWheel.ProjectDialogController = function($scope, $rootScope, dialog){
-	$scope.project = $rootScope.project;
-	$scope.close = function(result){
-		dialog.close(result);
-	};
-};
-*/
+};	
