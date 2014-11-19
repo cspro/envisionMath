@@ -29,8 +29,6 @@ angular.module('clusterWheel.App').directive('testDirective', function() {
 		
 angular.module('clusterWheel.App').controller('ModalDemoCtrl', function ($scope, $modal, $log) {
 
-  $scope.items = ['item1', 'item2', 'item3'];
-
 });
 		
 angular.module('clusterWheel.App').controller('ModalInstanceCtrl', function ($scope, $modalInstance) {
@@ -59,15 +57,10 @@ clusterWheel.MainCtrl = function($scope, $http, $location, $rootScope, $sce, $ti
 		var modalInstance = $modal.open({
 			templateUrl: 'partials/modal.tpl.html',
 			controller: 'ModalInstanceCtrl',
-			size: size,
-			resolve: {
-				data: function () {
-					return 'Hello.';
-				}
-			}
+			scope: $scope,
+			size: size
 		});
 		modalInstance.result.then(function () {
-				// $scope.selected = selectedItem;
 			}, function () {
 				$log.info('Modal dismissed at: ' + new Date());
 			});
@@ -89,6 +82,8 @@ clusterWheel.MainCtrl = function($scope, $http, $location, $rootScope, $sce, $ti
 				cluster.gradient = $scope.gradients[cluster.color];
 			});
 		});
+		$scope.prompt = $sce.trustAsHtml(clusterData['prompt']);
+		$scope.promptButtonText = $sce.trustAsHtml(clusterData['promptButtonText']);
 		$scope.key = clusterData['key'];
 		$scope.grade = $scope.grades['g4'];
 		$scope.legend = $scope.grade['legend'];
@@ -188,7 +183,7 @@ clusterWheel.MainCtrl = function($scope, $http, $location, $rootScope, $sce, $ti
  // Called after timeout so browser has a chance to render before impress is run
 	$scope.delayedInit = function() {
 		init();
-		$scope.openModal();
+		$scope.openModal('lg');
 	};
 	
 	$timeout(function() {

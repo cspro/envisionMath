@@ -17,7 +17,9 @@ var clusterData = {
 		{"id": "green",  "name": "Major Cluster", "desc": "Most important and greater emphasis"},
 		{"id": "blue",   "name": "Supporting Cluster", "desc": "Strongly connects to major work"},
 		{"id": "yellow", "name": "Additional Cluster", "desc": "Completes grade-level content"}
-	], 
+	],
+	"prompt": "<h1>Take it for a spin.</h1><p>This interactive Common Core Cluster Wheel shows you how <b>enVision</b>math<b>2.0</b> promotes mathematical Focus and Coherence. Major work is the focus, with topics and lessons organized by Common Core Clusters. Click or tap on Clusters, Topics, and Lessons to explore the connections. IT'S ON!</p>",
+	"promptButtonText": "Click or tap the wheel to see connections &raquo",
 	"grades": {
 		"g4": {
 			"label": "Grade Four",
