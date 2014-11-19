@@ -28,11 +28,11 @@ var clusterData = {
 			"legend" : {
 				"heading": "Common Core Domains",
 				"key": {
-					"4.0A":  "Operations and Algebraic Thinking",
-					"4.NBT": "Number and Operations in Base Ten",
-					"4.NF":  "Number and Operations-Fractions",
 					"4.MD":  "Measurement and Data",
-					"4.G":   "Geometry"
+					"4.G":   "Geometry",
+					"4.OA":  "Operations and Algebraic Thinking",
+					"4.NBT": "Number and Operations in Base Ten",
+					"4.NF":  "Number and Operations-Fractions"
 				} 
 			},
 			"clusters": [

@@ -607,10 +607,10 @@ clusterWheel.MainCtrl = function($scope, $http, $location, $rootScope, $sce, $ti
 	var animateShapes = function() {
 		for (var i=0; i<$scope.allShapes.length; i++) {
 			var arc = $scope.allShapes[i];
-			arc.opacity(0);
 			arc.setListening(false);
-			arc.scaleX(0.75);
-			arc.scaleY(0.75);
+			arc.opacity(0);
+			// arc.scaleX(0.75);
+			// arc.scaleY(0.75);
 		}
 		var currArcIndex = 0;
 		var animInterval = setInterval(function() {
@@ -650,8 +650,8 @@ clusterWheel.MainCtrl = function($scope, $http, $location, $rootScope, $sce, $ti
 	
 	var animateShape = function(arc, dur, finish) {
 		var shape = arc.shape ? arc.shape : arc;
-		var rot = shape.getAttr('rotation');
 		var opac = ($scope.selection.indexOf(shape) > -1) ? $scope.circleConfig.selectionUpOpacity : 1;
+		var rot = shape.getAttr('rotation');
 		shape.rotation(rot-120);
 		var tween = new Kinetic.Tween({
       node: shape, 

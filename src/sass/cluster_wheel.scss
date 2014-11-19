@@ -28,6 +28,7 @@ h2 {font-size: 1.35em;}
 h3 {font-size: 1.15em;}
 h1, h2, h3, h4 {
   color: $headerColor;
+  margin-top: 0;
 }
 
 img.no-resize { max-width: none; }
@@ -50,6 +51,7 @@ img, area, map {
 }
 .table {
   display: table;
+  margin: 0;
 }
 /* override Bootstrap default, which makes this white for some reason */
 .table .table {
@@ -101,33 +103,6 @@ img, area, map {
   padding: 2em 2.5em 0.5em;
 }
 
-#circleKey {
-  position: relative;
-  display: block;
-  margin-left: 70px;
-  width: 430px;
-  .td {
-    width: 33%;
-    vertical-align: top;
-    padding-right: 1em;
-    span, b {
-      font-size: 11px;
-    }
-    .dot {
-      font-size: 40px;
-      text-shadow: 0px 1px 4px rgba(150, 150, 150, 0.5);
-      display: block;
-      height: 60px;
-      float: left;
-      clear: both;
-      line-height: 14px;
-    }
-    &.green  { .dot { color: #61BB46; }}
-    &.blue   { .dot { color: #009DDB; }}
-    &.yellow { .dot { color: #EFAB1E; }}
-  }
-}
-
 #circleWrapper {
   width: 500px;
   height: 500px;
@@ -136,6 +111,7 @@ img, area, map {
   z-index: 100;
   position: relative;
   display: block;
+  margin-top: 1em;
   #kinetic {
     position: absolute;
     top: 400;
@@ -145,11 +121,41 @@ img, area, map {
   }
 }
 
+#circleKey {
+  position: relative;
+  display: block;
+  margin: 0 0 0.5em 160px;
+  width: 100%;
+  .td {
+    width: 100%;
+    vertical-align: top;
+    padding-right: 1em;
+    height: 25px;
+    span, b {
+      font-size: 12px;
+    }
+    .dot {
+      font-size: 35px;
+      text-shadow: 0px 1px 4px rgba(150, 150, 150, 0.5);
+      display: block;
+      float: left;
+      clear: both;
+      line-height: 14px;
+      margin-right: 0.25em;
+    }
+    &.green  { .dot { color: #61BB46; }}
+    &.blue   { .dot { color: #009DDB; }}
+    &.yellow { .dot { color: #EFAB1E; }}
+  }
+}
+
 #circleLegend {
   display: block;
   position: relative;
   margin-left: 70px;
-  width: 430px;
+  width: 400px;
+  margin-left: 160px;
+  margin-top: 0;
   h3 {
     text-transform: uppercase;
     font-weight: bold;
@@ -158,20 +164,20 @@ img, area, map {
   }
   .legendItem {
     display: inline-block;
+    margin-bottom: 0.5em;
     span {
       display: inline-block;
       vertical-align: top;
-      height: 40px;
       text-transform: uppercase;
       &.legendKey {
         font-weight: bold;
         width: 40px;
       } 
       &.legendValue {
-        width: 170px;
+        width: 150px;
         padding-right: 1em;
       }
-      font-size: 12px;
+      font-size: 11px;
     }
   }
 }
