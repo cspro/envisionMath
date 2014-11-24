@@ -1,15 +1,25 @@
-<div id="wrapper" class="">
+<div id="wrapper" class="" ng-keypress="onKeyPress($event)">
+	
+	<div id="headerWrapper" class="row">
+		<div id="gradeNav">Grade Navigation</div>
+		<a href="home" id="logo"></a>
+	</div>
 	
 	<div id="contentWrapper" class="row spaceBelow">
+				
+		<a id="homeButton"></a>
+		
+		<a id="helpButton" ng-click="onHelpClick()">?</a>
+		
 				
 			<!-- <a id="resetButton" ng-click="reset($event)" ng-show="currCluster"></a> -->
 		<div id="leftCol" class="col-md-6 col-sm-12">
 			
-			<!--<div id="circlePrompt">
-				 <h1>Take it for a spin.</h1>
-				<p>This interactive Common Core Cluster Wheel shows you how <b>enVision</b>math<b>2.0</b> promotes mathematical Focus and Coherence. Major work is the focus, with topics and lessons organized by Common Core Clusters. Click or tap on Clusters, Topics, and Lessons to explore the connections. IT'S ON!</p>
-				 <h3>Click or tap the wheel to see connections &raquo;</h3>
-			</div>-->
+			<div id="circlePrompt">
+				<!--<h1>Take it for a spin.</h1>
+				<p>This interactive Common Core Cluster Wheel shows you how <b>enVision</b>math<b>2.0</b> promotes mathematical Focus and Coherence. Major work is the focus, with topics and lessons organized by Common Core Clusters. Click or tap on Clusters, Topics, and Lessons to explore the connections. IT'S ON!</p>-->
+				<h3>Click or tap the wheel to see connections.</h3>
+			</div>
 			
 			<div  id="circleWrapper">
 				<div id="kinetic"></div>
@@ -34,6 +44,8 @@
 				</div>
 			</div>
 			
+			<div class="childImage boy"></div>
+			
 			<div id="dividerArrow"></div>
 			
 		</div>
@@ -43,7 +55,7 @@
 				<div class="copy" ng-hide="hideCopy">
 					<div class="copyRow {{copyClass}}">
 						<div class="copyCell">
-							<h1>{{currCluster.label}}</h1>
+							<h1>CLUSTER: {{currCluster.label}}</h1>
 							<h4>{{currCluster.title}}</h4>
 							<p>{{currCluster.desc}}</p>
 							<div accordion close-others="true" class="accordion">
@@ -64,8 +76,7 @@
 		</div>
 	</div>
 	
-	<div class="row clearfix footer">
+	<!-- <div class="row clearfix footer">
 		<p>Footer</p>
-	</div>
-
+	</div> -->
 </div>

@@ -54,6 +54,7 @@ clusterWheel.MainCtrl = function($scope, $http, $location, $rootScope, $sce, $ti
 	};
 	
 	$scope.openModal = function (size) {
+		$scope.userHasInteracted = true;
 		var modalInstance = $modal.open({
 			templateUrl: 'partials/modal.tpl.html',
 			controller: 'ModalInstanceCtrl',
@@ -66,6 +67,20 @@ clusterWheel.MainCtrl = function($scope, $http, $location, $rootScope, $sce, $ti
 			});
 	};
 	
+	$scope.closeModal = function() {
+		$modal.close();
+	};
+	
+	$scope.onKeyPress = function(e) {
+    console.log("Keypress: " + e.keyCode);
+	};
+	
+	$rootScope.$on('keypress', function (e, a, key) {
+    console.log("Keypress: " + key);
+    $scope.$apply(function () {
+        $scope.key = key;
+    });
+	});
 
 	/* Initialization
 	 ********************/
@@ -183,6 +198,14 @@ clusterWheel.MainCtrl = function($scope, $http, $location, $rootScope, $sce, $ti
  // Called after timeout so browser has a chance to render before impress is run
 	$scope.delayedInit = function() {
 		init();
+		$timeout(function() {
+			if (!$scope.userHasInteracted) {
+				$scope.openModal('lg');
+			}
+		}, 10000);
+	};
+	
+	$scope.onHelpClick = function() {
 		$scope.openModal('lg');
 	};
 	
@@ -401,6 +424,9 @@ clusterWheel.MainCtrl = function($scope, $http, $location, $rootScope, $sce, $ti
 			startAngle += angleSize + config.radialSpacing;
 			
 		}
+		layer.on('click', function() {
+			$scope.userHasInteracted = true;
+		});
 		$scope.shapeLayer = layer;
 		$scope.stage.add(layer);
 		$scope.stage.add(textLayer);

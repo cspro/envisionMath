@@ -30,27 +30,11 @@
 		<script src="js/vendor/ui-bootstrap-tpls-0.12.0.min.js"></script>
 		<script src="js/vendor/kinetic-v5.1.0.min.js"></script>
 		<script src="data/cluster_data.js" type="text/javascript"></script>
+		<script src="js/wheel.js" type="text/javascript"></script>
 		<script src="js/clusterWheelApp.js" type="text/javascript"></script>
 
 	</head>
 	<body>
 			<div class="container" ng-view></div>
-<!-- <div ng-controller="ModalDemoCtrl">			
-    <script type="text/ng-template" id="myModalContent.html">
-        <div class="modal-header">
-            <h3 class="modal-title">I'm a modal!</h3>
-        </div>
-        <div class="modal-body">
-            <ul>
-                <li ng-repeat="item in items">
-                    <a ng-click="selected.item = item">{{ item }}</a>
-                </li>
-            </ul>
-            Selected: <b>{{ selected.item }}</b>        </div>
-        <div class="modal-footer">
-            <button class="btn btn-primary" ng-click="ok()">OK</button>
-            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
-        </div>
-    </script>
-</div> -->	</body>
+	</body>
 </html>
