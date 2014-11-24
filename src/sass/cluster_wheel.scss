@@ -1,6 +1,7 @@
 $neutralBg   : #bbbbbb;
 $textColor   : #333333;
 $headerColor : #36679C;
+$darkText    : #1e3956;
 $bg1         : #e9e9e9;
 $bg2         : #d3d3d3;
 $pageBg      : #ffffff;
@@ -109,7 +110,7 @@ img, area, map {
   height: 24px;
   font-size: 30px;
   font-weight: bold;
-  color: $bg2;
+  color: darken($bg2, 8%);
   cursor: pointer;
 }
 
@@ -239,6 +240,7 @@ img, area, map {
 }
 
 @import 'topics_panel';
+@import 'clusters_panel';
 
 /* Extra small devices (phones, up to 480px) */
 /* No media query since this is the default in Bootstrap */

@@ -105,6 +105,7 @@ clusterWheel.MainCtrl = function($scope, $http, $location, $rootScope, $sce, $ti
 		$scope.clusters = $scope.grade['clusters']; // for now
 		$scope.topics = [];
 		$scope.lessons = [];
+		$scope.rightPanelView = "clustersView";
 		
 		$scope.stageSize = 500;
 	
@@ -140,7 +141,9 @@ clusterWheel.MainCtrl = function($scope, $http, $location, $rootScope, $sce, $ti
 			$event.preventDefault();
 		}	
 		$location.search("");
-		init();
+		$scope.rightPanelView = "clustersView";
+		setSelectionState();
+		setCluster();
 	};
 	
 	var initKinetic = function() {
@@ -189,8 +192,9 @@ clusterWheel.MainCtrl = function($scope, $http, $location, $rootScope, $sce, $ti
 		drawClusters($scope.circleConfig);
 		drawCenterCircle($scope.circleConfig);
 		drawBorderCircles($scope.circleConfig);
-		setCluster($scope.clusters[0]);
-		setSelectionState($scope.clusters[0].topics[0].shape);
+		setSelectionState();
+		// setCluster($scope.clusters[0]);
+		// setSelectionState($scope.clusters[0].topics[0].shape);
 		$scope.stage.draw();
 		animateShapes();
 	};
@@ -200,13 +204,18 @@ clusterWheel.MainCtrl = function($scope, $http, $location, $rootScope, $sce, $ti
 		init();
 		$timeout(function() {
 			if (!$scope.userHasInteracted) {
-				$scope.openModal('lg');
+				//DEBUG
+				// $scope.openModal('lg');
 			}
 		}, 10000);
 	};
 	
 	$scope.onHelpClick = function() {
 		$scope.openModal('lg');
+	};
+	
+	$scope.onHomeClick = function() {
+		$scope.reset();
 	};
 	
 	$timeout(function() {
@@ -222,15 +231,26 @@ clusterWheel.MainCtrl = function($scope, $http, $location, $rootScope, $sce, $ti
 		});
 	};
 	
+	$scope.onClusterLinkClick = function(cluster) {
+		setCluster(cluster);
+		setSelectionState(cluster.shape);
+		$scope.rightPanelView = "topicsView";
+	};
+	
 	var setCluster = function(cluster) {
 		deselectAll($scope.clusters);
 		deselectAll($scope.topics);
 		deselectAll($scope.lessons);
-		cluster.selected = true;
 		$scope.currCluster = cluster;
-		$scope.currTopic = cluster.topics[0];
-		$scope.currTopic.selected = true;
-		$scope.$apply();
+		if (cluster) {
+			$scope.rightPanelView = "topicsView";
+			cluster.selected = true;
+			$scope.currTopic = cluster.topics[0];
+			$scope.currTopic.selected = true;
+		}
+		if (!$scope.$$phase) {
+			$scope.$apply();
+		}
 	};
 
 	var setTopic = function(topic) {
@@ -314,7 +334,7 @@ clusterWheel.MainCtrl = function($scope, $http, $location, $rootScope, $sce, $ti
 		angular.forEach($scope.allShapes, function(a) {
 			a.opacity($scope.circleConfig.upOpacity);
 		});
-		angular.forEach($scope.selection, function(a) {
+		angular.forEach(currSelection, function(a) {
 			a.opacity($scope.circleConfig.selectionUpOpacity);
 		});
 		$scope.selection = currSelection;

@@ -113,8 +113,8 @@ var clusterData = {
 					]
 				},
 				{	"id": "4.OA.A",
-					"title": "",
-					"desc": "",
+					"title": "Operations and Algebraic Thinking",
+					"desc": "Use the four operations with whole numbers to solve problems.",
 					"color": "green",
 					"topics": [
 						{	"title": "Topic 6: Use Operations with Whole Numbers to Solve Problems",
@@ -130,8 +130,8 @@ var clusterData = {
 					]
 				},
 				{	"id": "4.OA.B",
-					"title": "",
-					"desc": "",
+					"title": "Operations and Algebraic Thinking",
+					"desc": "Gain familiarity with factors and mulitples",
 					"color": "blue",
 					"topics": [
 						{	"title": "Topic 7: Factors and Multiples",
@@ -151,8 +151,8 @@ var clusterData = {
 					]
 				},
 				{	"id": "4.NF.A",
-					"title": "",
-					"desc": "",
+					"title": "Number and Operations-Fractions",
+					"desc": "Extend understanding of fraction equivalence and ordering.",
 					"color": "green",
 					"topics": [
 						{	"title": "Topic 8: Extend Understanding of Fraction Equivalence and Ordering",
@@ -172,8 +172,8 @@ var clusterData = {
 					]
 				},
 				{	"id": "4.NF.B",
-					"title": "",
-					"desc": "",
+					"title": "Number and Operations-Fractions",
+					"desc": "Build fractions from unit fractions by applying and extending previous understandings of operations on whole numbers.",
 					"color": "green",
 					"topics": [
 						{	"title": "",
@@ -207,8 +207,8 @@ var clusterData = {
 					]
 				},
 				{	"id": "4.MD.B",
-					"title": "",
-					"desc": "",
+					"title": "Measurement and Data",
+					"desc": "Represent and interpret data.",
 					"color": "blue",
 					"topics": [
 						{	"title": "",
@@ -228,8 +228,8 @@ var clusterData = {
 					]
 				},
 				{	"id": "4.NF.C",
-					"title": "",
-					"desc": "",
+					"title": "Number and Operations-Fractions",
+					"desc": "Understand decimal notation for fractions, and compare decimal fractions.",
 					"color": "green",
 					"topics": [
 						{	"title": "",
@@ -246,8 +246,8 @@ var clusterData = {
 					]
 				},
 				{	"id": "4.MD.A",
-					"title": "",
-					"desc": "",
+					"title": "Measurement and Data",
+					"desc": "A Solve problems involving measurement and conversion of measurements from a larger unit to a smaller unit.",
 					"color": "blue",
 					"topics": [
 						{	"title": "",
@@ -264,8 +264,8 @@ var clusterData = {
 					]
 				},
 				{	"id": "4.OA.C",
-					"title": "",
-					"desc": "",
+					"title": "Operations and Algebraic Thinking",
+					"desc": "Generate and analyze patterns.",
 					"color": "yellow",
 					"topics": [
 						{	"title": "",
@@ -282,8 +282,8 @@ var clusterData = {
 					]
 				},
 				{	"id": "4.MD.C",
-					"title": "",
-					"desc": "",
+					"title": "Measurement and Data",
+					"desc": "Geometric measurement: understand concepts of angle and measure angles.",
 					"color": "yellow",
 					"topics": [
 						{	"title": "",
@@ -300,8 +300,8 @@ var clusterData = {
 					]
 				},
 				{	"id": "4.G.A",
-					"title": "",
-					"desc": "",
+					"title": "Geometry",
+					"desc": "Draw and identify lines and angles, and classify shapes by properties of their lines and angles.",
 					"color": "yellow",
 					"topics": [
 						{	"title": "",

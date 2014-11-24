@@ -1,0 +1,65 @@
+.clustersTitle {
+  position: relative;
+  left: 67px;
+  text-transform: uppercase;
+}
+
+.clusterLink {
+  position: relative;
+  display: table;
+  width: 100%;
+  height: 55px;
+  top: 30px;
+  cursor: pointer;
+  background-color: transparent;
+  margin-bottom: 1px;
+  .dot {
+    font-size: 120px;
+    display: block;
+    position: absolute;
+    z-index: 1;
+    top: -67px;
+    &.green  { color: #61BB46; }
+    &.blue   { color: #009DDB; }
+    &.yellow { color: #EFAB1E; }
+  }
+  .dotLabel {
+    display: block;
+    position: absolute;
+    width: 120px;
+    height: 117px;
+    text-align: center;
+    z-index: 10;
+    left: -26px;
+    color: $darkText;
+    top: 20px;
+    font-size: 11px;
+    font-weight: bold;
+   }
+  .text {
+    display: table-cell;
+    padding-left: 70px;
+    width: 100%;
+    vertical-align: middle;
+    .title {
+      display: block;
+      font-weight: bold;  
+      line-height: 14px;
+    }
+    .desc {
+      display: block;
+      font-size: 12px;
+      line-height: 14px;
+    }
+  }
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+  &:hover {
+    background-color: $bg1;
+    -webkit-transition: all 0.25s;
+    transition: all 0.25s;
+  }
+  &:active {
+    background-color: lighten($bg1, 20%);
+  }
+}
