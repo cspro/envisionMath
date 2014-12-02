@@ -19,9 +19,9 @@
     position: absolute;
     z-index: 1;
     top: -67px;
-    &.green  { color: #61BB46; }
-    &.blue   { color: #009DDB; }
-    &.yellow { color: #EFAB1E; }
+    &.green  { color: $green; }
+    &.blue   { color: $blue; }
+    &.yellow { color: $yellow; }
   }
   .dotLabel {
     display: block;

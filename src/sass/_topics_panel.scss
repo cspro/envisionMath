@@ -76,3 +76,47 @@
     }
   }
 }
+
+.topicsView {
+  .topic {
+    .panel-heading {
+      border-radius: 0;
+      padding: 0;
+      h4.panel-title {
+        a {
+          display: block;
+          padding: 10px 15px;
+          text-decoration: none;
+          &:hover {
+            text-decoration: none;
+          }
+        }
+      }
+    }
+    &.green  { .panel-heading { a { 
+      background-color: $lightgreen;
+      &:hover {
+        background-color: lighten($lightgreen, 8%);
+      }  
+    } } }
+    &.blue   { .panel-heading { a { 
+      background-color: $lightblue;   
+      &:hover {
+        background-color: lighten($lightblue, 8%);
+      }  
+    } } }
+    &.yellow { .panel-heading { a { 
+      background-color: $lightyellow; 
+      &:hover {
+        background-color: lighten($lightyellow, 8%);
+      }  
+    } } }
+  }
+  .lesson {
+    margin-bottom: 0.25em;
+    line-height: 1.1em;
+    span {
+      font-size: 85%;
+    }
+  }
+}

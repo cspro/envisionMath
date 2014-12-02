@@ -91,16 +91,26 @@ clusterWheel.MainCtrl = function($scope, $http, $location, $rootScope, $sce, $ti
 		$scope.colors = clusterData['colors'];
 		$scope.gradients = clusterData['gradients'];
 		$scope.grades = clusterData['grades'];
+		$scope.topicMap = {};
 		angular.forEach($scope.grades, function(grade) {
 			var clusters = grade.clusters;
 			angular.forEach(clusters, function(cluster) {
 				cluster.gradient = $scope.gradients[cluster.color];
+				var i = 0;
+				angular.forEach(cluster.topics, function(topic) {
+					var id = cluster.id + "." + i.toString();
+					topic.id = id;
+					$scope.topicMap[id] = topic;
+					topic.cluster = cluster;
+					i++;
+				});
 			});
 		});
 		$scope.prompt = $sce.trustAsHtml(clusterData['prompt']);
 		$scope.promptButtonText = $sce.trustAsHtml(clusterData['promptButtonText']);
 		$scope.key = clusterData['key'];
 		$scope.grade = $scope.grades['g4'];
+		$scope.grade.selected = true;
 		$scope.legend = $scope.grade['legend'];
 		$scope.clusters = $scope.grade['clusters']; // for now
 		$scope.topics = [];
@@ -167,7 +177,7 @@ clusterWheel.MainCtrl = function($scope, $http, $location, $rootScope, $sce, $ti
 			for (var j=0; j<topics.length; j++) {
 				var topic = topics[j];
 				topic.type = "topic";
-				topic.id = cluster.id + "." + (j+1);
+				// topic.id = cluster.id + "." + (j+1);
 				topic.cluster = cluster;
 				topic.label = $scope.topics.length+1;
 				topic.title = topic.title == "" ? "[Topic title]" : topic.title;
@@ -236,6 +246,16 @@ clusterWheel.MainCtrl = function($scope, $http, $location, $rootScope, $sce, $ti
 		setSelectionState(cluster.shape);
 		$scope.rightPanelView = "topicsView";
 	};
+
+	$scope.$on('accordionGroupToggle', function(event, data) {
+		var topic = $scope.topicMap[data.group.topicId];
+		$scope.onTopicLinkClick(topic);
+	});
+	
+	$scope.onTopicLinkClick = function(topic) {
+		setTopic(topic);
+		setSelectionState(topic.shape);
+	};
 	
 	var setCluster = function(cluster) {
 		deselectAll($scope.clusters);
@@ -259,7 +279,9 @@ clusterWheel.MainCtrl = function($scope, $http, $location, $rootScope, $sce, $ti
 		topic.selected = true;
 		$scope.currTopic = topic;
 		$scope.currCluster = topic.cluster;
-		$scope.$apply();
+		if (!$scope.$$phase) {
+			$scope.$apply();
+		}
 	};
 	
 	var setLesson = function(lesson) {
