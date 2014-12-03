@@ -31,7 +31,7 @@
     p {
       margin-top: 1em;
     }
-    .accordion * {
+    .accordion {
       width: 100%;
     }
     ul {
@@ -63,18 +63,15 @@
           }
         }
       }
-      .lesson {
-        -webkit-transition:0.5s linear all;
-        display: block;
-        padding: 2px;
-        border-radius: 3px;
-      }
-      .lesson.selected {
-        -webkit-transition:0.5s linear all;
-        background-color: lighten($neutralBg, 15%);
-      }
     }
   }
+}
+.lesson {
+  -webkit-transition:0.5s linear all;
+}
+.lesson.selected {
+  -webkit-transition:0.5s linear all;
+  background-color: lighten($neutralBg, 15%);
 }
 
 .topicsView {
@@ -111,12 +108,5 @@
         background-color: lighten($lightyellow, 8%);
       }  
     } } }
-  }
-  .lesson {
-    margin-bottom: 0.25em;
-    line-height: 1.1em;
-    span {
-      font-size: 85%;
-    }
   }
 }

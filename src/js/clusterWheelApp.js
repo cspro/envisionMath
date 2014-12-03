@@ -239,6 +239,9 @@ clusterWheel.MainCtrl = function($scope, $http, $location, $rootScope, $sce, $ti
 		angular.forEach(collection, function(item) {
 			item.selected = false;
 		});
+		$scope.currLesson = null;
+		$scope.currTopic = null;
+		$scope.currCluster = null;
 	};
 	
 	$scope.onClusterLinkClick = function(cluster) {
@@ -255,6 +258,12 @@ clusterWheel.MainCtrl = function($scope, $http, $location, $rootScope, $sce, $ti
 	$scope.onTopicLinkClick = function(topic) {
 		setTopic(topic);
 		setSelectionState(topic.shape);
+		$scope.rightPanelView = "topicsView";
+	};
+	
+	$scope.onLessonLinkClick = function(lesson) {
+		setLesson(lesson);
+		setSelectionState(lesson.shape);
 	};
 	
 	var setCluster = function(cluster) {
@@ -276,9 +285,12 @@ clusterWheel.MainCtrl = function($scope, $http, $location, $rootScope, $sce, $ti
 	var setTopic = function(topic) {
 		deselectAll($scope.topics);
 		deselectAll($scope.lessons);
-		topic.selected = true;
-		$scope.currTopic = topic;
-		$scope.currCluster = topic.cluster;
+		if (topic) {
+			$scope.rightPanelView = "topicsView";
+			topic.selected = true;
+			$scope.currTopic = topic;
+			$scope.currCluster = topic.cluster;
+		}
 		if (!$scope.$$phase) {
 			$scope.$apply();
 		}
@@ -286,12 +298,17 @@ clusterWheel.MainCtrl = function($scope, $http, $location, $rootScope, $sce, $ti
 	
 	var setLesson = function(lesson) {
 		deselectAll($scope.lessons);
-		lesson.selected = true;
-		lesson.topic.selected = true;
-		$scope.currLesson = lesson;
-		$scope.currTopic = lesson.topic;
-		$scope.currCluster = lesson.topic.cluster;
-		$scope.$apply();
+		if (lesson) {
+			$scope.rightPanelView = "topicsView";
+			lesson.selected = true;
+			lesson.topic.selected = true;
+			$scope.currLesson = lesson;
+			$scope.currTopic = lesson.topic;
+			$scope.currCluster = lesson.topic.cluster;
+		}
+		if (!$scope.$$phase) {
+			$scope.$apply();
+		}
 	};
 	
 	var getSelection = function(arc) {
@@ -398,8 +415,8 @@ clusterWheel.MainCtrl = function($scope, $http, $location, $rootScope, $sce, $ti
 			r += r*0.175;
 		}
 		var a = (arc.startAngle + (arc.angleSize/2)) * (Math.PI/180);
-		var x = (r * Math.cos(a)) - config.labelWidth/2;
-		var y = (r * Math.sin(a)) - config.labelHeight/2;
+		var x = (r * Math.cos(a)) - config.labelWidth/2 + (arc.labelXOffset ? arc.labelXOffset : 0);
+		var y = (r * Math.sin(a)) - config.labelHeight/2 + (arc.labelYOffset ? arc.labelYOffset : 0);
 		var s = arc.fontScale ? config.labelSize*arc.fontScale : config.labelSize;
 		var t = new Kinetic.Text({
 			x: x,

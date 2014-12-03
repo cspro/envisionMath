@@ -16,7 +16,7 @@
 				
 		<a id="homeButton" ng-click="onHomeClick()"></a>
 		
-		<a id="helpButton" ng-click="onHelpClick()">?</a>
+		<a id="helpButton" ng-click="onHelpClick()"></a>
 		
 				
 			<!-- <a id="resetButton" ng-click="reset($event)" ng-show="currCluster"></a> -->
@@ -64,12 +64,14 @@
 						<div ng-switch="rightPanelView">
 							<div class="copyCell clustersView" ng-switch-when="clustersView">
 								<h1 class="clustersTitle">{{grade.title}} Clusters</h1>
-								<div class="clusterLink" ng-repeat="cluster in clusters" ng-click="onClusterLinkClick(cluster)">
-									<span class="dot {{cluster.color}}">&#9679;</span>
-									<span class="dotLabel">{{cluster.id}}</span>
-									<div class="text">
-										<span class="title">{{cluster.title}}</span>
-										<span class="desc">{{cluster.desc}}</span>
+								<div class="clusterLinks">
+									<div class="clusterLink" ng-repeat="cluster in clusters" ng-click="onClusterLinkClick(cluster)">
+										<span class="dot {{cluster.color}}">&#9679;</span>
+										<span class="dotLabel">{{cluster.id}}</span>
+										<div class="text">
+											<span class="title">{{cluster.title}}</span>
+											<span class="desc">{{cluster.desc}}</span>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -84,12 +86,16 @@
 										topic-id="{{topic.id}}"
 										ng-repeat="topic in currCluster.topics" 
 										is-open="topic.selected" >
-										<ul>
-											<li ng-repeat="lesson in topic.lessons" class="lesson" ng-class="{selected : lesson == currLesson}">
-												<b>{{lesson.title}}</b><br/>
-												<span>{{lesson.desc}}</span>
-											</li>
-										</ul>
+										<div>
+											<div ng-repeat="lesson in topic.lessons" class="lesson lessonItem" ng-class="{selected : lesson == currLesson}" ng-click="onLessonLinkClick(lesson)">
+												<span class="dot {{currCluster.color}}">&#9679;</span>
+												<span class="dotLabel">{{lesson.id}}</span>
+												<div class="text">
+													<b>{{lesson.title}}</b><br/>
+													<span>{{lesson.desc}}</span>
+												</div>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
