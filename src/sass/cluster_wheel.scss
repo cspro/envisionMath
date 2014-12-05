@@ -84,6 +84,10 @@ img, area, map {
   }
 }
 
+#wrapper {
+  min-width: 500px;
+}
+
 #logo {
   display: block;
   width: 230px;
@@ -106,7 +110,7 @@ img, area, map {
       display: inline-block;
       padding: 0.3em 0.75em;
       background: lighten($bg2, 6%);
-      color: $pageBg;
+      color: $textColor;
       margin-left: 1px;
       &.selected {
         color: $textColor;
@@ -126,7 +130,7 @@ img, area, map {
 #helpButton, #homeButton {
   display: block;
   position: absolute;
-  top: 60px;
+  top: 20px;
   z-index: 10;
   width: 28px;
   height: 24px;
@@ -144,18 +148,18 @@ img, area, map {
   background: url("../images/home_button.png") no-repeat;
 }
 #helpButton {
-  left: 530px;
+  right: 20px;
   background: url("../images/help_button.png") no-repeat;
 }
 
 #leftCol, #rightCol {
-  min-height: 900px;
+  min-height: 600px;
   padding: 0;
 }
 
 #leftCol {
   background: $bg1;
-  border-right: 10px solid $pageBg;
+  border: none;
 }
 
 #rightCol {
@@ -163,6 +167,7 @@ img, area, map {
 }
 
 #dividerArrow {
+  display: none;
   width: 43px;
   height: 60px;
   position: absolute;
@@ -196,81 +201,84 @@ img, area, map {
   }
 }
 
-#circleKey {
-  position: relative;
-  display: block;
-  margin: 1em 0 0.5em 150px;
-  width: 100%;
-  .td {
+#keyWrapper {
+  display: none;
+  max-width: 500px;
+  margin: 0 auto;
+  
+  .childImage {
+    display: block;
+    width: 80px;
+    height: 193px;
+    &.boy {
+      background: url("../images/boy.png");
+    }
+  }
+
+  #circleKey {
+    position: relative;
+    display: block;
+    margin: 1em 0 0.5em 0px;
     width: 100%;
-    vertical-align: top;
-    padding-right: 1em;
-    height: 25px;
-    span, b {
-      font-size: 12px;
+    .td {
+      width: 100%;
+      vertical-align: top;
+      padding-right: 1em;
+      height: 25px;
+      span, b {
+        font-size: 12px;
+      }
+      .dot {
+        font-size: 35px;
+        text-shadow: 0px 1px 4px rgba(150, 150, 150, 0.5);
+        display: block;
+        float: left;
+        clear: both;
+        line-height: 14px;
+        margin-right: 0.25em;
+      }
+      &.green  { .dot { color: $green ; }}
+      &.blue   { .dot { color: $blue  ; }}
+      &.yellow { .dot { color: $yellow; }}
     }
-    .dot {
-      font-size: 35px;
-      text-shadow: 0px 1px 4px rgba(150, 150, 150, 0.5);
-      display: block;
-      float: left;
-      clear: both;
-      line-height: 14px;
-      margin-right: 0.25em;
-    }
-    &.green  { .dot { color: $green ; }}
-    &.blue   { .dot { color: $blue  ; }}
-    &.yellow { .dot { color: $yellow; }}
   }
-}
-
-#circleLegend {
-  display: block;
-  position: relative;
-  margin-left: 70px;
-  width: 400px;
-  margin-left: 150px;
-  margin-top: 0;
-  h3 {
-    text-transform: uppercase;
-    font-weight: bold;
-    border-top: 1px solid $headerColor;
-    padding-top: 0.5em;
-  }
-  .legendItem {
-    display: inline-block;
-    margin-bottom: 0.25em;
-    span {
-      display: inline-block;
-      vertical-align: middle;
+  
+  #circleLegend {
+    display: block;
+    position: relative;
+    margin-top: 0;
+    h3 {
       text-transform: uppercase;
-      height: 34px;
-      &.legendKey {
-        padding: 2px 4px 2px 10px;
-        font-weight: bold;
-        width: 46px;
-        margin-right: 0px;
-        text-align: right;
-      }
-      &.legendValue {
-        padding: 2px 1em 2px 0.25em;
-        width: 150px;
-        background: lighten($bg2, 12.5%);
-      }
-      font-size: 11px;
+      font-weight: bold;
+      border-top: 1px solid $headerColor;
+      padding-top: 0.5em;
     }
-  }
+    .legendItem {
+      display: inline-block;
+      margin-bottom: 0.25em;
+      span {
+        display: inline-block;
+        vertical-align: middle;
+        text-transform: uppercase;
+        height: 34px;
+        &.legendKey {
+          padding: 2px 4px 2px 10px;
+          font-weight: bold;
+          width: 46px;
+          margin-right: 0px;
+          text-align: right;
+        }
+        &.legendValue {
+          padding: 2px 1em 2px 0.25em;
+          width: 150px;
+          background: lighten($bg2, 12.5%);
+        }
+        font-size: 11px;
+      }
+    }
 }
 
-.childImage {
-  width: 80px;
-  height: 193px;
-  position: absolute;
-  top: 0px;
-  left: -100px;
-  &.boy {
-    background: url("../images/boy.png");
-  }
+
 }
 
 @import 'topics_panel';
@@ -279,15 +287,16 @@ img, area, map {
 /* Extra small devices (phones, up to 480px) */
 /* No media query since this is the default in Bootstrap */
 
-
-
-@media (min-width: 600px) {
+.modal-body {
+  #keyWrapper {
+    display: table;
+    .childImage.boy {
+      display: none;
+    }
+  }
 }
 
 @media (min-width: 721px) {
-  #circleWrapper {
-    position: relative;
-  }
 }
 
 /* Small devices (tablets, 768px and up) */
@@ -296,6 +305,26 @@ img, area, map {
 
 /* Medium devices (desktops and up) */
 @media (min-width: 992px) {
+  #leftCol, #rightCol {
+    min-height: 900px;
+  }
+  #leftCol {
+    border-right: 10px solid $pageBg;
+  }
+  #dividerArrow {
+    display: block;
+  }
+  #keyWrapper {
+    display: table;
+    #circleKey {
+      margin-left: 20px;
+    }
+  }
+  .modal-body {
+    #keyWrapper {
+      display: none;
+    }
+  }
   .hiddenAtLarge {
     /* Fix for IE10 clearing issue */
     display: none !important;
@@ -350,3 +379,5 @@ img, area, map {
     display:block!important;
   }
 }
+
+@import 'animation'
