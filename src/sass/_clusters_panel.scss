@@ -68,3 +68,14 @@
     background-color: lighten($bg1, 20%);
   }
 }
+
+
+// Firefox-only fix
+@-moz-document url-prefix() {
+  .clusterLink, .lessonItem {
+    .dot {
+      font-size: 115px;
+    }
+  }
+}
+

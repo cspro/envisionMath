@@ -27,6 +27,21 @@ angular.module('clusterWheel.App').directive('testDirective', function() {
 	};
 });
 		
+angular.module('clusterWheel.App').controller('ModalDemoCtrl', function ($scope, $modal, $log) {
+
+});
+		
+angular.module('clusterWheel.App').controller('ModalInstanceCtrl', function ($scope, $modalInstance) {
+
+  $scope.ok = function () {
+    $modalInstance.close();
+  };
+
+  $scope.cancel = function () {
+    $modalInstance.dismiss('cancel');
+  };
+});
+
 	
 clusterWheel.MainCtrl = function($scope, $http, $location, $rootScope, $sce, $timeout, $modal, $log) {
 	
@@ -211,6 +226,10 @@ clusterWheel.MainCtrl = function($scope, $http, $location, $rootScope, $sce, $ti
 	
 	$scope.onHomeClick = function() {
 		$scope.reset();
+	};
+	
+	$scope.isHomeButtonEnabled = function() {
+		return $scope.rightPanelState == 'topicsView';
 	};
 	
 	$timeout(function() {
@@ -454,7 +473,7 @@ clusterWheel.MainCtrl = function($scope, $http, $location, $rootScope, $sce, $ti
 			arc.on('mousedown', function(){
 					setMousedownState(this);
 				});
-			arc.on('click', function(){
+			arc.on('click tap', function(){
 					setCluster(this.data);
 					setSelectionState(this);
 					setRolloverState(this);
@@ -469,7 +488,7 @@ clusterWheel.MainCtrl = function($scope, $http, $location, $rootScope, $sce, $ti
 			startAngle += angleSize + config.radialSpacing;
 			
 		}
-		layer.on('click', function() {
+		layer.on('click tap', function() {
 			$scope.userHasInteracted = true;
 		});
 		$scope.shapeLayer = layer;
@@ -498,7 +517,7 @@ clusterWheel.MainCtrl = function($scope, $http, $location, $rootScope, $sce, $ti
 			arc.on('mousedown', function(){
 					setMousedownState(this);
 				});
-			arc.on('click', function(){
+			arc.on('click tap', function(){
 					setTopic(this.data);
 					setSelectionState(this);
 					setRolloverState(this);
@@ -550,7 +569,7 @@ clusterWheel.MainCtrl = function($scope, $http, $location, $rootScope, $sce, $ti
 			arc.on('mousedown', function(){
 					setMousedownState(this);
 				});
-			arc.on('click', function(){
+			arc.on('click tap', function(){
 					setLesson(this.data);
 					setSelectionState(this);
 					setRolloverState(this);

@@ -1,0 +1,594 @@
+.container {
+  min-width: 360px;
+  position: relative;
+  color: #333333;
+}
+
+* {
+  font-family: "Open Sans" !important;
+  font-size: 14px;
+  margin: 0;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+h1 {
+  font-size: 1.75em;
+  font-weight: 600;
+  margin-top: 0;
+}
+
+h2 {
+  font-size: 1.35em;
+}
+
+h3 {
+  font-size: 1.15em;
+}
+
+h1, h2, h3, h4 {
+  color: #36679C;
+  margin-top: 0;
+}
+
+img.no-resize {
+  max-width: none;
+}
+
+img, area, map {
+  outline: none;
+}
+
+.spaceBelow {
+  margin-bottom: 1em;
+}
+
+.spaceAbove {
+  margin-top: 1em;
+}
+
+.allCaps {
+  text-transform: uppercase;
+}
+
+.tooltip-inner {
+  max-width: 300px;
+  min-width: 150px;
+  font-size: 10px !important;
+}
+
+.table {
+  display: table;
+  margin: 0;
+}
+
+/* override Bootstrap default, which makes this white for some reason */
+.table .table {
+  background-color: transparent;
+}
+
+.tr {
+  display: table-row;
+}
+
+.td {
+  display: table-cell;
+  vertical-align: top;
+}
+
+.accordion {
+  width: 100%;
+}
+.accordion .accordion-toggle {
+  cursor: pointer;
+}
+.accordion .accordion-toggle span {
+  pointer-events: none;
+}
+
+#wrapper {
+  min-width: 500px;
+}
+
+#logo {
+  display: block;
+  width: 230px;
+  height: 40px;
+  background: url("../images/envisionmath_logo.png") no-repeat;
+}
+
+#gradeNav {
+  display: block;
+  top: 8px;
+  position: relative;
+  float: right;
+}
+#gradeNav .navLabel {
+  display: inline-block;
+  text-transform: uppercase;
+}
+#gradeNav .navTabs {
+  display: inline-block;
+}
+#gradeNav .navTabs li {
+  display: inline-block;
+  padding: 0.3em 0.75em;
+  background: #e2e2e2;
+  color: #333333;
+  margin-left: 1px;
+}
+#gradeNav .navTabs li.selected {
+  color: #333333;
+  background: #d3d3d3;
+  position: relative;
+  border-top: 3px solid #61BB46;
+  top: 3px;
+}
+#gradeNav .navTabs li span {
+  pointer-events: none;
+}
+
+#helpButton, #homeButton {
+  display: block;
+  position: absolute;
+  top: 20px;
+  z-index: 10;
+  width: 28px;
+  height: 24px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+#helpButton:hover, #homeButton:hover {
+  background-color: #f3f3f3;
+}
+#helpButton:active, #homeButton:active {
+  background-color: white;
+}
+
+#homeButton {
+  left: 20px;
+  background: url("../images/home_button.png") no-repeat;
+}
+
+#helpButton {
+  right: 20px;
+  background: url("../images/help_button.png") no-repeat;
+}
+
+#leftCol, #rightCol {
+  min-height: 600px;
+  padding: 0;
+}
+
+#leftCol {
+  background: #e9e9e9;
+  border: none;
+}
+
+#rightCol {
+  background: #d3d3d3;
+}
+
+#dividerArrow {
+  display: none;
+  width: 43px;
+  height: 60px;
+  position: absolute;
+  right: -10px;
+  top: 40px;
+  background: url("../images/divider_arrow.png") no-repeat;
+}
+
+#circlePrompt {
+  text-align: center;
+  position: relative;
+  top: -3px;
+  padding: 2em 2.5em 0.5em;
+}
+
+#circleWrapper {
+  width: 500px;
+  height: 500px;
+  display: block;
+  margin: 0 auto;
+  z-index: 100;
+  position: relative;
+  display: block;
+  margin-top: 0em;
+}
+#circleWrapper #kinetic {
+  position: absolute;
+  top: 400;
+  left: 0;
+  -webkit-transition: all 0.75s ease-in-out;
+  transition: all 0.75s ease-in-out;
+}
+
+#keyWrapper {
+  display: none;
+  max-width: 500px;
+  margin: 0 auto;
+}
+#keyWrapper .childImage {
+  display: block;
+  width: 80px;
+  height: 193px;
+}
+#keyWrapper .childImage.boy {
+  background: url("../images/boy.png");
+}
+#keyWrapper #circleKey {
+  position: relative;
+  display: block;
+  margin: 1em 0 0.5em 0px;
+  width: 100%;
+}
+#keyWrapper #circleKey .td {
+  width: 100%;
+  vertical-align: top;
+  padding-right: 1em;
+  height: 25px;
+}
+#keyWrapper #circleKey .td span, #keyWrapper #circleKey .td b {
+  font-size: 12px;
+}
+#keyWrapper #circleKey .td .dot {
+  font-size: 35px;
+  text-shadow: 0px 1px 4px rgba(150, 150, 150, 0.5);
+  display: block;
+  float: left;
+  clear: both;
+  line-height: 14px;
+  margin-right: 0.25em;
+}
+#keyWrapper #circleKey .td.green .dot {
+  color: #61BB46;
+}
+#keyWrapper #circleKey .td.blue .dot {
+  color: #009DDB;
+}
+#keyWrapper #circleKey .td.yellow .dot {
+  color: #EFAB1E;
+}
+#keyWrapper #circleLegend {
+  display: block;
+  position: relative;
+  margin-top: 0;
+}
+#keyWrapper #circleLegend h3 {
+  text-transform: uppercase;
+  font-weight: bold;
+  border-top: 1px solid #36679C;
+  padding-top: 0.5em;
+}
+#keyWrapper #circleLegend .legendItem {
+  display: inline-block;
+  margin-bottom: 0.25em;
+}
+#keyWrapper #circleLegend .legendItem span {
+  display: inline-block;
+  vertical-align: middle;
+  text-transform: uppercase;
+  height: 34px;
+  font-size: 11px;
+}
+#keyWrapper #circleLegend .legendItem span.legendKey {
+  padding: 2px 4px 2px 10px;
+  font-weight: bold;
+  width: 46px;
+  margin-right: 0px;
+  text-align: right;
+}
+#keyWrapper #circleLegend .legendItem span.legendValue {
+  padding: 2px 1em 2px 0.25em;
+  width: 150px;
+  background: #f3f3f3;
+}
+
+.panel {
+  border: none;
+  box-shadow: none;
+}
+
+.panel-group .panel {
+  border-radius: 0;
+}
+
+.panel-default > .panel-heading {
+  border-color: #d3d3d3;
+}
+
+.copyWrapper {
+  clear: both;
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  padding: 2em 2.5em 0.5em;
+}
+.copyWrapper .copy {
+  display: table;
+  position: relative;
+  clear: left;
+  -webkit-transition: 0.5s linear all;
+  transition: 0.5s linear all;
+  min-width: 300px;
+  width: 100%;
+}
+.copyWrapper .copy h1, .copyWrapper .copy h2 {
+  margin-bottom: 0;
+}
+.copyWrapper .copy p {
+  margin-top: 1em;
+}
+.copyWrapper .copy .accordion {
+  width: 100%;
+}
+.copyWrapper .copy ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  max-width: 600px;
+}
+.copyWrapper .copy ul li {
+  margin-left: 0;
+}
+.copyWrapper .copy ul > li.topic {
+  display: block;
+  background-color: white;
+  border-radius: 10px;
+  margin: 0 0 1em 0;
+  background-color: #ccc;
+  padding: 1em;
+  overflow: hidden;
+  -webkit-transition: 1s linear all;
+}
+.copyWrapper .copy ul > li.topic ul {
+  height: 1px;
+  -webkit-transition: 1s linear all;
+}
+.copyWrapper .copy ul > li.topic.selected {
+  overflow: visible;
+}
+.copyWrapper .copy ul > li.topic.selected ul {
+  -webkit-transition: 1s linear all;
+  height: auto;
+}
+
+.lesson {
+  -webkit-transition: 0.5s linear all;
+}
+
+.lesson.selected {
+  -webkit-transition: 0.5s linear all;
+  background-color: #e1e1e1;
+}
+
+.topicsView .topic .panel-heading {
+  border-radius: 0;
+  padding: 0;
+}
+.topicsView .topic .panel-heading h4.panel-title a {
+  display: block;
+  padding: 10px 15px;
+  text-decoration: none;
+}
+.topicsView .topic .panel-heading h4.panel-title a:hover {
+  text-decoration: none;
+}
+.topicsView .topic.green .panel-heading a {
+  background-color: #81c96b;
+}
+.topicsView .topic.green .panel-heading a:hover {
+  background-color: #9ad489;
+}
+.topicsView .topic.blue .panel-heading a {
+  background-color: #74c6e6;
+}
+.topicsView .topic.blue .panel-heading a:hover {
+  background-color: #97d4ed;
+}
+.topicsView .topic.yellow .panel-heading a {
+  background-color: #f4c665;
+}
+.topicsView .topic.yellow .panel-heading a:hover {
+  background-color: #f7d48c;
+}
+
+.clustersTitle {
+  position: relative;
+  left: 67px;
+  text-transform: uppercase;
+  margin-bottom: 1em;
+}
+
+.clusterLinks {
+  display: block;
+  margin-top: 1em;
+}
+
+.clusterLink, .lessonItem {
+  position: relative;
+  display: table;
+  width: 100%;
+  height: 55px;
+  cursor: pointer;
+  background-color: transparent;
+  margin-bottom: 1px;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+.clusterLink .dot, .lessonItem .dot {
+  font-size: 120px;
+  display: block;
+  position: absolute;
+  z-index: 1;
+  top: -67px;
+}
+.clusterLink .dot.green, .lessonItem .dot.green {
+  color: #61BB46;
+}
+.clusterLink .dot.blue, .lessonItem .dot.blue {
+  color: #009DDB;
+}
+.clusterLink .dot.yellow, .lessonItem .dot.yellow {
+  color: #EFAB1E;
+}
+.clusterLink .dotLabel, .lessonItem .dotLabel {
+  display: block;
+  position: absolute;
+  width: 120px !important;
+  height: 117px;
+  text-align: center;
+  z-index: 10;
+  left: -26px;
+  color: #1e3956;
+  top: 20px;
+  font-size: 11px;
+  font-weight: bold;
+}
+.clusterLink .text, .lessonItem .text {
+  display: table-cell;
+  padding-left: 70px;
+  width: 100%;
+  vertical-align: middle;
+}
+.clusterLink .text .title, .lessonItem .text .title {
+  display: block;
+  font-weight: bold;
+  line-height: 14px;
+}
+.clusterLink .text .desc, .lessonItem .text .desc {
+  display: block;
+  font-size: 12px;
+  line-height: 14px;
+}
+.clusterLink:hover, .lessonItem:hover {
+  background-color: #e9e9e9;
+  -webkit-transition: all 0.25s;
+  transition: all 0.25s;
+}
+.clusterLink:active, .lessonItem:active {
+  background-color: white;
+}
+
+@-moz-document url-prefix() {
+  .clusterLink .dot, .lessonItem .dot {
+    font-size: 115px;
+  }
+}
+/* Extra small devices (phones, up to 480px) */
+/* No media query since this is the default in Bootstrap */
+.modal-body #keyWrapper {
+  display: table;
+}
+.modal-body #keyWrapper .childImage.boy {
+  display: none;
+}
+
+/* Small devices (tablets, 768px and up) */
+/* Medium devices (desktops and up) */
+@media (min-width: 992px) {
+  #leftCol, #rightCol {
+    min-height: 900px;
+  }
+
+  #leftCol {
+    border-right: 10px solid #ffffff;
+  }
+
+  #dividerArrow {
+    display: block;
+  }
+
+  #keyWrapper {
+    display: table;
+  }
+  #keyWrapper #circleKey {
+    margin-left: 20px;
+  }
+
+  .modal-body #keyWrapper {
+    display: none;
+  }
+
+  .hiddenAtLarge {
+    /* Fix for IE10 clearing issue */
+    display: none !important;
+  }
+}
+/* Large devices (large desktops, 1200px and up) */
+.footer {
+  background-color: #e1e1e1;
+  text-align: center;
+  padding: 0.75em;
+  margin: 0 -1px;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+.footer p {
+  margin-bottom: 0;
+}
+.footer a {
+  font-size: 0.85em;
+}
+.footer .counter {
+  font-size: 0.85em;
+}
+
+#resetButton {
+  display: block;
+  position: absolute;
+  top: 1.5em;
+  left: 1.5em;
+  z-index: 1001;
+  width: 50px;
+  height: 50px;
+  background: url("../images/reset.png") no-repeat;
+  opacity: 0.15;
+  cursor: pointer;
+}
+#resetButton:hover {
+  opacity: 0.25;
+}
+#resetButton.ng-hide {
+  opacity: 0;
+}
+#resetButton.ng-hide-add, #resetButton.ng-hide-remove {
+  transition: 0.25s ease-in-out all;
+  display: block !important;
+}
+
+.animate-switch-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.animate-switch {
+  width: 500px;
+}
+
+.animate-switch.ng-animate {
+  -webkit-transition: all cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s;
+  transition: all cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.animate-switch.ng-leave.ng-leave-active,
+.animate-switch.ng-enter {
+  opacity: 0;
+  left: -100%;
+}
+
+.animate-switch.ng-leave,
+.animate-switch.ng-enter.ng-enter-active {
+  opacity: 1;
+  left: 0;
+}
+
+/*# sourceMappingURL=main.css.map */
