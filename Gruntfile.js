@@ -10,7 +10,8 @@ module.exports = function(grunt) {
 		sass: {
 			dist: {
 				options: {
-					style: 'expanded'
+					style: 'expanded',
+					sourcemap: 'auto'
 				},
 				files: {
 					'src/css/main.css': 'src/sass/main.scss'
@@ -26,7 +27,7 @@ module.exports = function(grunt) {
 			}
 		},
 		watch: {
-			files: ['src/**/*', '!src/css/**/*'], //Don't watch css, because the sass task will modify it --> infinite loop
+			files: ['src/**/*', '!src/css/main.css**'], //Don't watch css, because the sass task will modify it --> infinite loop
 			tasks: ['default']
 		}
 	});

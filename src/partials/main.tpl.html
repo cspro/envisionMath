@@ -4,20 +4,17 @@
 		<div id="gradeNav">
 			<div class="navLabel">Grade:</div>
 			<div class="navTabs">
-				<li ng-repeat="grade in grades" class="{{grade.selected ? 'selected' : ''}}">
+				<li ng-repeat="grade in grades" tooltip-placement="bottom" tooltip="{{grade.selected ? '' : 'Coming Soon'}}" class="{{grade.selected ? 'selected' : ''}}">
 					<span>{{grade.label}}</span>
 				</li>
 			</div>
 		</div>
-		<a href="home" id="logo"></a>
+		<a id="logo" target="_self" href="http://www.pearsonschool.com/index.cfm?locator=PS2nU9&PMDbSiteId=2781&PMDbSolutionId=6724&PMDbSubSolutionId=&PMDbCategoryId=806&PMDbSubCategoryId=25741&PMDbSubjectAreaId=&PMDbProgramId=134781"></a>
 	</div>
 	
 	<div id="contentWrapper" class="row spaceBelow">
 				
-		
-				
-			<!-- <a id="resetButton" ng-click="reset($event)" ng-show="currCluster"></a> -->
-		<div id="leftCol" class="col-lg-6 col-md-7 col-sm-12">
+		<div id="leftCol" class="col-lg-6 col-md-7 col-sm-12" style="min-height: {{stageSize + 80}}px;">
 			
 			<a id="homeButton" ng-click="onHomeClick()" ng-show="isHomeButtonEnabled()"></a>
 			<a id="helpButton" ng-click="onHelpClick()"></a>
@@ -28,7 +25,7 @@
 				<h3>Click or tap the wheel to see connections.</h3>
 			</div>
 			
-			<div  id="circleWrapper">
+			<div  id="circleWrapper" width="{{stageSize}}" height="{{stageSize}}">
 				<div id="kinetic"></div>
 			</div>
 			
@@ -47,8 +44,8 @@
 								<h1 class="clustersTitle">{{grade.title}} Clusters</h1>
 								<div class="clusterLinks">
 									<div class="clusterLink" ng-repeat="cluster in clusters" ng-click="onClusterLinkClick(cluster)">
-										<span class="dot {{cluster.color}}">&#9679;</span>
-										<span class="dotLabel">{{cluster.id}}</span>
+										<span class="dot {{cluster.color}}"></span>
+										<span class="dotLabel"><span>{{cluster.id}}</span></span>
 										<div class="text">
 											<span class="title">{{cluster.title}}</span>
 											<span class="desc">{{cluster.desc}}</span>
@@ -69,8 +66,8 @@
 										is-open="topic.selected" >
 										<div>
 											<div ng-repeat="lesson in topic.lessons" class="lesson lessonItem" ng-class="{selected : lesson == currLesson}" ng-click="onLessonLinkClick(lesson)">
-												<span class="dot {{currCluster.color}}">&#9679;</span>
-												<span class="dotLabel">{{lesson.id}}</span>
+												<span class="dot {{currCluster.color}}"></span>
+												<span class="dotLabel"><span>{{lesson.id}}</span></span>
 												<div class="text">
 													<b>{{lesson.title}}</b><br/>
 													<span>{{lesson.desc}}</span>

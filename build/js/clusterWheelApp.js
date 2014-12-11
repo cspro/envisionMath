@@ -43,7 +43,7 @@ angular.module('clusterWheel.App').controller('ModalInstanceCtrl', function ($sc
 });
 
 	
-clusterWheel.MainCtrl = function($scope, $http, $location, $rootScope, $sce, $timeout, $modal, $log) {
+clusterWheel.MainCtrl = function($scope, $http, $location, $rootScope, $sce, $timeout, $modal, $log, $window) {
 	
 	$scope.getLocation = function() {
 		// $scope.currBU = ($location.search()).businessUnit;
@@ -117,7 +117,10 @@ clusterWheel.MainCtrl = function($scope, $http, $location, $rootScope, $sce, $ti
 		$scope.lessons = [];
 		$scope.rightPanelState = "clustersView";
 		
-		$scope.stageSize = 500;
+		var w = angular.element($window)[0];
+		var windowWidth  = w.innerWidth;
+		
+		$scope.stageSize = windowWidth > 520 ? 500 : windowWidth - 20;
 	
 		$scope.circleConfig = {
 			innerRadius : $scope.stageSize * 0.15 - 12,

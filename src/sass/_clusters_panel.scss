@@ -1,6 +1,6 @@
 .clustersTitle {
   position: relative;
-  left: 67px;
+  margin-left: 67px;
   text-transform: uppercase;
   margin-bottom: 1em;
 }
@@ -19,27 +19,35 @@
   background-color: transparent;
   margin-bottom: 1px;
   .dot {
-    font-size: 120px;
     display: block;
+    width: 50px;
+    height: 50px;
     position: absolute;
+    top: 2px;
+    left: 9px;
     z-index: 1;
-    top: -67px;
-    &.green  { color: $green; }
-    &.blue   { color: $blue; }
-    &.yellow { color: $yellow; }
+    &.green  { background: url('../images/circle_lg_green.png') center center no-repeat; }
+    &.blue   { background: url('../images/circle_lg_blue.png') center center no-repeat; }
+    &.yellow { background: url('../images/circle_lg_yellow.png') center center no-repeat; }
   }
   .dotLabel {
-    display: block;
+    display: table-cell;
     position: absolute;
-    width: 120px !important;
-    height: 117px;
-    text-align: center;
+    width: 50px;
+    height: 50px;
+    top: 2px;
+    left: 8px;
     z-index: 10;
-    left: -26px;
-    color: $darkText;
-    top: 20px;
-    font-size: 11px;
-    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+    span {
+      text-align: center;
+      color: $darkText;
+      font-size: 11px;
+      font-weight: bold;
+      display: block;
+      line-height: 50px;
+    }
    }
   .text {
     display: table-cell;

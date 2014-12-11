@@ -28,7 +28,7 @@ a:hover {
  text-decoration: none;
 }
 h1 {
-  font-size: 1.75em;
+  font-size: 1.5em;
   font-weight: 600;
   margin-top: 0;
 }
@@ -54,7 +54,7 @@ img, area, map {
 }
 .tooltip-inner {
   max-width: 300px;
-  min-width: 150px;  
+  min-width: 50px;  
   font-size: 10px !important;
 }
 .table {
@@ -85,7 +85,7 @@ img, area, map {
 }
 
 #wrapper {
-  min-width: 500px;
+  // min-width: 380px;
 }
 
 #logo {
@@ -93,10 +93,13 @@ img, area, map {
   width: 230px;
   height: 40px;
   background: url("../images/envisionmath_logo.png") no-repeat;
+  background-size: contain;
+  background-position: bottom left;
+  cursor: pointer;
 }
 
 #gradeNav {
-  display: block;
+  display: none;
   top: 8px;
   position: relative;
   float: right;
@@ -123,9 +126,9 @@ img, area, map {
         pointer-events: none;
       }
     }
-    
   }
 }
+
 
 #helpButton, #homeButton {
   display: block;
@@ -153,7 +156,7 @@ img, area, map {
 }
 
 #leftCol, #rightCol {
-  min-height: 600px;
+  min-height: 460px;
   padding: 0;
 }
 
@@ -184,13 +187,12 @@ img, area, map {
 }
 
 #circleWrapper {
-  width: 500px;
-  height: 500px;
   display: block;
+  min-width: 380px;
+  min-height: 380px;
   margin: 0 auto;
   z-index: 100;
   position: relative;
-  display: block;
   margin-top: 0em;
   #kinetic {
     position: absolute;
@@ -205,7 +207,7 @@ img, area, map {
   display: none;
   max-width: 500px;
   margin: 0 auto;
-  
+  clear: both;
   .childImage {
     display: block;
     width: 80px;
@@ -296,17 +298,24 @@ img, area, map {
   }
 }
 
-@media (min-width: 721px) {
-}
-
 /* Small devices (tablets, 768px and up) */
-@media (min-width: 768px) {
+@media (min-width: 600px) {
+  #circleWrapper {
+    width: 500px;
+    height: 500px;
+  }
+  #logo {
+    width: 230px;
+  }
+  #gradeNav {
+    display: block;
+  }
 }
 
 /* Medium devices (desktops and up) */
 @media (min-width: 992px) {
   #leftCol, #rightCol {
-    min-height: 900px;
+    min-height: 900px !important;
   }
   #leftCol {
     border-right: 10px solid $pageBg;

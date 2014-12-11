@@ -155,7 +155,7 @@ var clusterData = {
 						"id" : "4-3", "title" : "Estimate: Use Reasoning",
 						"desc" : "4.NBT.B.5, 4.OA.A.3, MP.2, MP.3"
 					}, {
-						"id" : "", "title" : "4-4 Estimate: Use Compatible Numbers",
+						"id" : "4-4", "title" : "Estimate: Use Compatible Numbers",
 						"desc" : "4.NBT.B.5, MP.2, MP.3"
 					}, {
 						"id" : "4-5", "title" : "Arrays and Partial Products",
@@ -244,7 +244,7 @@ var clusterData = {
 				"labelXOffset" : 2,
 				"labelYOffset" : 7,
 				"title" : "Operations and Algebraic Thinking",
-				"desc" : "Gain familiarity with factors and mulitples",
+				"desc" : "Gain familiarity with factors and mulitples.",
 				"color" : "blue",
 				"fontScale" : "0.8",
 				"topics" : [{
@@ -411,7 +411,7 @@ var clusterData = {
 			}, {
 				"id" : "4.MD.A",
 				"title" : "Measurement and Data",
-				"desc" : "A Solve problems involving measurement and conversion of measurements from a larger unit to a smaller unit.",
+				"desc" : "Solve problems involving measurement and conversion of measurements from a larger unit to a smaller unit.",
 				"color" : "blue",
 				"topics" : [{
 					"title" : "Topic 13: Measurement: Find Equivalence in Units of Measure",
@@ -466,7 +466,7 @@ var clusterData = {
 				"labelXOffset" : -3,
 				"labelYOffset" : -6,
 				"title" : "Measurement and Data",
-				"desc" : "Geometric measurement: understand concepts of angle and measure angles.",
+				"desc" : "Geometric measurement: Understand concepts of angle and measure angles.",
 				"color" : "yellow",
 				"topics" : [{
 					"title" : "Topic 15: Geometric Measurement: Understand Concepts of Angles and Angle Measurement",
