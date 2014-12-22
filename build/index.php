@@ -26,7 +26,9 @@
 		<script src="js/clusterWheelApp.js" type="text/javascript"></script>
 
 	</head>
+	<script src="//assets.adobedtm.com/cb849396793dda3fc498b86555fddd5a2d245f6c/satelliteLib-e8d6fe74411f5492cd5fa813d2d7be6d099e15a2.js"></script>
 	<body>
 			<div class="container" ng-view></div>
+			<script type="text/javascript">_satellite.pageBottom();</script>
 	</body>
 </html>

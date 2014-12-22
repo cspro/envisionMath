@@ -224,19 +224,19 @@ var clusterData = {
 					"title" : "Topic 6: Use Operations with Whole Numbers to Solve Problems",
 					"lessons" : [{
 						"id" : "6-1", "title" : "Solve Comparison Situations",
-						"desc" : "4.OA.A.1, 4.OA.A.2, 4.NPT.B.5, MP.1, MP.2, MP.3, MP.4, MP.5, MP.6"
+						"desc" : "4.OA.A.1, 4.OA.A.2, 4.NBT.B.5, MP.1, MP.2, MP.3, MP.4, MP.5, MP.6"
 					}, {
 						"id" : "6-2", "title" : "Continue to Solve Comparison Situations",
-						"desc" : "4.OA.A.1,  4.OA.A.2,4.NPT.B.5, 4.NPT.B.6, MP.1, MP.2, MP.3. MP.4"
+						"desc" : "4.OA.A.1,  4.OA.A.2,4.NBT.B.5, 4.NBT.B.6, MP.1, MP.2, MP.3. MP.4"
 					}, {
 						"id" : "6-3", "title" : "Solve Multi-Step Problems",
-						"desc" : "4.OA.A.2, 4.OA.A.3, 4.NPT.B.5, 4.NPT.B.6,  MP.1, MP.4, MP.7, MP.8"
+						"desc" : "4.OA.A.2, 4.OA.A.3, 4.NBT.B.5, 4.NBT.B.6,  MP.1, MP.4, MP.7, MP.8"
 					}, {
 						"id" : "6-4", "title" : "Solve More Multi-Step Problems",
-						"desc" : "4.OA.A.3, 4.OA.A.2, 4.NPT.B.5, 4.NPT.B.6, MP.1, MP.3, MP.4"
+						"desc" : "4.OA.A.3, 4.OA.A.2, 4.NBT.B.5, 4.NBT.B.6, MP.1, MP.3, MP.4"
 					}, {
 						"id" : "6-5", "title" : "MATH PRACTICES AND PROBLEM SOLVING",
-						"desc" : "Make Sense and Persevere MP.1, Also MP.2, MP.4, MP.6, 4.OA.A.2, 4.OA.A.3, 4.NPT.B.5, 4.NPT.B.6 "
+						"desc" : "Make Sense and Persevere MP.1, Also MP.2, MP.4, MP.6, 4.OA.A.2, 4.OA.A.3, 4.NBT.B.5, 4.NBT.B.6 "
 					}]
 				}]
 			}, {
@@ -420,7 +420,7 @@ var clusterData = {
 						"desc" : "4.MD.A.1, 4.MD.A.2, 4.NF.B.3d, 4.NF.B.4c, MP.1, MP.6, MP.7, MP.8"
 					}, {
 						"id" : "13-2", "title" : "Equivalence with Customary Units of Capacity",
-						"desc" : "4.MD.A.1, 4.MD.A.2, 4.NF.B.3d, 4.NF.B.4c, MP.1, MP.6, MP.8"
+						"desc" : "4.MD.A.1, 4.MD.A.2, 4.NF.B.3d, 4.NF.B.4c, MP.1, MP.2, MP.6, MP.8"
 					}, {
 						"id" : "13-3", "title" : "Equivalence with Customary Units of Weight",
 						"desc" : "4.MD.A.1,  4.MD.A.2, 4.NF.B.3d, 4.NF.B.4c, MP.1, MP.2, MP.6, MP.8"

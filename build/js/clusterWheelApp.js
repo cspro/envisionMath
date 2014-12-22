@@ -3,7 +3,7 @@ var clusterWheel = clusterWheel || (clusterWheel = {});
 clusterWheel.App = angular.module('clusterWheel.App', ['ngRoute', 'ngAnimate', 'ui.bootstrap'])
 	.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
 		$routeProvider
-			.when('/', {
+			.when('/index.php', {
 				templateUrl: 'partials/main.tpl.html',
 				controller: 'clusterWheel.MainCtrl',
 				reloadOnSearch: false
@@ -13,7 +13,7 @@ clusterWheel.App = angular.module('clusterWheel.App', ['ngRoute', 'ngAnimate', '
 				// controller: 'clusterWheel.FormCtrl',
 				// reloadOnSearch: false
 			// })
-			.otherwise({redirectTo: '/'});
+			.otherwise({redirectTo: '/index.php'});
 		$locationProvider.html5Mode(true);
 	}]);
 	
