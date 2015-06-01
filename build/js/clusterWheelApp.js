@@ -121,7 +121,6 @@ clusterWheel.MainCtrl = function($scope, $http, $location, $rootScope, $sce, $ti
 		
 		initKinetic();
 		initCircles();
-
 	};
 	
 	$scope.reset = function($event) {
@@ -174,6 +173,23 @@ clusterWheel.MainCtrl = function($scope, $http, $location, $rootScope, $sce, $ti
 			}
 		}
 		$scope.circleConfig.lessonAngleSize = (360 - ((clusterCount) * $scope.circleConfig.radialSpacing)) / $scope.lessons.length;
+		
+		$scope.drawAll();
+	};
+	
+	$scope.clearAll = function() {
+		$scope.stage.clear();
+		if ($scope.shapeLayer) {$scope.shapeLayer.clear()};
+		angular.forEach($scope.allShapes, function(shape) {
+			shape.remove();
+		});
+		angular.forEach($scope.allLabels, function(label) {
+			label.remove();
+		});
+	};
+	
+	$scope.drawAll = function() {
+		$scope.clearAll();
 		$scope.allShapes = [];
 		$scope.allClusters = [];
 		$scope.allLabels = [];
@@ -205,6 +221,17 @@ clusterWheel.MainCtrl = function($scope, $http, $location, $rootScope, $sce, $ti
 	
 	$scope.isHomeButtonEnabled = function() {
 		return $scope.rightPanelState == 'topicsView';
+	};
+	
+	$scope.onGradeNavClick = function(grade) {
+		// Here's the callback for the grade switching code
+		$scope.grade = grade;
+		angular.forEach($scope.grades, function(g) {
+			g.selected = false;
+		});
+		$scope.grade.selected = true;
+		$scope.drawAll();
+		$scope.reset();
 	};
 	
 	$timeout(function() {
