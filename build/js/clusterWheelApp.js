@@ -8,29 +8,10 @@ clusterWheel.App = angular.module('clusterWheel.App', ['ngRoute', 'ngAnimate', '
 				controller: 'clusterWheel.MainCtrl',
 				reloadOnSearch: false
 			})
-			// .when('/inputForm', {
-				// templateUrl: 'partials/form.tpl.html',
-				// controller: 'clusterWheel.FormCtrl',
-				// reloadOnSearch: false
-			// })
 			.otherwise({redirectTo: '/index.php'});
 		$locationProvider.html5Mode(true);
 	}]);
 	
-	
-angular.module('clusterWheel.App').directive('testDirective', function() {
-	return {
-		restrict: 'A',
-		link: function(scope, elem, attrs) {
-			console.log("Here is a directive!");
-		}
-	};
-});
-		
-angular.module('clusterWheel.App').controller('ModalDemoCtrl', function ($scope, $modal, $log) {
-
-});
-		
 angular.module('clusterWheel.App').controller('ModalInstanceCtrl', function ($scope, $modalInstance) {
 
   $scope.ok = function () {
@@ -44,10 +25,6 @@ angular.module('clusterWheel.App').controller('ModalInstanceCtrl', function ($sc
 
 	
 clusterWheel.MainCtrl = function($scope, $http, $location, $rootScope, $sce, $timeout, $modal, $log, $window) {
-	
-	$scope.getLocation = function() {
-		// $scope.currBU = ($location.search()).businessUnit;
-	};
 	
 	$scope.getColor = function(name) {
 		return $scope.colors[name];
@@ -142,8 +119,6 @@ clusterWheel.MainCtrl = function($scope, $http, $location, $rootScope, $sce, $ti
 			selectionOverOpacity: 0.35
 		};
 		
-		$scope.getLocation();
-		
 		initKinetic();
 		initCircles();
 
@@ -206,18 +181,15 @@ clusterWheel.MainCtrl = function($scope, $http, $location, $rootScope, $sce, $ti
 		drawCenterCircle($scope.circleConfig);
 		drawBorderCircles($scope.circleConfig);
 		setSelectionState();
-		// setCluster($scope.clusters[0]);
-		// setSelectionState($scope.clusters[0].topics[0].shape);
 		$scope.stage.draw();
 		animateShapes();
 	};
 
- // Called after timeout so browser has a chance to render before impress is run
+ // Called after timeout so browser has a chance to render before kinetic is run
 	$scope.delayedInit = function() {
 		init();
 		$timeout(function() {
 			if (!$scope.userHasInteracted) {
-				//DEBUG
 				$scope.openModal('lg');
 			}
 		}, 10000);
@@ -688,10 +660,6 @@ clusterWheel.MainCtrl = function($scope, $http, $location, $rootScope, $sce, $ti
 		$scope.allLabels.push(t);
 		t.setListening(false);
 		return t;
-	};
-	
-	var drawKey = function(config) {
-		
 	};
 	
 	/* Animation
