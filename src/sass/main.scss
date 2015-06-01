@@ -122,6 +122,10 @@ img, area, map {
         border-top: 3px solid $green;
         top: 3px;
       }
+      &:hover {
+        background: darken($bg2, 10%);
+        cursor: pointer;
+      }
       span {
         pointer-events: none;
       }

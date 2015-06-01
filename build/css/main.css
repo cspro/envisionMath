@@ -125,6 +125,10 @@ img, area, map {
   border-top: 3px solid #61BB46;
   top: 3px;
 }
+#gradeNav .navTabs li:hover {
+  background: #b9b9b9;
+  cursor: pointer;
+}
 #gradeNav .navTabs li span {
   pointer-events: none;
 }

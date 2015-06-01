@@ -4,7 +4,7 @@
 		<div id="gradeNav">
 			<div class="navLabel">Grade:</div>
 			<div class="navTabs">
-				<li ng-repeat="grade in grades" tooltip-placement="bottom" tooltip="{{grade.selected ? '' : 'Coming Soon'}}" class="{{grade.selected ? 'selected' : ''}}" ng-click="onGradeNavClick(grade)">
+				<li ng-repeat="grade in grades" tooltip-placement="bottom" tooltip="{{grade.clusters ? '' : 'Coming Soon'}}" class="{{grade.selected ? 'selected' : ''}}" ng-click="onGradeNavClick(grade)">
 					<span>{{grade.label}}</span>
 				</li>
 			</div>
